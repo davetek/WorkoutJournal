@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WorkoutsViewController.swift
 //  WorkoutJournal
 //
 //  Created by David Lawrence on 10/5/18.
@@ -8,13 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class WorkoutsViewController: UIViewController {
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        super .viewDidLoad()
     }
-
-
 }
-
