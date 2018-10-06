@@ -12,7 +12,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     
     //set up a data variable; an instance of DataStore
     // will be injected into the variable from the AppDelegate
-    var exerciseData: [String]!
+    var exerciseData: [[String: Any]]!
     
     @IBOutlet var tableView: UITableView!
     
@@ -22,9 +22,13 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exercisesPrototypeCell", for: indexPath)
-        let exerciseName = exerciseData[indexPath.row]
+        let exercise = exerciseData[indexPath.row]
+        let exerciseName = exercise["name"] as! String
+        let exerciseType = exercise["type"] as! String
         
         cell.textLabel?.text = exerciseName
+        cell.detailTextLabel?.text = exerciseType
+        
         return cell
     }
     

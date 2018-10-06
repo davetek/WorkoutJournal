@@ -30,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let exercisesNavController = window!.rootViewController?.children[1] as! UINavigationController
         let exercisesViewController = exercisesNavController.topViewController as! ExercisesViewController
         exercisesViewController.exerciseData = dataStore.exercises
-
-
-        
-        
         
         return true
     }

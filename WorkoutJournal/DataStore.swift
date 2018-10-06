@@ -9,7 +9,8 @@
 import Foundation
 
 class DataStore {
-    var exercises = ["Regular Pushup", "Wide-Angle Pushup", "Tricep Pushup", "Decline Pushup", "Handstand from Squat", "Handstand Supported", "Sit-up", "Crunch", "Oblique", "Run-Trail", "Run-Road", "Run-Trail-and-Road"]
+    
+    var exercises = [["name": "Regular Pushup", "type": "calesthenics"], ["name": "Wide-Angle Pushup", "type": "calesthenics"], ["name": "Tricep Pushup", "type": "calesthenics"], ["name": "Decline Pushup", "type": "calesthenics"], ["name": "Handstand from Squat", "type": "calesthenics"], ["name": "Handstand Supported", "type": "calesthenics"], ["name": "Situp", "type": "core"], ["name": "Crunch", "type": "core"], ["name": "Oblique", "type": "core"], ["name": "Run-Trail", "type": "aerobic"], ["name": "Run-Road", "type": "aerobic"], ["name": "Run-Trail-and-Road", "type": "aerobic"]]
     
     var workouts = [
         ["date": "2018-10-03", "type": "calesthenics", "number": 1, "performed": true, "exercises": ["Regular Pushup", "Wide-Angle Pushup", "Tricep Pushup", "Decline Pushup", "Handstand from Squat"]],
