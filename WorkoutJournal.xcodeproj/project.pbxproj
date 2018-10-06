@@ -18,6 +18,7 @@
 		2166688921681DCE00AC6318 /* WorkoutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */; };
 		2166688B21681E1600AC6318 /* ExerciseWorkoutDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688A21681E1600AC6318 /* ExerciseWorkoutDetails.swift */; };
 		2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */; };
+		2166688F2168352B00AC6318 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688E2168352B00AC6318 /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewController.swift; sourceTree = "<group>"; };
 		2166688A21681E1600AC6318 /* ExerciseWorkoutDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseWorkoutDetails.swift; sourceTree = "<group>"; };
 		2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewController.swift; sourceTree = "<group>"; };
+		2166688E2168352B00AC6318 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */,
 				2166688421681D2100AC6318 /* WorkoutsViewController.swift */,
 				2166686521681A4100AC6318 /* Main.storyboard */,
+				2166688E2168352B00AC6318 /* DataStore.swift */,
 				2166686B21681A4400AC6318 /* Assets.xcassets */,
 				2166686D21681A4400AC6318 /* LaunchScreen.storyboard */,
 				2166687021681A4400AC6318 /* Info.plist */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
+				2166688F2168352B00AC6318 /* DataStore.swift in Sources */,
 				2166688921681DCE00AC6318 /* WorkoutDetailsViewController.swift in Sources */,
 				2166686A21681A4100AC6318 /* WorkoutJournal.xcdatamodeld in Sources */,
 				2166688B21681E1600AC6318 /* ExerciseWorkoutDetails.swift in Sources */,
