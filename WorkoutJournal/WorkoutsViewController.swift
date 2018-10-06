@@ -10,6 +10,10 @@ import UIKit
 
 class WorkoutsViewController: UIViewController {
     
+    //set up a data variable; an instance of DataStore
+    // will be injected into the variable from the AppDelegate
+    var workoutData: [[String: Any]]!
+    
     override func viewDidLoad() {
         super .viewDidLoad()
     }
