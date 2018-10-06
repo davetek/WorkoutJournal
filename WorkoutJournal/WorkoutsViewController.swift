@@ -36,5 +36,9 @@ class WorkoutsViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super .viewDidLoad()
         tableView.dataSource = self
+        
+        self.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], for: .normal)
+
+        
     }
 }

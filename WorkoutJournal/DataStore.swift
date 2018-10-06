@@ -15,6 +15,7 @@ class DataStore {
     var workouts = [
         ["date": "2018-10-03", "type": "calesthenics", "number": 1, "performed": true, "exercises": ["Regular Pushup", "Wide-Angle Pushup", "Tricep Pushup", "Decline Pushup", "Handstand from Squat"]],
         ["date": "2018-10-04", "type": "aerobic", "number": 1, "performed": true, "exercises": ["Run-Trail"]],
-        ["date": "2018-10-07", "type": "calesthenics", "number": 1, "performed": false, "exercises": ["Sit-up", "Crunch", "Oblique"]]
+        ["date": "2018-10-05", "type": "core", "number": 1, "performed": false, "exercises": ["Sit-up", "Crunch", "Oblique"]],
+        ["date": "2018-10-06", "type": "calesthenics", "number": 1, "performed": true, "exercises": ["Handstand from Squat", "Handstand Supported"]]
     ]
 }
