@@ -10,6 +10,13 @@ import UIKit
 
 class WorkoutDetailsViewController: UIViewController {
     
+    
+    
+    @IBOutlet var dateField: UITextField!
+    @IBOutlet var numberField: UITextField!
+    @IBOutlet var typeField: UITextField!
+    @IBOutlet var performedField: UITextField!
+    
     override func viewDidLoad() {
         super .viewDidLoad()
     }

@@ -16,6 +16,13 @@ class WorkoutsViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     
+    @IBAction func cancelToWorkoutsViewController(_ segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveWorkoutDetails(_ segue: UIStoryboardSegue) {
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return workoutData.count

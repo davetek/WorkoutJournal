@@ -229,11 +229,22 @@
                         <viewLayoutGuide key="safeArea" id="9EA-JE-NKM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Workout Details" id="xoo-dg-wja">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8ys-mO-YhA"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="KDM-Ej-xde"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8ys-mO-YhA">
+                            <connections>
+                                <action selector="cancel:" destination="BlR-aW-XAG" id="3nD-QC-3rX"/>
+                                <segue destination="iqO-Zy-rh6" kind="unwind" unwindAction="cancelToWorkoutsViewController:" id="kE0-F2-EQb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateField" destination="POp-5o-wsB" id="NoG-wW-vvJ"/>
+                        <outlet property="numberField" destination="7Y1-b1-7eL" id="rgK-WU-OX0"/>
+                        <outlet property="performedField" destination="LCL-3L-LRe" id="hbP-Qa-Yt1"/>
+                        <outlet property="typeField" destination="LCL-3L-LRe" id="oB4-mW-dMg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyH-8x-UBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iqO-Zy-rh6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3820" y="-564.46776611694156"/>
         </scene>
