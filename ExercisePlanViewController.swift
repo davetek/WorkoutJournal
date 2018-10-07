@@ -1,14 +1,14 @@
 //
-//  ExerciseWorkoutDetails.swift
+//  ExercisePlanViewController.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 10/5/18.
+//  Created by David Lawrence on 10/6/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 
 import UIKit
 
-class ExerciseWorkoutDetails: UIViewController {
+class ExercisePlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super .viewDidLoad()
