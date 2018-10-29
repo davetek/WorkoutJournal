@@ -10,9 +10,9 @@ import UIKit
 
 class WorkoutsViewController: UIViewController, UITableViewDataSource {
     
-    //set up a data variable; an instance of DataStore
-    // will be injected into the variable from the AppDelegate
-    var workoutData: [[String: Any]]!
+    //data store will be injected by AppDelegate
+    var dataStore: DataStore!
+    
     
     @IBOutlet var tableView: UITableView!
     
@@ -25,16 +25,16 @@ class WorkoutsViewController: UIViewController, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workoutData.count
+        return dataStore.workouts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutsPrototypeCell", for: indexPath)
-        let workout = workoutData[indexPath.row]
-        let workoutDate = workout["date"]
-        let workoutType = workout["type"]
-        cell.textLabel?.text = workoutType as! String
-        cell.detailTextLabel?.text = workoutDate as! String
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.idForWorkoutsPrototypeCell, for: indexPath)
+        let workout = dataStore.workouts[indexPath.row]
+        let workoutDate = workout["date"] as! String
+        let workoutType = workout["type"] as! String
+        cell.textLabel?.text = workoutType
+        cell.detailTextLabel?.text = workoutDate
         
         return cell
     }
@@ -44,8 +44,22 @@ class WorkoutsViewController: UIViewController, UITableViewDataSource {
         super .viewDidLoad()
         tableView.dataSource = self
         
-        self.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], for: .normal)
-
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case Constants.idForSegueToWorkoutDetail?:
+            if let row = tableView.indexPathForSelectedRow?.row {
+                //get the workout data for the tapped row, and inject it into the target view controller
+                let workoutDetailsNavController = segue.destination as! UINavigationController
+                let workoutDetailsViewController = workoutDetailsNavController.topViewController as! WorkoutDetailsViewController
+                workoutDetailsViewController.dataStore = dataStore
+                workoutDetailsViewController.workoutsListRowNumber = row
+            }
+        default:
+            preconditionFailure("segue identifier not found")
+        }
+        
         
     }
 }

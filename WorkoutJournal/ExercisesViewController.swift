@@ -10,21 +10,20 @@ import UIKit
 
 class ExercisesViewController: UIViewController, UITableViewDataSource{
     
-    //set up a data variable; an instance of DataStore
-    // will be injected into the variable from the AppDelegate
-    var exerciseData: [[String: Any]]!
+    // Data store will be injected into the variable from the AppDelegate
+    var dataStore: DataStore!
     
     @IBOutlet var tableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exerciseData.count
+        return dataStore.exercises.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exercisesPrototypeCell", for: indexPath)
-        let exercise = exerciseData[indexPath.row]
-        let exerciseName = exercise["name"] as! String
-        let exerciseType = exercise["type"] as! String
+        let exercise = dataStore.exercises[indexPath.row]
+        let exerciseName = exercise["name"]
+        let exerciseType = exercise["type"]
         
         cell.textLabel?.text = exerciseName
         cell.detailTextLabel?.text = exerciseType
