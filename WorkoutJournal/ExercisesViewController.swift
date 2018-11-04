@@ -22,8 +22,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exercisesPrototypeCell", for: indexPath)
         let exercise = dataStore.exercises[indexPath.row]
-        let exerciseName = exercise["name"]
-        let exerciseType = exercise["type"]
+        let exerciseName = exercise.name
+        let exerciseType = exercise.type
         
         cell.textLabel?.text = exerciseName
         cell.detailTextLabel?.text = exerciseType

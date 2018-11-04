@@ -31,9 +31,10 @@ class WorkoutsViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.idForWorkoutsPrototypeCell, for: indexPath)
         let workout = dataStore.workouts[indexPath.row]
-        let workoutDate = workout["date"] as! String
-        let workoutType = workout["type"] as! String
-        cell.textLabel?.text = workoutType
+        let workoutDate = workout.startDate
+        let workoutId = String(workout.id)
+
+        cell.textLabel?.text = "\(workoutId) Section: \(indexPath.section) Row: \(indexPath.row)"
         cell.detailTextLabel?.text = workoutDate
         
         return cell
