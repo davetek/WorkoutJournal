@@ -518,6 +518,19 @@
                         <viewLayoutGuide key="safeArea" id="qiW-Lw-Ly6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exercise Plan" id="Ail-1X-N7d"/>
+                    <connections>
+                        <outlet property="distanceField" destination="Dlp-af-1b0" id="YRT-p1-32n"/>
+                        <outlet property="exerciseField" destination="lNT-Dt-aHL" id="3gb-Fc-UkX"/>
+                        <outlet property="idField" destination="kAB-bq-7Ju" id="B4x-LV-YbW"/>
+                        <outlet property="performedField" destination="Llm-Mf-Qyo" id="fe4-yD-K6D"/>
+                        <outlet property="pyramidIntervalField" destination="yQH-oR-ncC" id="EUK-00-8lx"/>
+                        <outlet property="pyramidToField" destination="Cqd-TR-LBm" id="j8C-eg-bT5"/>
+                        <outlet property="repsMaxField" destination="f0W-tK-Rtp" id="VdB-qA-yos"/>
+                        <outlet property="repsMinField" destination="z8I-HE-o4B" id="Rem-W4-PN6"/>
+                        <outlet property="setsMaxField" destination="4ER-Ch-aNN" id="R3R-bx-tNN"/>
+                        <outlet property="setsMinField" destination="3Eg-2N-LY8" id="nEv-hX-ku0"/>
+                        <outlet property="timeField" destination="BWy-S9-b9g" id="qZ8-4H-lKq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOb-9v-CdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
