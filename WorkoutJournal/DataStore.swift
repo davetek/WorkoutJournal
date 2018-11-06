@@ -70,7 +70,6 @@ class DataStore {
         ExercisePlan(id: 1262, performed: true, exercise: 5009, numSets: 1, minRepsPerSet: 20, maxRepsPerSet: 20, minTimePerRep: 0, maxTimePerRep: 0, setsRepsPyramidTo: 0, setsRepsPyramidInterval: 0, totalTime: 0, totalDistance: 0),
         ExercisePlan(id: 1300, performed: true, exercise: 5011, numSets: 0, minRepsPerSet: 0, maxRepsPerSet: 0, minTimePerRep: 0, maxTimePerRep: 0, setsRepsPyramidTo: 0, setsRepsPyramidInterval: 0, totalTime: 0, totalDistance: 2.50),
         ExercisePlan(id: 1400, performed: true, exercise: 5999, numSets: 0, minRepsPerSet: 1, maxRepsPerSet: 1, minTimePerRep: 30, maxTimePerRep: 30, setsRepsPyramidTo: 0, setsRepsPyramidInterval: 0, totalTime: 0, totalDistance: 0)
-
     ]
     
     //describes a pattern consisting of one more exercise plans (performances)
@@ -78,7 +77,7 @@ class DataStore {
     struct Routine {
         var id: Int
         var name: String
-        var type: String            //"circuit", "intervals"
+        var pattern: String            //"circuit", "intervals"
         var trackRepetitions: Bool  //true if track reps over 1; false if not
         var repetitions: Int
         var timePerRepetition: Int  //units should be specified; untracked if 0
@@ -88,9 +87,9 @@ class DataStore {
     }
     
     var routines = [
-        Routine(id: 7001, name: "strength", type: "circuit", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1234, 1235, 1236, 1237]),
-        Routine(id: 7002, name: "core", type: "circuit", trackRepetitions: true, repetitions: 2, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1240, 1246, 1400]),
-        Routine(id: 7003, name: "burpees intervals", type: "intervals", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1246, 1400])
+        Routine(id: 7001, name: "strength", pattern: "circuit", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1234, 1235, 1236, 1237]),
+        Routine(id: 7002, name: "core", pattern: "circuit", trackRepetitions: true, repetitions: 2, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1240, 1246, 1400]),
+        Routine(id: 7003, name: "burpees intervals", pattern: "intervals", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1246, 1400])
     ]
     
     //describes one or more exercise routines performed consecutively

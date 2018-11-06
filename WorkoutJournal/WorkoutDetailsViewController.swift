@@ -34,7 +34,7 @@ class WorkoutDetailsViewController: UIViewController, UITableViewDataSource {
         
         let routine = dataStore.routines.filter({$0.id == routineIdForSection})[0]
 
-        return "Section \(section): Routine \(routineIdForSection), type: \(routine.type) "
+        return "Section \(section): Routine \(routineIdForSection), type: \(routine.pattern) "
     }
     
     

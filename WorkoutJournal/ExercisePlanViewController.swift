@@ -2,7 +2,7 @@
 //  ExercisePlanViewController.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 10/6/18.
+//  Created by David Lawrence on 11/5/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 

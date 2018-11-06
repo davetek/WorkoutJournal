@@ -19,8 +19,8 @@
 		2166688921681DCE00AC6318 /* WorkoutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */; };
 		2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */; };
 		2166688F2168352B00AC6318 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688E2168352B00AC6318 /* DataStore.swift */; };
-		216668932169641100AC6318 /* ExercisePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216668922169641100AC6318 /* ExercisePlanViewController.swift */; };
 		21666895216A48BD00AC6318 /* ExercisePlansListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21666894216A48BD00AC6318 /* ExercisePlansListViewController.swift */; };
+		21DF5D122191346500A786F2 /* ExercisePlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF5D112191346500A786F2 /* ExercisePlanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,8 @@
 		2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewController.swift; sourceTree = "<group>"; };
 		2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewController.swift; sourceTree = "<group>"; };
 		2166688E2168352B00AC6318 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		216668922169641100AC6318 /* ExercisePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanViewController.swift; sourceTree = "<group>"; };
 		21666894216A48BD00AC6318 /* ExercisePlansListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlansListViewController.swift; sourceTree = "<group>"; };
+		21DF5D112191346500A786F2 /* ExercisePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePlanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +96,12 @@
 				2166686121681A4100AC6318 /* AppDelegate.swift */,
 				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				21666894216A48BD00AC6318 /* ExercisePlansListViewController.swift */,
-				216668922169641100AC6318 /* ExercisePlanViewController.swift */,
 				2166688621681D5900AC6318 /* ExercisesViewController.swift */,
 				2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */,
 				2166688421681D2100AC6318 /* WorkoutsViewController.swift */,
 				21263E182185FD5F0018E604 /* Constants.swift */,
 				2166686521681A4100AC6318 /* Main.storyboard */,
+				21DF5D112191346500A786F2 /* ExercisePlanViewController.swift */,
 				2166688E2168352B00AC6318 /* DataStore.swift */,
 				2166686B21681A4400AC6318 /* Assets.xcassets */,
 				2166686D21681A4400AC6318 /* LaunchScreen.storyboard */,
@@ -227,9 +227,9 @@
 				2166686A21681A4100AC6318 /* WorkoutJournal.xcdatamodeld in Sources */,
 				2166686221681A4100AC6318 /* AppDelegate.swift in Sources */,
 				21263E192185FD5F0018E604 /* Constants.swift in Sources */,
+				21DF5D122191346500A786F2 /* ExercisePlanViewController.swift in Sources */,
 				2166688721681D5900AC6318 /* ExercisesViewController.swift in Sources */,
 				2166688521681D2100AC6318 /* WorkoutsViewController.swift in Sources */,
-				216668932169641100AC6318 /* ExercisePlanViewController.swift in Sources */,
 				21666895216A48BD00AC6318 /* ExercisePlansListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
