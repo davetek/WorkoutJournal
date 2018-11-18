@@ -77,6 +77,7 @@ class WorkoutDetailsViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    
     override func viewDidLoad() {
         super .viewDidLoad()
         tableView.dataSource = self

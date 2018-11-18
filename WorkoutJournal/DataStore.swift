@@ -34,6 +34,36 @@ class DataStore {
         var totalTime: Int
         var totalDistance: Double
     }
+    
+    //describes a pattern consisting of one more exercise plans (performances)
+    // which may be repeated, and may include a rest between exercises
+    struct Routine {
+        var id: Int
+        var name: String
+        var pattern: String            //"circuit", "intervals"
+        var trackRepetitions: Bool  //true if track reps over 1; false if not
+        var repetitions: Int
+        var timePerRepetition: Int  //units should be specified; untracked if 0
+        var totalTime: Int          //units should be specified; untracked if 0
+        var totalDistance: Int      //units should be specified; untracked if 0
+        var exercisePlans: [Int]  //array of id's for ExercisePlans
+    }
+    
+    
+    //describes one or more exercise routines performed consecutively
+    struct Workout {
+        var id: Int
+        var startDate: String   // TO DO: convert to Date type
+        var endDate: String     // TO DO: convert to Date type
+        var type: String        // TO DO: convert to a calculate from exercise types; different fields? - muscle group, push / pull, strength or core, etc.
+        var routines: [Int]     //array of id's for Routines in workout
+    }
+    
+    //
+    struct WorkoutEvent {
+        var id: Int
+        var workoutDate: Date
+    }
 
     
     
@@ -72,19 +102,7 @@ class DataStore {
         ExercisePlan(id: 1400, performed: true, exercise: 5999, numSets: 0, minRepsPerSet: 1, maxRepsPerSet: 1, minTimePerRep: 30, maxTimePerRep: 30, setsRepsPyramidTo: 0, setsRepsPyramidInterval: 0, totalTime: 0, totalDistance: 0)
     ]
     
-    //describes a pattern consisting of one more exercise plans (performances)
-    // which may be repeated, and may include a rest between exercises
-    struct Routine {
-        var id: Int
-        var name: String
-        var pattern: String            //"circuit", "intervals"
-        var trackRepetitions: Bool  //true if track reps over 1; false if not
-        var repetitions: Int
-        var timePerRepetition: Int  //units should be specified; untracked if 0
-        var totalTime: Int          //units should be specified; untracked if 0
-        var totalDistance: Int      //units should be specified; untracked if 0
-        var exercisePlans: [Int]  //array of id's for ExercisePlans
-    }
+   
     
     var routines = [
         Routine(id: 7001, name: "strength", pattern: "circuit", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1234, 1235, 1236, 1237]),
@@ -92,14 +110,7 @@ class DataStore {
         Routine(id: 7003, name: "burpees intervals", pattern: "intervals", trackRepetitions: false, repetitions: 1, timePerRepetition: 0, totalTime: 0, totalDistance: 0, exercisePlans: [1246, 1400])
     ]
     
-    //describes one or more exercise routines performed consecutively
-    struct Workout {
-        var id: Int
-        var startDate: String   // TO DO: convert to Date type
-        var endDate: String     // TO DO: convert to Date type
-        var type: String        // TO DO: convert to a calculate from exercise types; different fields? - muscle group, push / pull, strength or core, etc.
-        var routines: [Int]     //array of id's for Routines in workout
-    }
+
     
     var workouts = [
         Workout(id: 8001, startDate: "2018-10-03", endDate: "2018-10-03", type: "tbd", routines: [7002, 7001]),
