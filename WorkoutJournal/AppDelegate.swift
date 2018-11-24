@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //create an instance of the data store that uses Core Data
+        let workoutJournalDataStore = WorkoutJournalDataStore()
+        
         //create an instance of the data store
         let dataStore = DataStore()
                 

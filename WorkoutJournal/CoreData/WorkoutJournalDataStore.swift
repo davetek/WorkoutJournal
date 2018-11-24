@@ -1,5 +1,5 @@
 //
-//  CoreDataDataStore.swift
+//  WorkoutJournalDataStore.swift
 //  WorkoutJournal
 //
 //  Created by David Lawrence on 11/19/18.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class CoreDataDataStore {
+class WorkoutJournalDataStore {
     
     //create NSPersistentContainer which will read & write data from 'disk'
     let persistentContainer: NSPersistentContainer = {

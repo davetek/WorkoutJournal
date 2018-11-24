@@ -2,7 +2,7 @@
 //  Routine+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 11/19/18.
+//  Created by David Lawrence on 11/23/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 //
@@ -18,13 +18,13 @@ extension Routine {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var pattern: String?
-    @NSManaged public var repetitions: Int16
-    @NSManaged public var timePerRepetition: Int16
-    @NSManaged public var totalDistance: Int16
-    @NSManaged public var totalTime: Int16
-    @NSManaged public var exercisePlanInRoutine: NSSet?
-    @NSManaged public var routineInWorkout: NSSet?
+    @NSManaged public var pattern: String
+    @NSManaged public var repetitions: Int32
+    @NSManaged public var timePerRepetition: Double
+    @NSManaged public var totalDistance: Double
+    @NSManaged public var totalTime: Double
+    @NSManaged public var exercisePlanInRoutine: NSSet
+    @NSManaged public var routineInWorkout: NSSet
 
 }
 
