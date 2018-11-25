@@ -104,6 +104,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5cf-wM-9zu" kind="presentation" identifier="showExerciseDetails" id="bA9-73-SP0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -125,6 +128,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZc-hS-Fh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="-1274.2128935532235"/>
+        </scene>
+        <!--Exercise Details-->
+        <scene sceneID="fOG-gn-ynu">
+            <objects>
+                <viewController id="Mdj-Gl-YjA" customClass="ExerciseDetailsViewController" customModule="WorkoutJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kwd-f2-65K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ulC-od-fUn">
+                                <rect key="frame" x="8" y="88" width="359" height="68"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p6r-al-adN">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-1l-iRJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rN-X9-v18">
+                                                <rect key="frame" x="53" y="0.0" width="306" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pLu-Pd-wDx">
+                                        <rect key="frame" x="0.0" y="38" width="359" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqX-nL-A0o">
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L6Q-bt-9kD">
+                                                <rect key="frame" x="53" y="0.0" width="306" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="L6Q-bt-9kD" firstAttribute="leading" secondItem="2rN-X9-v18" secondAttribute="leading" id="e4D-Rs-Mz5"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ulC-od-fUn" firstAttribute="top" secondItem="2D2-a5-ru9" secondAttribute="top" constant="24" id="GL3-j4-J4r"/>
+                            <constraint firstItem="ulC-od-fUn" firstAttribute="leading" secondItem="2D2-a5-ru9" secondAttribute="leading" constant="8" id="d0C-T5-cDh"/>
+                            <constraint firstItem="2D2-a5-ru9" firstAttribute="trailing" secondItem="ulC-od-fUn" secondAttribute="trailing" constant="8" id="tWx-VZ-qGi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2D2-a5-ru9"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Exercise Details" id="tbW-vE-B15">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cbF-fL-Ka6">
+                            <connections>
+                                <segue destination="kjn-no-FtO" kind="unwind" unwindAction="unwindToExercisesViewController:" id="FD9-NL-8MQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uoq-kN-I2l">
+                            <connections>
+                                <segue destination="kjn-no-FtO" kind="unwind" unwindAction="unwindWithChangesToExercisesViewController:" id="zVE-cp-ye0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="2rN-X9-v18" id="ACj-9a-tBX"/>
+                        <outlet property="saveButton" destination="uoq-kN-I2l" id="29Y-5q-ct3"/>
+                        <outlet property="typeField" destination="L6Q-bt-9kD" id="Ox6-LT-Fkz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUr-e5-lMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kjn-no-FtO" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3820" y="-1274"/>
         </scene>
         <!--Workout Details-->
         <scene sceneID="E4H-Z9-BHn">
@@ -611,6 +696,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ap-DS-fTr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2880.8000000000002" y="-564.46776611694156"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PD9-jo-dZ6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5cf-wM-9zu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2mV-7B-oIr">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mdj-Gl-YjA" kind="relationship" relationship="rootViewController" id="j56-NK-2uh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6NZ-ga-LRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2881" y="-1274"/>
         </scene>
     </scenes>
 </document>
