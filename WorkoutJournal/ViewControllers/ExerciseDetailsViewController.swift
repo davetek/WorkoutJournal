@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ExerciseDetailsViewController: UIViewController {
     
@@ -29,6 +30,16 @@ class ExerciseDetailsViewController: UIViewController {
             return
         }
         print("ready to save data before unwind segue")
+        
+        // add a record to Core Data data store
+        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Exercise", in: context)
+        let newExercise = NSManagedObject(entity: entity!, insertInto: context)
+        newExercise.setValue(nameField.text, forKey: "name")
+        newExercise.setValue(typeField.text, forKey: "type")
+        
+        // save the data to Core Data
+        workoutJournalDataStore.saveContext()
         
     }
 }
