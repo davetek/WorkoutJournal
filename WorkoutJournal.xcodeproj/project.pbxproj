@@ -180,9 +180,9 @@
 		21AD2F8D21A3AD780097DF08 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				21DF5D112191346500A786F2 /* ExercisePlanViewController.swift */,
 				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				21666894216A48BD00AC6318 /* ExercisePlansListViewController.swift */,
+				21DF5D112191346500A786F2 /* ExercisePlanViewController.swift */,
 				2166688621681D5900AC6318 /* ExercisesViewController.swift */,
 				2166688821681DCE00AC6318 /* WorkoutDetailsViewController.swift */,
 				2166688421681D2100AC6318 /* WorkoutsViewController.swift */,

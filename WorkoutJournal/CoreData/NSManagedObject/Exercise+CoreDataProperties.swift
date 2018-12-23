@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 11/23/18.
+//  Created by David Lawrence on 12/2/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 //
@@ -17,9 +17,9 @@ extension Exercise {
         return NSFetchRequest<Exercise>(entityName: "Exercise")
     }
 
-    @NSManaged public var name: String
-    @NSManaged public var type: String
-    @NSManaged public var exercisePlan: NSSet
+    @NSManaged public var name: String?
+    @NSManaged public var type: String?
+    @NSManaged public var exercisePlan: NSSet?
 
 }
 

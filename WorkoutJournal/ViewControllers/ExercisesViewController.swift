@@ -14,14 +14,16 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     // Core Data data store will be injected into the variable from the app delegate
     var workoutJournalDataStore: WorkoutJournalDataStore!
     
-    // Data store will be injected into the variable from the app delegate
-    var dataStore: DataStore!
-    
     // Set up an array of dictionaries 2b used in fetchFromCoreData() method
     //  to represent Exercises records fetched from Core Data data store
     var exercisesInWorkoutJournalDataStore = [[String: String]]()
     
     @IBOutlet var tableView: UITableView!
+    
+    @IBAction func addButton(_ sender: Any) {
+    }
+    
+    
     
     override func viewDidLoad() {
         super .viewDidLoad()
@@ -79,14 +81,21 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case Constants.idForSegueToExerciseDetails?:
+        case Constants.idForSegueToAddExerciseDetails?:
+            let exerciseDetailsNavController = segue.destination as! UINavigationController
+            let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
+            exerciseDetailsViewController.workoutJournalDataStore = workoutJournalDataStore
             
+        case Constants.idForSegueToExerciseDetails?:
             if let row = tableView.indexPathForSelectedRow?.row {
                 //get the data for the tapped row and inject it into the target view controller
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
-                
                 exerciseDetailsViewController.workoutJournalDataStore = workoutJournalDataStore
+                
+                let exerciseSelected: [String: String] = exercisesInWorkoutJournalDataStore[row]
+                exerciseDetailsViewController.exercise = exerciseSelected
+                
                 
             }
         default:

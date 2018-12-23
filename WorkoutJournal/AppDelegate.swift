@@ -32,9 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //get reference to the workouts view controller and inject data into it from the data store
         let exercisesNavController = window!.rootViewController?.children[1] as! UINavigationController
         let exercisesViewController = exercisesNavController.topViewController as! ExercisesViewController
-        exercisesViewController.dataStore = dataStore
         
-        //inject data into workouts view controller from the Core Data data store
+        //inject data into exercises view controller from the Core Data data store
         exercisesViewController.workoutJournalDataStore = workoutJournalDataStore
 
         

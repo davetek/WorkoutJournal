@@ -19,8 +19,24 @@ class ExerciseDetailsViewController: UIViewController {
     
     @IBOutlet var saveButton: UIBarButtonItem!
     
+    //data will be injected in this variable at segue
+    var exercise: [String: String]?
+    
     override func viewDidLoad() {
         super .viewDidLoad()
+        
+        if let exerciseTapped = exercise {
+            if let exerciseName = exerciseTapped["name"] {
+                nameField.text = exerciseName
+            }
+            
+            if let exerciseType = exerciseTapped["type"] {
+                typeField.text = exerciseType
+            }
+        }
+        
+        
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -2,7 +2,7 @@
 //  Person+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 11/23/18.
+//  Created by David Lawrence on 12/2/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 //
@@ -17,8 +17,8 @@ extension Person {
         return NSFetchRequest<Person>(entityName: "Person")
     }
 
-    @NSManaged public var displayName: String
-    @NSManaged public var exercisePlanPerformed: NSSet
+    @NSManaged public var displayName: String?
+    @NSManaged public var exercisePlanPerformed: NSSet?
 
 }
 

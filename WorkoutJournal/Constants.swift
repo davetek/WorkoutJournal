@@ -15,5 +15,6 @@ struct Constants {
     static let idForSegueToWorkoutDetail = "showWorkoutDetails"
     static let idForSegueToExercisePlan = "showExercisePlan"
     static let idForSegueToExerciseDetails = "showExerciseDetails"
+    static let idForSegueToAddExerciseDetails = "addExerciseDetails"
     static let idForUnwindWithChangesSegueToExercises = "unwindWithChangesToExercisesViewController"
 }

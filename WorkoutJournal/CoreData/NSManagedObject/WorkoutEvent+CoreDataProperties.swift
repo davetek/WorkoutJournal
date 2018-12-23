@@ -2,7 +2,7 @@
 //  WorkoutEvent+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 11/23/18.
+//  Created by David Lawrence on 12/2/18.
 //  Copyright © 2018 clarity for action. All rights reserved.
 //
 //
@@ -17,7 +17,7 @@ extension WorkoutEvent {
         return NSFetchRequest<WorkoutEvent>(entityName: "WorkoutEvent")
     }
 
-    @NSManaged public var workoutDate: NSDate
-    @NSManaged public var workout: Workout
+    @NSManaged public var workoutDate: NSDate?
+    @NSManaged public var workout: Workout?
 
 }
