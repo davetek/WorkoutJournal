@@ -3,70 +3,8 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
-        <relationship name="exercisePlan" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exercise" inverseEntity="ExercisePlan" syncable="YES"/>
-    </entity>
-    <entity name="ExercisePlan" representedClassName="ExercisePlan" syncable="YES">
-        <attribute name="maxRepsPerSet" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="maxTimePerRep" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="maxTimePerSet" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minRepsPerSet" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minTimePerRep" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="minTimePerSet" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="numSets" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="setsRepsPyramidInterval" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="setsRepsPyramidPeak" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalDistance" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalTime" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" customClassName="NSNumber" syncable="YES"/>
-        <relationship name="exercise" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="exercisePlan" inverseEntity="Exercise" syncable="YES"/>
-        <relationship name="exercisePlanInRoutine" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlanInRoutine" inverseName="exercisePlan" inverseEntity="ExercisePlanInRoutine" syncable="YES"/>
-        <relationship name="exercisePlanPerformed" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlanPerformed" inverseName="exercisePlan" inverseEntity="ExercisePlanPerformed" syncable="YES"/>
-    </entity>
-    <entity name="ExercisePlanInRoutine" representedClassName="ExercisePlanInRoutine" syncable="YES">
-        <attribute name="positionInSequence" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="exercisePlan" maxCount="1" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exercisePlanInRoutine" inverseEntity="ExercisePlan" syncable="YES"/>
-        <relationship name="routine" maxCount="1" deletionRule="Nullify" destinationEntity="Routine" inverseName="exercisePlanInRoutine" inverseEntity="Routine" syncable="YES"/>
-    </entity>
-    <entity name="ExercisePlanPerformed" representedClassName="ExercisePlanPerformed" syncable="YES">
-        <attribute name="datePerformed" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="exercisePlan" maxCount="1" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exercisePlanPerformed" inverseEntity="ExercisePlan" syncable="YES"/>
-        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="exercisePlanPerformed" inverseEntity="Person" syncable="YES"/>
-    </entity>
-    <entity name="Person" representedClassName="Person" syncable="YES">
-        <attribute name="displayName" attributeType="String" syncable="YES"/>
-        <relationship name="exercisePlanPerformed" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlanPerformed" inverseName="person" inverseEntity="ExercisePlanPerformed" syncable="YES"/>
-    </entity>
-    <entity name="Routine" representedClassName="Routine" syncable="YES">
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="pattern" attributeType="String" syncable="YES"/>
-        <attribute name="repetitions" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timePerRepetition" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalDistance" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="totalTime" attributeType="Double" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="exercisePlanInRoutine" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlanInRoutine" inverseName="routine" inverseEntity="ExercisePlanInRoutine" syncable="YES"/>
-        <relationship name="routineInWorkout" toMany="YES" deletionRule="Nullify" destinationEntity="RoutineInWorkout" inverseName="routine" inverseEntity="RoutineInWorkout" syncable="YES"/>
-    </entity>
-    <entity name="RoutineInWorkout" representedClassName="RoutineInWorkout" syncable="YES">
-        <attribute name="positionInSequence" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="routine" maxCount="1" deletionRule="Nullify" destinationEntity="Routine" inverseName="routineInWorkout" inverseEntity="Routine" syncable="YES"/>
-        <relationship name="workout" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="routineInWorkout" inverseEntity="Workout" syncable="YES"/>
-    </entity>
-    <entity name="Workout" representedClassName="Workout" syncable="YES">
-        <relationship name="routineInWorkout" toMany="YES" deletionRule="Nullify" destinationEntity="RoutineInWorkout" inverseName="workout" inverseEntity="RoutineInWorkout" syncable="YES"/>
-        <relationship name="workoutEvent" toMany="YES" deletionRule="Nullify" destinationEntity="WorkoutEvent" inverseName="workout" inverseEntity="WorkoutEvent" syncable="YES"/>
-    </entity>
-    <entity name="WorkoutEvent" representedClassName="WorkoutEvent" syncable="YES">
-        <attribute name="workoutDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="workout" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="workoutEvent" inverseEntity="Workout" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Exercise" positionX="-105.203125" positionY="211.04296875" width="128" height="30"/>
-        <element name="ExercisePlan" positionX="-320.43359375" positionY="153.17578125" width="128" height="255"/>
-        <element name="ExercisePlanInRoutine" positionX="-320.578125" positionY="14.37890625" width="128" height="90"/>
-        <element name="ExercisePlanPerformed" positionX="-504.3515625" positionY="299.35546875" width="128" height="90"/>
-        <element name="Person" positionX="-505.4609375" positionY="161.09375" width="128" height="30"/>
-        <element name="Routine" positionX="-516.30078125" positionY="-45.62109375" width="128" height="165"/>
-        <element name="RoutineInWorkout" positionX="-319.60546875" positionY="-108.90625" width="128" height="90"/>
-        <element name="Workout" positionX="-118.41796875" positionY="-85.87109375" width="128" height="75"/>
-        <element name="WorkoutEvent" positionX="-119.3828125" positionY="25.2265625" width="128" height="75"/>
+        <element name="Exercise" positionX="-313.05859375" positionY="141.99609375" width="128" height="73"/>
     </elements>
 </model>
