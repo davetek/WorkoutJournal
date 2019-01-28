@@ -17,6 +17,12 @@ class ExerciseDetailsViewController: UIViewController {
     @IBOutlet var nameField: UITextField!
     @IBOutlet var typeField: UITextField!
     
+    //data for typeField UIPickerView
+    let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
+    
+    //selected type
+    var selectedType: String?
+    
     @IBOutlet var saveButton: UIBarButtonItem!
     
     //data will be injected in this variable at segue
@@ -34,6 +40,8 @@ class ExerciseDetailsViewController: UIViewController {
                 typeField.text = exerciseType
             }
         }
+        
+        createTypePicker()
         
         
        
@@ -58,4 +66,34 @@ class ExerciseDetailsViewController: UIViewController {
         workoutJournalDataStore.saveContext()
         
     }
+    
+    func createTypePicker() {
+        let typePicker = UIPickerView()
+        typePicker.delegate = self
+        
+        typeField.inputView = typePicker
+        typePicker.backgroundColor = .white
+    }
+}
+
+extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return exerciseTypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return exerciseTypes[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedType = exerciseTypes[row]
+        typeField.text = selectedType
+    }
+    
+    
 }
