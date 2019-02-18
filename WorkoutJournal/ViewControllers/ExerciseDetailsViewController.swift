@@ -16,6 +16,8 @@ class ExerciseDetailsViewController: UIViewController {
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var typeField: UITextField!
+    @IBOutlet var urlField: UITextField!
+    
     
     //data for typeField UIPickerView
     let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
@@ -33,27 +35,30 @@ class ExerciseDetailsViewController: UIViewController {
         
         if let exerciseTapped = exercise {
             if let exerciseName = exerciseTapped["name"] {
+                print("exerciseName from Core Data: ", exerciseName)
                 nameField.text = exerciseName
             }
             
             if let exerciseType = exerciseTapped["type"] {
+                print("exerciseType from Core Data: ", exerciseType)
                 typeField.text = exerciseType
+            }
+            
+            if let exerciseUrl = exerciseTapped["url"] {
+                print("exerciseUrl from Core Data: ", exerciseUrl)
+                urlField.text = exerciseUrl
             }
         }
         
         createTypePicker()
         
-        
-       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let button = sender as? UIBarButtonItem, button == saveButton else {
-            print("cancel button tapped")
             return
         }
-        print("ready to save data before unwind segue")
         
         // add a record to Core Data data store
         let context = workoutJournalDataStore.persistentContainer.viewContext
@@ -61,6 +66,12 @@ class ExerciseDetailsViewController: UIViewController {
         let newExercise = NSManagedObject(entity: entity!, insertInto: context)
         newExercise.setValue(nameField.text, forKey: "name")
         newExercise.setValue(typeField.text, forKey: "type")
+        newExercise.setValue(urlField.text, forKey: "url")
+        print("add record to Core Data data store:")
+        print("NSManagedObject newExercise :", newExercise.value(forKey: "name") as! String)
+        print("NSManagedObject newExercise :", newExercise.value(forKey: "type") as! String)
+        print("NSManagedObject newExercise :", newExercise.value(forKey: "url") as! String)
+
         
         // save the data to Core Data
         workoutJournalDataStore.saveContext()
@@ -76,6 +87,8 @@ class ExerciseDetailsViewController: UIViewController {
     }
 }
 
+
+//extension for picker view
 extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

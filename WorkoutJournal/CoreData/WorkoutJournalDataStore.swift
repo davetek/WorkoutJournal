@@ -27,6 +27,7 @@ class WorkoutJournalDataStore {
         if persistentContainer.viewContext.hasChanges {
             do {
                 try persistentContainer.viewContext.save()
+                print("ran saveContext method")
             } catch {
                 print("An error occurred while saving: \(error)")
             }

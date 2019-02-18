@@ -2,8 +2,8 @@
 //  Exercise+CoreDataClass.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 11/23/18.
-//  Copyright © 2018 clarity for action. All rights reserved.
+//  Created by David Lawrence on 1/28/19.
+//  Copyright © 2019 clarity for action. All rights reserved.
 //
 //
 

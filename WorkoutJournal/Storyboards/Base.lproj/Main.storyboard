@@ -85,7 +85,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ulC-od-fUn">
-                                <rect key="frame" x="8" y="88" width="359" height="68"/>
+                                <rect key="frame" x="8" y="88" width="359" height="106"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p6r-al-adN">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
@@ -121,9 +121,27 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-nC-QZl">
+                                        <rect key="frame" x="0.0" y="76" width="359" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7d-RE-W37">
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Mp-wD-zcN">
+                                                <rect key="frame" x="53" y="0.0" width="306" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="L6Q-bt-9kD" firstAttribute="leading" secondItem="2rN-X9-v18" secondAttribute="leading" id="e4D-Rs-Mz5"/>
+                                    <constraint firstItem="7Mp-wD-zcN" firstAttribute="leading" secondItem="L6Q-bt-9kD" secondAttribute="leading" id="qa3-cG-hHg"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -150,7 +168,8 @@
                     <connections>
                         <outlet property="nameField" destination="2rN-X9-v18" id="ACj-9a-tBX"/>
                         <outlet property="saveButton" destination="uoq-kN-I2l" id="29Y-5q-ct3"/>
-                        <outlet property="typeField" destination="L6Q-bt-9kD" id="Ox6-LT-Fkz"/>
+                        <outlet property="typeField" destination="L6Q-bt-9kD" id="vbg-ae-eUb"/>
+                        <outlet property="urlField" destination="7Mp-wD-zcN" id="uPE-u6-CvI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUr-e5-lMt" userLabel="First Responder" sceneMemberID="firstResponder"/>

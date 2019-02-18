@@ -35,7 +35,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     //get records from Core Data data store
     func fetchFromCoreData()  {
         let context = workoutJournalDataStore.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Exercise")
+        
+        //Liam 2019-02-10 could set as <Exercise> result
+        let request = NSFetchRequest<Exercise>(entityName: "Exercise")
         request.returnsObjectsAsFaults = false
         
         //clear all items from the array that will hold the fetched records
@@ -43,11 +45,16 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
         
         do {
             let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "name") as! String)
-                print(data.value(forKey: "type") as! String)
+            // just removed cast to array of [NSManagedObject]
+            for data in result {
+                // need to cast data as Exercise
+                // and then can access attributes as properties
+                
+                //print(data.value(forKey: "name") as! String)
+                //print(data.value(forKey: "type") as! String)
                 let newRecord = ["name": data.value(forKey: "name") as! String,
-                                 "type": data.value(forKey: "type") as! String]
+                                 "type": data.value(forKey: "type") as! String,
+                                 "url": data.value(forKey: "url") as! String]
                 exercisesInWorkoutJournalDataStore.append(newRecord)
             }
         } catch {
@@ -107,7 +114,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     
     @IBAction func unwindWithChangesToExercisesViewController(_ sender: UIStoryboardSegue) {
         //exercise was added; reload tableview
-        print("unwind with changes")
+        //print("unwind with changes")
         fetchFromCoreData()
         tableView.reloadData()
     }
