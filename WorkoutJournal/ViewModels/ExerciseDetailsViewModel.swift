@@ -9,14 +9,24 @@
 
 class ExerciseDetailsViewModel {
     
+    let currentExerciseNames: [String]
+    
     init(currentExerciseNames: [String]) {
-        //do something
+        self.currentExerciseNames = currentExerciseNames
     }
     
     
     func validateExerciseName(_ exerciseName: String) -> Bool {
-        //do something
-        return true
+        if exerciseName.isEmpty {
+            return false
+        }
+        else if !currentExerciseNames.contains(exerciseName) {
+            return true
+        } else {
+            return false
+        }
+        
+        
     }
     
 }

@@ -11,7 +11,7 @@ import XCTest
 
 class ExerciseDetailsViewModelTests: XCTestCase {
 
-///    Scenario: Exercise Names are Unique
+///    Scenario: Unique Exercise Names are Allowed
     func testExerciseNamesUnique() {
         
         //    Given: a list of current exercise names
@@ -31,6 +31,43 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         
     }
 
+    ///    Scenario: Non-Unique Exercise Names are not allowed
+    func testExerciseNameNotUnique() {
+        
+        //    Given: a list of current exercise names
+        let currentExerciseNames = ["EXERCISE_NAME_1", "EXERCISE_NAME_2", "EXERCISE_NAME_3"]
+        
+        //    Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: currentExerciseNames)
+        
+        //    Given: an exercise name string that is in the current list of exercise names
+        let exerciseName = "EXERCISE_NAME_2"
+        
+        //    When: the exercise name is validated
+        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        
+        //    Then: the validation fails
+        XCTAssertFalse(result)
+        
+    }
+    
+    
+    ///    Scenario: Exercise Names is required
+    func testExerciseNameRequired() {
+        
+        //    Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: [])
+        
+        //   Given: an empty exercise name string
+        let exerciseName = ""
+        
+        //    When: the exercise name is validated
+        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        
+        //    Then: the validation fails
+        XCTAssertFalse(result)
+        
+    }
 
 
 }
