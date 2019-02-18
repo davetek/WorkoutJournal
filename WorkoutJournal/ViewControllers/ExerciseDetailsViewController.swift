@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import CoreData
 
 class ExerciseDetailsViewController: UIViewController {
     
-    // Core Data data store will be injected into the variable from the parent view controller
-    var workoutJournalDataStore: WorkoutJournalDataStore!
+    //View Model
+    var exerciseDetailsViewModel: ExerciseDetailsViewModel!
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var typeField: UITextField!
@@ -27,25 +26,20 @@ class ExerciseDetailsViewController: UIViewController {
     
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    //data will be injected in this variable at segue
-    var exercise: [String: String]?
     
     override func viewDidLoad() {
         super .viewDidLoad()
         
-        if let exerciseTapped = exercise {
+        if let exerciseTapped = exerciseDetailsViewModel.exercise {
             if let exerciseName = exerciseTapped["name"] {
-                print("exerciseName from Core Data: ", exerciseName)
                 nameField.text = exerciseName
             }
             
             if let exerciseType = exerciseTapped["type"] {
-                print("exerciseType from Core Data: ", exerciseType)
                 typeField.text = exerciseType
             }
             
             if let exerciseUrl = exerciseTapped["url"] {
-                print("exerciseUrl from Core Data: ", exerciseUrl)
                 urlField.text = exerciseUrl
             }
         }
@@ -60,21 +54,9 @@ class ExerciseDetailsViewController: UIViewController {
             return
         }
         
-        // add a record to Core Data data store
-        let context = workoutJournalDataStore.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Exercise", in: context)
-        let newExercise = NSManagedObject(entity: entity!, insertInto: context)
-        newExercise.setValue(nameField.text, forKey: "name")
-        newExercise.setValue(typeField.text, forKey: "type")
-        newExercise.setValue(urlField.text, forKey: "url")
-        print("add record to Core Data data store:")
-        print("NSManagedObject newExercise :", newExercise.value(forKey: "name") as! String)
-        print("NSManagedObject newExercise :", newExercise.value(forKey: "type") as! String)
-        print("NSManagedObject newExercise :", newExercise.value(forKey: "url") as! String)
-
         
-        // save the data to Core Data
-        workoutJournalDataStore.saveContext()
+        //FIXME: call function to validate name within guard else block to display alert if name is invalid
+        exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
         
     }
     

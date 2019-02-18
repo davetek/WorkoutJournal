@@ -91,17 +91,35 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
         case Constants.idForSegueToAddExerciseDetails?:
             let exerciseDetailsNavController = segue.destination as! UINavigationController
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
-            exerciseDetailsViewController.workoutJournalDataStore = workoutJournalDataStore
+            
+            
+            let exerciseNamesList = exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+                return exercise["name"]!
+            }
+            let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
+            exerciseDetailsViewModel.workoutJournalDataStore = workoutJournalDataStore
+            exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
             
         case Constants.idForSegueToExerciseDetails?:
             if let row = tableView.indexPathForSelectedRow?.row {
                 //get the data for the tapped row and inject it into the target view controller
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
-                exerciseDetailsViewController.workoutJournalDataStore = workoutJournalDataStore
+                
+                let exerciseNamesList = exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+                    return exercise["name"]!
+                }
+                
+                let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
                 
                 let exerciseSelected: [String: String] = exercisesInWorkoutJournalDataStore[row]
-                exerciseDetailsViewController.exercise = exerciseSelected
+                exerciseDetailsViewModel.exercise = exerciseSelected
+                
+                exerciseDetailsViewModel.workoutJournalDataStore = workoutJournalDataStore
+                
+                exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
+                
+               
                 
                 
             }
