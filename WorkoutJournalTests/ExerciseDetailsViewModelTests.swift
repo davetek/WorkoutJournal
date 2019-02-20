@@ -11,7 +11,7 @@ import XCTest
 
 class ExerciseDetailsViewModelTests: XCTestCase {
 
-///    Scenario: Unique Exercise Names are Allowed
+///    Scenario: Exercise name that is unique is allowed
     func testExerciseNamesUnique() {
         
         //    Given: a list of current exercise names
@@ -31,7 +31,7 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         
     }
 
-    ///    Scenario: Non-Unique Exercise Names are not allowed
+    ///    Scenario: Exercise name that is not unique is not allowed
     func testExerciseNameNotUnique() {
         
         //    Given: a list of current exercise names
@@ -52,7 +52,7 @@ class ExerciseDetailsViewModelTests: XCTestCase {
     }
     
     
-    ///    Scenario: Exercise Names is required
+    ///    Scenario: Exercise Names that is empty string is not allowed
     func testExerciseNameRequired() {
         
         //    Given: an Exercise Details view model

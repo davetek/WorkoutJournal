@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21025E47221CDB7300FD9516 /* ExercisesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21025E46221CDB7300FD9516 /* ExercisesViewModel.swift */; };
 		21263E192185FD5F0018E604 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21263E182185FD5F0018E604 /* Constants.swift */; };
 		21439C1A221B3D0D00BFE041 /* ExerciseDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21439C19221B3D0D00BFE041 /* ExerciseDetailsViewModelTests.swift */; };
 		21439C1D221B41E500BFE041 /* ExerciseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21439C1C221B41E500BFE041 /* ExerciseDetailsViewModel.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21025E46221CDB7300FD9516 /* ExercisesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewModel.swift; sourceTree = "<group>"; };
 		21263E182185FD5F0018E604 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		21439C19221B3D0D00BFE041 /* ExerciseDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		21439C1C221B41E500BFE041 /* ExerciseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				21439C1C221B41E500BFE041 /* ExerciseDetailsViewModel.swift */,
+				21025E46221CDB7300FD9516 /* ExercisesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			files = (
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
 				2166688F2168352B00AC6318 /* DataStore.swift in Sources */,
+				21025E47221CDB7300FD9516 /* ExercisesViewModel.swift in Sources */,
 				2166686A21681A4100AC6318 /* WorkoutJournal.xcdatamodeld in Sources */,
 				2166686221681A4100AC6318 /* AppDelegate.swift in Sources */,
 				21263E192185FD5F0018E604 /* Constants.swift in Sources */,

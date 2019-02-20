@@ -16,7 +16,7 @@ class ExerciseDetailsViewModel {
     var workoutJournalDataStore: WorkoutJournalDataStore!
     
     //data will be injected in this variable at segue
-    var exercise: [String: String]?
+    var exercise: Exercise?
     
     init(currentExerciseNames: [String]) {
         self.currentExerciseNames = currentExerciseNames

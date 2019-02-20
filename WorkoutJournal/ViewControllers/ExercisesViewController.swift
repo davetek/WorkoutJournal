@@ -11,74 +11,35 @@ import CoreData
 
 class ExercisesViewController: UIViewController, UITableViewDataSource{
     
-    // Core Data data store will be injected into the variable from the app delegate
-    var workoutJournalDataStore: WorkoutJournalDataStore!
-    
-    // Set up an array of dictionaries 2b used in fetchFromCoreData() method
-    //  to represent Exercises records fetched from Core Data data store
-    var exercisesInWorkoutJournalDataStore = [[String: String]]()
+    //view model
+    var exercisesViewModel: ExercisesViewModel!
     
     @IBOutlet var tableView: UITableView!
     
     @IBAction func addButton(_ sender: Any) {
     }
-    
-    
+
     
     override func viewDidLoad() {
         super .viewDidLoad()
         tableView.dataSource = self
-        fetchFromCoreData()
+        exercisesViewModel.fetchFromCoreData()
     }
     
     
-    //get records from Core Data data store
-    func fetchFromCoreData()  {
-        let context = workoutJournalDataStore.persistentContainer.viewContext
-        
-        //Liam 2019-02-10 could set as <Exercise> result
-        let request = NSFetchRequest<Exercise>(entityName: "Exercise")
-        request.returnsObjectsAsFaults = false
-        
-        //clear all items from the array that will hold the fetched records
-        exercisesInWorkoutJournalDataStore.removeAll()
-        
-        do {
-            let result = try context.fetch(request)
-            // just removed cast to array of [NSManagedObject]
-            for data in result {
-                // need to cast data as Exercise
-                // and then can access attributes as properties
-                
-                //print(data.value(forKey: "name") as! String)
-                //print(data.value(forKey: "type") as! String)
-                let newRecord = ["name": data.value(forKey: "name") as! String,
-                                 "type": data.value(forKey: "type") as! String,
-                                 "url": data.value(forKey: "url") as! String]
-                exercisesInWorkoutJournalDataStore.append(newRecord)
-            }
-        } catch {
-            print("fetch from Core Data failed")
-        }
-        
-    }
-    
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return dataStore.exercises.count
-        return exercisesInWorkoutJournalDataStore.count
+        return exercisesViewModel.exercisesInWorkoutJournalDataStore.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exercisesPrototypeCell", for: indexPath)
-//        let exercise = dataStore.exercises[indexPath.row]
-//        let exerciseName = exercise.name
-//        let exerciseType = exercise.type
+
         
-        let exercise = exercisesInWorkoutJournalDataStore[indexPath.row]
-        let exerciseName = exercise["name"]
-        let exerciseType = exercise["type"]
+        let exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
+        let exerciseName = exercise.name
+        let exerciseType = exercise.type
         
         cell.textLabel?.text = exerciseName
         cell.detailTextLabel?.text = exerciseType
@@ -93,35 +54,31 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
             
             
-            let exerciseNamesList = exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
-                return exercise["name"]!
+            let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+                return exercise.name!
             }
             let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
-            exerciseDetailsViewModel.workoutJournalDataStore = workoutJournalDataStore
+            exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
             
         case Constants.idForSegueToExerciseDetails?:
             if let row = tableView.indexPathForSelectedRow?.row {
-                //get the data for the tapped row and inject it into the target view controller
+                //get the data for the tapped row and inject it into the exercise details view model
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
-                let exerciseNamesList = exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
-                    return exercise["name"]!
+                let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+                    return exercise.name!
                 }
                 
                 let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
                 
-                let exerciseSelected: [String: String] = exercisesInWorkoutJournalDataStore[row]
+                let exerciseSelected: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[row]
                 exerciseDetailsViewModel.exercise = exerciseSelected
                 
-                exerciseDetailsViewModel.workoutJournalDataStore = workoutJournalDataStore
+                exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
                 
                 exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
-                
-               
-                
-                
             }
         default:
             preconditionFailure("segue identifier not found")
@@ -133,7 +90,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
     @IBAction func unwindWithChangesToExercisesViewController(_ sender: UIStoryboardSegue) {
         //exercise was added; reload tableview
         //print("unwind with changes")
-        fetchFromCoreData()
+        exercisesViewModel.fetchFromCoreData()
         tableView.reloadData()
     }
     

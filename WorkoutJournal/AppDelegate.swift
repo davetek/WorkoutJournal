@@ -21,13 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //create an instance of the data store that uses Core Data
         let workoutJournalDataStore = WorkoutJournalDataStore()
         
+        let exercisesViewModel = ExercisesViewModel()
+        
+        //injected core data into exercises view model
+        exercisesViewModel.workoutJournalDataStore = workoutJournalDataStore
+        
         //get reference to the exercises view controller
         let exercisesViewController = window!.rootViewController?.children[0] as! ExercisesViewController
         
-        //inject data into exercises view controller from the Core Data data store
-        exercisesViewController.workoutJournalDataStore = workoutJournalDataStore
+        //get reference to the exercises view model
+        exercisesViewController.exercisesViewModel = exercisesViewModel
 
-        
         return true
     }
 

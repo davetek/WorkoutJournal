@@ -31,15 +31,15 @@ class ExerciseDetailsViewController: UIViewController {
         super .viewDidLoad()
         
         if let exerciseTapped = exerciseDetailsViewModel.exercise {
-            if let exerciseName = exerciseTapped["name"] {
+            if let exerciseName = exerciseTapped.name {
                 nameField.text = exerciseName
             }
             
-            if let exerciseType = exerciseTapped["type"] {
+            if let exerciseType = exerciseTapped.type {
                 typeField.text = exerciseType
             }
             
-            if let exerciseUrl = exerciseTapped["url"] {
+            if let exerciseUrl = exerciseTapped.url {
                 urlField.text = exerciseUrl
             }
         }
