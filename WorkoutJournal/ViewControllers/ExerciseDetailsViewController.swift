@@ -18,9 +18,6 @@ class ExerciseDetailsViewController: UIViewController {
     @IBOutlet var urlField: UITextField!
     
     
-    //data for typeField UIPickerView
-    let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
-    
     //selected type
     var selectedType: String?
     
@@ -48,15 +45,39 @@ class ExerciseDetailsViewController: UIViewController {
         
     }
     
+    //run checks on user data to determine if the prepare method for the 'unwind with changes'
+    // if result is true, prepare method is run
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if identifier == Constants.idForUnwindWithChangesSegueToExercises {
+            print("segue between this screen and exercises screen may be executed")
+            
+            //run validation on name text entered and return true if passes; false otherwise
+            if exerciseDetailsViewModel.validateExerciseName(nameField.text) {
+                
+                return true
+                
+            } else {
+                //do not perform segue; display alert popup instead
+                print("validation on name field failed")
+                return false
+            }
+        } else {
+            print("segue identifier for shouldPerform segue did not match condition")
+            return true
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let button = sender as? UIBarButtonItem, button == saveButton else {
             return
         }
+
         
-        
-        //FIXME: call function to validate name within guard else block to display alert if name is invalid
+        //commit exercise to Core Data
         exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
+
         
     }
     
@@ -78,15 +99,15 @@ extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return exerciseTypes.count
+        return exerciseDetailsViewModel.exerciseTypes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return exerciseTypes[row]
+        return exerciseDetailsViewModel.exerciseTypes[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedType = exerciseTypes[row]
+        selectedType = exerciseDetailsViewModel.exerciseTypes[row]
         typeField.text = selectedType
     }
     

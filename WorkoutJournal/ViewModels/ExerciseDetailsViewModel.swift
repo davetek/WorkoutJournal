@@ -18,6 +18,9 @@ class ExerciseDetailsViewModel {
     //data will be injected in this variable at segue
     var exercise: Exercise?
     
+    //data for typeField UIPickerView
+    let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
+    
     init(currentExerciseNames: [String]) {
         self.currentExerciseNames = currentExerciseNames
     }
@@ -25,15 +28,24 @@ class ExerciseDetailsViewModel {
     //TO DO: make paramater an optional
     // add unit test to test for nil name
     // (future: could use enum cases to represent validation failures)
-    func validateExerciseName(_ exerciseName: String) -> Bool {
-        if exerciseName.isEmpty {
-            return false
-        }
-        else if !currentExerciseNames.contains(exerciseName) {
-            return true
+    func validateExerciseName(_ exerciseName: String?) -> Bool {
+        if let nonNullExerciseName = exerciseName {
+            
+            if nonNullExerciseName.isEmpty {
+                return false
+            }
+            else if !currentExerciseNames.contains(nonNullExerciseName) {
+                return true
+            } else {
+                return false
+            }
+                    
         } else {
+            //exerciseName is nil
             return false
         }
+        
+        
     }
     
     func addRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {

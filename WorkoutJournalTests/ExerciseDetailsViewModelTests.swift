@@ -12,7 +12,7 @@ import XCTest
 class ExerciseDetailsViewModelTests: XCTestCase {
 
 ///    Scenario: Exercise name that is unique is allowed
-    func testExerciseNamesUnique() {
+    func testExerciseNameUnique() {
         
         //    Given: a list of current exercise names
         let currentExerciseNames = ["EXERCISE_NAME_1", "EXERCISE_NAME_2", "EXERCISE_NAME_3"]
@@ -48,12 +48,11 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         
         //    Then: the validation fails
         XCTAssertFalse(result)
-        
     }
     
     
-    ///    Scenario: Exercise Names that is empty string is not allowed
-    func testExerciseNameRequired() {
+    ///    Scenario: Exercise name that is empty string is not allowed
+    func testExerciseNameNotEmptyString() {
         
         //    Given: an Exercise Details view model
         let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: [])
@@ -66,8 +65,27 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         
         //    Then: the validation fails
         XCTAssertFalse(result)
-        
     }
+    
+    
+    ///    Scenario: Exercise name that is nil is not allowed
+    func testExerciseNameNotNil() {
+        
+        //    Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: [])
+        
+        //   Given: a nil optional variable for exerciseName variable
+        var exerciseName: String?
+        
+        //    When: the exercise name is validated
+        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        
+        //    Then: the validation fails
+        XCTAssertFalse(result)
+    }
+    
+    
+    
 
 
 }

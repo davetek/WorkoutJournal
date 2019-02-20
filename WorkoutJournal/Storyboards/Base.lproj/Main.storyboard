@@ -156,12 +156,12 @@
                     <navigationItem key="navigationItem" title="Exercise Details" id="tbW-vE-B15">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cbF-fL-Ka6">
                             <connections>
-                                <segue destination="kjn-no-FtO" kind="unwind" unwindAction="unwindToExercisesViewController:" id="FD9-NL-8MQ"/>
+                                <segue destination="kjn-no-FtO" kind="unwind" identifier="unwindToExercisesViewController" animates="NO" unwindAction="unwindToExercisesViewController:" id="FD9-NL-8MQ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="uoq-kN-I2l">
                             <connections>
-                                <segue destination="kjn-no-FtO" kind="unwind" unwindAction="unwindWithChangesToExercisesViewController:" id="zVE-cp-ye0"/>
+                                <segue destination="kjn-no-FtO" kind="unwind" identifier="unwindWithChangesToExercisesViewController" unwindAction="unwindWithChangesToExercisesViewController:" id="zVE-cp-ye0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -217,6 +217,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bUO-uQ-ei3"/>
+        <segue reference="bA9-73-SP0"/>
     </inferredMetricsTieBreakers>
 </document>
