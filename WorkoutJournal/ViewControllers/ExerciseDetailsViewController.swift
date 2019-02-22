@@ -52,19 +52,26 @@ class ExerciseDetailsViewController: UIViewController {
         if identifier == Constants.idForUnwindWithChangesSegueToExercises {
             
             //run validation on exercise name and exercise type entered
-            // and and return true if both validations pass; false otherwise
-            if exerciseDetailsViewModel.validateExerciseName(nameField.text) &&
-                exerciseDetailsViewModel.validateExerciseType(typeField.text) {
-                return true
+            // and and return false if either validation fails; true otherwise
+            if !exerciseDetailsViewModel.validateExerciseName(nameField.text) {
+                let alertMessage = "There was a problem with the exercise name; please try again"
                 
-            } else {
-                //validation failed; do not allow segue to be performed
-                
-                let alert = UIAlertController(title: "Error", message: "There was a problem with name or type; please try again", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
-                
                 return false
+                
+            } else if !exerciseDetailsViewModel.validateExerciseType(typeField.text) {
+                let alertMessage = "There was a problem with the exercise type; please try again"
+                
+                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                return false
+                
+            } else {
+                //validation passed; allow segue to be performed
+                return true
             }
         } else {
             return true
