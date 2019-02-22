@@ -12,21 +12,21 @@ class ExerciseDetailsViewModel {
     
     let currentExerciseNames: [String]
     
+    //data for typeField UIPickerView
+    // data will be set on object in initialization parameter
+    var exerciseTypes: [String]
+    
     // Core Data data store will be injected into the variable from the parent view controller
     var workoutJournalDataStore: WorkoutJournalDataStore!
     
     //data will be injected in this variable at segue
     var exercise: Exercise?
     
-    //data for typeField UIPickerView
-    let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
-    
-    init(currentExerciseNames: [String]) {
+    init(currentExerciseNames: [String], exerciseTypes: [String]) {
         self.currentExerciseNames = currentExerciseNames
+        self.exerciseTypes = exerciseTypes
     }
     
-    //TO DO: make paramater an optional
-    // add unit test to test for nil name
     // (future: could use enum cases to represent validation failures)
     func validateExerciseName(_ exerciseName: String?) -> Bool {
         if let nonNullExerciseName = exerciseName {
@@ -44,8 +44,25 @@ class ExerciseDetailsViewModel {
             //exerciseName is nil
             return false
         }
-        
-        
+    }
+    
+    // (future: could use enum cases to represent validation failures)
+    func validateExerciseType(_ exerciseType: String?) -> Bool {
+        if let nonNullExerciseType = exerciseType {
+            
+            if nonNullExerciseType.isEmpty {
+                return false
+            }
+            else if exerciseTypes.contains(nonNullExerciseType) {
+                return true
+            } else {
+                return false
+            }
+            
+        } else {
+            //exerciseType is nil
+            return false
+        }
     }
     
     func addRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {

@@ -50,37 +50,36 @@ class ExerciseDetailsViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         if identifier == Constants.idForUnwindWithChangesSegueToExercises {
-            print("segue between this screen and exercises screen may be executed")
             
-            //run validation on name text entered and return true if passes; false otherwise
-            if exerciseDetailsViewModel.validateExerciseName(nameField.text) {
-                
+            //run validation on exercise name and exercise type entered
+            // and and return true if both validations pass; false otherwise
+            if exerciseDetailsViewModel.validateExerciseName(nameField.text) &&
+                exerciseDetailsViewModel.validateExerciseType(typeField.text) {
                 return true
                 
             } else {
-                //do not perform segue; display alert popup instead
-                print("validation on name field failed")
+                //validation failed; do not allow segue to be performed
+                // TO DO: display alert popup instead
                 return false
             }
         } else {
-            print("segue identifier for shouldPerform segue did not match condition")
             return true
         }
     }
     
+    //define items to execute when Save button is tapped
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let button = sender as? UIBarButtonItem, button == saveButton else {
             return
         }
 
-        
         //commit exercise to Core Data
         exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
-
-        
     }
     
+    
+
     func createTypePicker() {
         let typePicker = UIPickerView()
         typePicker.delegate = self

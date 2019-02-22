@@ -10,6 +10,9 @@ import CoreData
 
 class ExercisesViewModel {
     
+    //data for typeField UIPickerView in ExerciseDetailsViewModel
+    let exerciseTypes = ["Aerobic", "Calisthenics", "Core", "Weight-Training"]
+    
     // Core Data data store will be injected into the variable from the app delegate
     // through the ExercisesViewController
     var workoutJournalDataStore: WorkoutJournalDataStore!

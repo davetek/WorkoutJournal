@@ -57,7 +57,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
             let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
                 return exercise.name!
             }
-            let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
+            let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
+                                                                    exerciseTypes: exercisesViewModel.exerciseTypes)
             exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
             
@@ -71,7 +72,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource{
                     return exercise.name!
                 }
                 
-                let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList)
+                let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
+                                                                        exerciseTypes: exercisesViewModel.exerciseTypes)
                 
                 let exerciseSelected: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[row]
                 exerciseDetailsViewModel.exercise = exerciseSelected
