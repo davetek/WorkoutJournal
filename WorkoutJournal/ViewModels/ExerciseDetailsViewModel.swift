@@ -26,7 +26,7 @@ class ExerciseDetailsViewModel {
         self.currentExerciseNames = currentExerciseNames
         self.exerciseTypes = exerciseTypes
     }
-    
+
     // (future: could use enum cases to represent validation failures)
     func validateExerciseName(_ exerciseName: String?) -> Bool {
         if let nonNullExerciseName = exerciseName {

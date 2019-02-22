@@ -59,7 +59,11 @@ class ExerciseDetailsViewController: UIViewController {
                 
             } else {
                 //validation failed; do not allow segue to be performed
-                // TO DO: display alert popup instead
+                
+                let alert = UIAlertController(title: "Error", message: "There was a problem with name or type; please try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                
                 return false
             }
         } else {
