@@ -65,6 +65,35 @@ class ExerciseDetailsViewModel {
         }
     }
     
+    func validateExerciseUrl(_ exerciseUrl: String?) -> Bool {
+        
+        guard let urlString = exerciseUrl else {
+            return false
+        }
+                
+        guard let urlComponents = URLComponents(string: urlString) else {
+            return false
+        }
+        
+        guard let scheme = urlComponents.scheme else {
+            return false
+        }
+        
+        guard scheme == "http" || scheme == "https" else {
+            return false
+        }
+        
+        guard urlComponents.host != nil else {
+            return false
+        }
+        
+        return true
+    }
+
+
+
+
+    
     func addRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
         
         // add a record to Core Data data store

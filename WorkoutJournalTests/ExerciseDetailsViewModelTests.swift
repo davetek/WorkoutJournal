@@ -160,6 +160,59 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         XCTAssertFalse(result)
     }
     
+    
+    ///   Scenario: Exercise URL that is a valid http URI according to IETF standards is allowed
+    func testExerciseUrlIsValidHttpUri() {
+        
+        // Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel()
+        
+        // Given: a URL that is a valid http URI according to RFC 7230
+        let exerciseUrl = "http://clarityforaction.com"
+        
+        // When: the exercise type is validated
+        let result = exerciseDetailsViewModel.validateExerciseUrl(exerciseUrl)
+        
+        // Then: the validation passes
+        XCTAssertTrue(result)
+    }
+    
+    
+    ///   Scenario: Exercise URL that is a valid https URI according to IETF standards is allowed
+    func testExerciseUrlIsValidHttpsUri() {
+        
+        // Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel()
+        
+        // Given: a URL that is a valid http URI according to RFC
+        let exerciseUrl = "https://www.google.com"
+        
+        // When: the exercise type is validated
+        let result = exerciseDetailsViewModel.validateExerciseUrl(exerciseUrl)
+        
+        // Then: the validation passes
+        XCTAssertTrue(result)
+    }
+    
+    
+    ///   Scenario: Exercise URL that is not a valid http or https URI according to IETF standards is not allowed
+    func testExerciseUrlIsNotValidHttpOrHttpsUri() {
+        
+        // Given: an Exercise Details view model
+        let exerciseDetailsViewModel = ExerciseDetailsViewModel()
+        
+        // Given: a URL that is a valid http URI according to RFC
+        let exerciseUrl = "a;fjd;adlskfj"
+        
+        // When: the exercise type is validated
+        let result = exerciseDetailsViewModel.validateExerciseUrl(exerciseUrl)
+        
+        // Then: the validation passes
+        XCTAssertFalse(result)
+    }
+
+
+    
 }
 
 
