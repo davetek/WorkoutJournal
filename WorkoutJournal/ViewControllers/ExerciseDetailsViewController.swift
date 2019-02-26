@@ -49,33 +49,45 @@ class ExerciseDetailsViewController: UIViewController {
     // if result is true, prepare method is run
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
-        if identifier == Constants.idForUnwindWithChangesSegueToExercises {
-            
-            //run validation on exercise name and exercise type entered
-            // and and return false if either validation fails; true otherwise
-            if !exerciseDetailsViewModel.validateExerciseName(nameField.text) {
-                let alertMessage = "There was a problem with the exercise name; please try again"
-                
-                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
-                return false
-                
-            } else if !exerciseDetailsViewModel.validateExerciseType(typeField.text) {
-                let alertMessage = "There was a problem with the exercise type; please try again"
-                
-                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
-                return false
-                
-            } else {
-                //validation passed; allow segue to be performed
-                return true
-            }
-        } else {
+        guard identifier == Constants.idForUnwindWithChangesSegueToExercises else {
             return true
         }
+            
+        //run validation on exercise name and exercise type entered
+        // and and return false if either validation fails; true otherwise
+        guard exerciseDetailsViewModel.validateExerciseName(nameField.text) else {
+            let alertMessage = "There was a problem with the exercise name; please try again"
+            
+            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return false
+        }
+        
+        guard exerciseDetailsViewModel.validateExerciseType(typeField.text) else {
+            let alertMessage = "There was a problem with the exercise type; please try again"
+            
+            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return false
+        }
+        
+        if let urlFieldText = urlField.text {
+            if !urlFieldText.isEmpty {
+                guard exerciseDetailsViewModel.validateExerciseUrl(urlFieldText) else {
+                    let alertMessage = "There was a problem with the exercise URL; please try again"
+                    
+                    let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    return false
+                }
+            }
+        }
+        
+        //validation passed; allow segue to be performed
+        return true
     }
     
     //define items to execute when Save button is tapped
