@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LwF-NQ-UdR">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exercisesPrototypeCell" textLabel="9Bj-W8-H2Z" detailTextLabel="xr6-Nd-2Mx" style="IBUITableViewCellStyleSubtitle" id="5Xv-J4-I4j">
@@ -60,7 +60,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tnd-9h-al5"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="H59-OW-3cc"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Exercises" id="AMg-HH-XRH">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="mtr-Jp-JEI">
+                            <connections>
+                                <action selector="toggleEditingMode:" destination="Mws-Hw-49u" id="lfx-uT-UCf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EMR-kI-6fy">
                             <connections>
                                 <action selector="addButton:" destination="Mws-Hw-49u" id="24E-vb-xcB"/>
@@ -68,6 +76,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="LwF-NQ-UdR" id="Jmv-rB-Igb"/>
                     </connections>

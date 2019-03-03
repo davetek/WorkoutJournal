@@ -22,6 +22,7 @@ class ExerciseDetailsViewModel {
     //data will be injected in this variable at segue
     var exercise: Exercise?
     
+    
     init(currentExerciseNames: [String], exerciseTypes: [String]) {
         self.currentExerciseNames = currentExerciseNames
         self.exerciseTypes = exerciseTypes
@@ -29,12 +30,12 @@ class ExerciseDetailsViewModel {
 
     // (future: could use enum cases to represent validation failures)
     func validateExerciseName(_ exerciseName: String?) -> Bool {
-        if let nonNullExerciseName = exerciseName {
+        if let exerciseName = exerciseName {
             
-            if nonNullExerciseName.isEmpty {
+            if exerciseName.isEmpty {
                 return false
             }
-            else if !currentExerciseNames.contains(nonNullExerciseName) {
+            else if !currentExerciseNames.contains(exerciseName) {
                 return true
             } else {
                 return false
@@ -48,12 +49,12 @@ class ExerciseDetailsViewModel {
     
     // (future: could use enum cases to represent validation failures)
     func validateExerciseType(_ exerciseType: String?) -> Bool {
-        if let nonNullExerciseType = exerciseType {
+        if let exerciseType = exerciseType {
             
-            if nonNullExerciseType.isEmpty {
+            if exerciseType.isEmpty {
                 return false
             }
-            else if exerciseTypes.contains(nonNullExerciseType) {
+            else if exerciseTypes.contains(exerciseType) {
                 return true
             } else {
                 return false
@@ -108,10 +109,23 @@ class ExerciseDetailsViewModel {
         // save the data to Core Data
         workoutJournalDataStore.saveContext()
         
-        
     }
     
     
+    func editRecordInCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
+        
+        guard let exercise = exercise else {
+            preconditionFailure("could not access exercise in Core Data")
+        }
+        
+        exercise.setValue(exerciseName, forKey: "name")
+        exercise.setValue(exerciseType, forKey: "type")
+        exercise.setValue(exerciseUrl, forKey: "url")
+        
+        // save the data to Core Data
+        workoutJournalDataStore.saveContext()
+        
+    }
     
 }
 

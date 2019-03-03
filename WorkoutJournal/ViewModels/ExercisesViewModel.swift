@@ -44,6 +44,13 @@ class ExercisesViewModel {
         
     }
     
+    func deleteRecordInCoreData(exercise: NSManagedObject) {
+        
+        let context = workoutJournalDataStore.persistentContainer.viewContext
+        context.delete(exercise)
+        workoutJournalDataStore.saveContext()
+    }
+    
     
     
     
