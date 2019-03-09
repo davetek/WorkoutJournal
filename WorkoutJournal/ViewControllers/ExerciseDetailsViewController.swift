@@ -10,13 +10,6 @@ import UIKit
 
 class ExerciseDetailsViewController: UIViewController {
     
-    
-    //state should be set upon segue via parent view controller
-    var addingNewRecord: Bool!
-    
-    //initial value of name field
-    var nameFieldTextInitialValue = ""
-    
     //View Model
     var exerciseDetailsViewModel: ExerciseDetailsViewModel!
     
@@ -37,7 +30,6 @@ class ExerciseDetailsViewController: UIViewController {
         if let exerciseTapped = exerciseDetailsViewModel.exercise {
             if let exerciseName = exerciseTapped.name {
                 nameField.text = exerciseName
-                nameFieldTextInitialValue = exerciseName
             }
             
             if let exerciseType = exerciseTapped.type {
@@ -60,22 +52,15 @@ class ExerciseDetailsViewController: UIViewController {
         guard identifier == Constants.idForUnwindWithChangesSegueToExercises else {
             return true
         }
-            
-        
-        //check if saving changes to an existing record's name field; if so, continue
-        // if the name field contained text when the screen loaded, AND that text has been modifield,
-        // run validation on the name; otherwise, skip name validation
-        if nameFieldTextInitialValue.isEmpty == false &&  nameField.text != nameFieldTextInitialValue {
-            
-            guard exerciseDetailsViewModel.validateExerciseName(nameField.text) else {
-                let alertMessage = "There was a problem with the exercise name; please try again"
                 
-                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
-                return false
-            }
+        guard exerciseDetailsViewModel.validateExerciseName(newExerciseName: nameField.text,
+                                                            currentExerciseName: exerciseDetailsViewModel.exercise?.name) else {
+            let alertMessage = "There was a problem with the exercise name; please try again"
             
+            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return false
         }
         
         //run validation on exercise type
@@ -112,7 +97,8 @@ class ExerciseDetailsViewController: UIViewController {
             return
         }
         
-        if addingNewRecord {
+        //if exercise in view model is nil, user is adding a record; otherwise edit the exercise retained in the view model
+        if exerciseDetailsViewModel.exercise == nil {
             //add exercise to Core Data as a new record
             print("adding a record")
             exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)

@@ -24,15 +24,23 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         if self.tableView.isEditing {
             
             //turn off editing mode
-            print("tapped Edit button while in editing mode")
             self.tableView.isEditing = false
         } else {
             
             //enter editing mode
-            print("tapped Edit button while not in editing mode")
             self.tableView.isEditing = true
         }
         
+    }
+    
+    //assemble a list of exercise names from the exercises in the model; set each to lower case
+    // to allow case-insensitive matching when used for comparison
+    func getExerciseNames() -> [String] {
+
+        let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+            return exercise.name!.lowercased()
+        }
+        return exerciseNamesList
     }
 
     
@@ -72,16 +80,15 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let exerciseDetailsNavController = segue.destination as! UINavigationController
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
             
-            exerciseDetailsViewController.addingNewRecord = true
-            
-            let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
-                return exercise.name!
-            }
+            //get list of exercise names and use it with list of types to create an ExerciseDetailsViewModel instance
+            let exerciseNamesList = getExerciseNames()
             let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
                                                                     exerciseTypes: exercisesViewModel.exerciseTypes)
+            
             exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
         
+            
         //if an exercise was tapped
         case Constants.idForSegueToExerciseDetails?:
             if let row = tableView.indexPathForSelectedRow?.row {
@@ -89,12 +96,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
-                exerciseDetailsViewController.addingNewRecord = false
-                
-                let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
-                    return exercise.name!
-                }
-                
+                //get list of exercise names and use it with list of types to create an ExerciseDetailsViewModel instance
+                let exerciseNamesList = getExerciseNames()
                 let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
                                                                         exerciseTypes: exercisesViewModel.exerciseTypes)
                 

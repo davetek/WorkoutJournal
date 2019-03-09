@@ -27,24 +27,70 @@ class ExerciseDetailsViewModel {
         self.currentExerciseNames = currentExerciseNames
         self.exerciseTypes = exerciseTypes
     }
+    
+    // takes two parameters to validate the exercise name entered by the user
+    func validateExerciseName(newExerciseName: String?, currentExerciseName: String?) -> Bool {
+        
+        var shouldCheckIfExerciseNameInExerciseNamesList = true
+        
+        //test if new exercise name exists
+        guard let newExerciseName = newExerciseName else {
+            return false
+        }
+        
+        //test if new exercise name value is empty string
+        guard newExerciseName.isEmpty == false else {
+            return false
+        }
+        print(currentExerciseNames)
+        
+        //test if current exercise name exists
+        if let currentExerciseName = currentExerciseName {
+            
+            //if the spelling of the new exercise name is the same as that of the current name
+            // do not validate if the name exists in the names list
+            if newExerciseName.lowercased() == currentExerciseName.lowercased() {
+                shouldCheckIfExerciseNameInExerciseNamesList = false
+            }
+        }
+        
+        if shouldCheckIfExerciseNameInExerciseNamesList {
+            //validate the new exercise name against the current names list
+            if currentExerciseNames.contains(newExerciseName.lowercased()) {
+                print("exercise name already exists")
+                return false
+            } else {
+                print("exercise name is new")
+                return true
+            }
+        } else {
+            return true
+        }
+        
+    }
 
     // (future: could use enum cases to represent validation failures)
     func validateExerciseName(_ exerciseName: String?) -> Bool {
-        if let exerciseName = exerciseName {
-            
-            if exerciseName.isEmpty {
-                return false
-            }
-            else if !currentExerciseNames.contains(exerciseName) {
-                return true
-            } else {
-                return false
-            }
-                    
-        } else {
-            //exerciseName is nil
+        
+        //test if parameter exists
+        guard let exerciseName = exerciseName else {
             return false
         }
+        
+        //test if parameter value is empty string
+        guard exerciseName.isEmpty == false else {
+            return false
+        }
+        print(currentExerciseNames)
+        
+        if currentExerciseNames.contains(exerciseName.lowercased()) {
+            print("exercise name already exists")
+            return false
+        } else {
+            print("exercise name is new")
+            return true
+        }
+                    
     }
     
     // (future: could use enum cases to represent validation failures)
