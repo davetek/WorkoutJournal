@@ -52,9 +52,23 @@ class ExerciseDetailsViewController: UIViewController {
         guard identifier == Constants.idForUnwindWithChangesSegueToExercises else {
             return true
         }
+        
+        //if an exercise is being edited, get its name
+        if let currentNameForExercise = exerciseDetailsViewModel.exercise?.name {
+            print("exercise is being edited: \(currentNameForExercise)")
+            print("current exercise names: \(exerciseDetailsViewModel.currentExerciseNames)")
+
+            //get the index of the exercise's name from the array of current exercise names, and then remove the name from the array
+            if let indexOfExistingExerciseName = exerciseDetailsViewModel.currentExerciseNames.firstIndex(of: currentNameForExercise.lowercased()) {
+                print("current exercise names before name removed at index \(indexOfExistingExerciseName)")
+                print(exerciseDetailsViewModel.currentExerciseNames)
+                exerciseDetailsViewModel.currentExerciseNames.remove(at: indexOfExistingExerciseName)
+                print("current exercise names after name removed: ")
+                print(exerciseDetailsViewModel.currentExerciseNames)
+            }
+        }
                 
-        guard exerciseDetailsViewModel.validateExerciseName(newExerciseName: nameField.text,
-                                                            currentExerciseName: exerciseDetailsViewModel.exercise?.name) else {
+        guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
             let alertMessage = "There was a problem with the exercise name; please try again"
             
             let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)

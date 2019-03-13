@@ -10,7 +10,8 @@ import CoreData
 
 class ExerciseDetailsViewModel {
     
-    let currentExerciseNames: [String]
+    //value of variable will be set at initialization
+    var currentExerciseNames: [String]
     
     //data for typeField UIPickerView
     // data will be set on object in initialization parameter
@@ -22,67 +23,26 @@ class ExerciseDetailsViewModel {
     //data will be injected in this variable at segue
     var exercise: Exercise?
     
-    
     init(currentExerciseNames: [String], exerciseTypes: [String]) {
         self.currentExerciseNames = currentExerciseNames
         self.exerciseTypes = exerciseTypes
     }
     
+    
     // takes two parameters to validate the exercise name entered by the user
-    func validateExerciseName(newExerciseName: String?, currentExerciseName: String?) -> Bool {
-        
-        var shouldCheckIfExerciseNameInExerciseNamesList = true
+    func validate(exerciseName: String?) -> Bool {
         
         //test if new exercise name exists
-        guard let newExerciseName = newExerciseName else {
-            return false
-        }
-        
-        //test if new exercise name value is empty string
-        guard newExerciseName.isEmpty == false else {
-            return false
-        }
-        print(currentExerciseNames)
-        
-        //test if current exercise name exists
-        if let currentExerciseName = currentExerciseName {
-            
-            //if the spelling of the new exercise name is the same as that of the current name
-            // do not validate if the name exists in the names list
-            if newExerciseName.lowercased() == currentExerciseName.lowercased() {
-                shouldCheckIfExerciseNameInExerciseNamesList = false
-            }
-        }
-        
-        if shouldCheckIfExerciseNameInExerciseNamesList {
-            //validate the new exercise name against the current names list
-            if currentExerciseNames.contains(newExerciseName.lowercased()) {
-                print("exercise name already exists")
-                return false
-            } else {
-                print("exercise name is new")
-                return true
-            }
-        } else {
-            return true
-        }
-        
-    }
-
-    // (future: could use enum cases to represent validation failures)
-    func validateExerciseName(_ exerciseName: String?) -> Bool {
-        
-        //test if parameter exists
         guard let exerciseName = exerciseName else {
             return false
         }
         
-        //test if parameter value is empty string
+        //test if new exercise name value is empty string
         guard exerciseName.isEmpty == false else {
             return false
         }
-        print(currentExerciseNames)
         
+        //validate the new exercise name against the current names list
         if currentExerciseNames.contains(exerciseName.lowercased()) {
             print("exercise name already exists")
             return false
@@ -90,8 +50,9 @@ class ExerciseDetailsViewModel {
             print("exercise name is new")
             return true
         }
-                    
     }
+
+    
     
     // (future: could use enum cases to represent validation failures)
     func validateExerciseType(_ exerciseType: String?) -> Bool {

@@ -15,7 +15,7 @@ class ExerciseDetailsViewModelTests: XCTestCase {
     func testExerciseNameUnique() {
         
         //    Given: a list of current exercise names
-        let currentExerciseNames = ["EXERCISE_NAME_1", "EXERCISE_NAME_2", "EXERCISE_NAME_3"]
+        let currentExerciseNames = ["exercise_name_1", "exercise_name_2", "exercise_name_3"]
         
         //    Given: an Exercise Details view model
         let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: currentExerciseNames)
@@ -24,27 +24,28 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         let exerciseName = "EXERCISE_NAME_99"
         
         //    When: the exercise name is validated
-        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        let result = exerciseDetailsViewModel.validate(exerciseName: exerciseName)
         
         //    Then: the validation succeeds
         XCTAssertTrue(result)
         
     }
+    
 
     ///    Scenario: Exercise name that is not unique is not allowed
     func testExerciseNameNotUnique() {
         
         //    Given: a list of current exercise names
-        let currentExerciseNames = ["EXERCISE_NAME_1", "EXERCISE_NAME_2", "EXERCISE_NAME_3"]
+        let currentExerciseNames = ["exercise_name_1", "exercise_name_2", "exercise_name_3"]
         
         //    Given: an Exercise Details view model
         let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: currentExerciseNames)
         
-        //    Given: an exercise name string that is in the current list of exercise names
-        let exerciseName = "EXERCISE_NAME_2"
+        //    Given: an exercise name string that is in the current list of exercise names (case insensitive)
+        let exerciseName = "Exercise_name_2"
         
         //    When: the exercise name is validated
-        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        let result = exerciseDetailsViewModel.validate(exerciseName: exerciseName)
         
         //    Then: the validation fails
         XCTAssertFalse(result)
@@ -61,7 +62,7 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         let exerciseName = ""
         
         //    When: the exercise name is validated
-        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        let result = exerciseDetailsViewModel.validate(exerciseName: exerciseName)
         
         //    Then: the validation fails
         XCTAssertFalse(result)
@@ -73,12 +74,12 @@ class ExerciseDetailsViewModelTests: XCTestCase {
         
         //    Given: an Exercise Details view model
         let exerciseDetailsViewModel = ExerciseDetailsViewModel()
-        
+
         //   Given: a nil optional variable for exerciseName variable
         var exerciseName: String?
         
         //    When: the exercise name is validated
-        let result = exerciseDetailsViewModel.validateExerciseName(exerciseName)
+        let result = exerciseDetailsViewModel.validate(exerciseName: exerciseName)
         
         //    Then: the validation fails
         XCTAssertFalse(result)
