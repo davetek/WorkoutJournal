@@ -55,16 +55,10 @@ class ExerciseDetailsViewController: UIViewController {
         
         //if an exercise is being edited, get its name
         if let currentNameForExercise = exerciseDetailsViewModel.exercise?.name {
-            print("exercise is being edited: \(currentNameForExercise)")
-            print("current exercise names: \(exerciseDetailsViewModel.currentExerciseNames)")
-
+            
             //get the index of the exercise's name from the array of current exercise names, and then remove the name from the array
             if let indexOfExistingExerciseName = exerciseDetailsViewModel.currentExerciseNames.firstIndex(of: currentNameForExercise.lowercased()) {
-                print("current exercise names before name removed at index \(indexOfExistingExerciseName)")
-                print(exerciseDetailsViewModel.currentExerciseNames)
                 exerciseDetailsViewModel.currentExerciseNames.remove(at: indexOfExistingExerciseName)
-                print("current exercise names after name removed: ")
-                print(exerciseDetailsViewModel.currentExerciseNames)
             }
         }
                 
@@ -114,11 +108,9 @@ class ExerciseDetailsViewController: UIViewController {
         //if exercise in view model is nil, user is adding a record; otherwise edit the exercise retained in the view model
         if exerciseDetailsViewModel.exercise == nil {
             //add exercise to Core Data as a new record
-            print("adding a record")
             exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
         } else {
             //save changes to existing exercise in Core Data
-            print("editing existing record")
             exerciseDetailsViewModel.editRecordInCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
         }
     }

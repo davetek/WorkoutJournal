@@ -44,10 +44,8 @@ class ExerciseDetailsViewModel {
         
         //validate the new exercise name against the current names list
         if currentExerciseNames.contains(exerciseName.lowercased()) {
-            print("exercise name already exists")
             return false
         } else {
-            print("exercise name is new")
             return true
         }
     }
