@@ -21,6 +21,7 @@
 		21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */; };
 		21A82BD621FFED9D009A5AFE /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A82BD421FFED9D009A5AFE /* Exercise+CoreDataProperties.swift */; };
 		21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */; };
+		21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21A82BD421FFED9D009A5AFE /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalDataStore.swift; sourceTree = "<group>"; };
+		21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		21AD2F8D21A3AD780097DF08 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */,
 				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				2166688621681D5900AC6318 /* ExercisesViewController.swift */,
 			);
@@ -268,6 +271,7 @@
 				21263E192185FD5F0018E604 /* Constants.swift in Sources */,
 				21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */,
 				2166688721681D5900AC6318 /* ExercisesViewController.swift in Sources */,
+				21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */,
 				21439C1D221B41E500BFE041 /* ExerciseDetailsViewModel.swift in Sources */,
 				21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */,
 				21A82BD621FFED9D009A5AFE /* Exercise+CoreDataProperties.swift in Sources */,

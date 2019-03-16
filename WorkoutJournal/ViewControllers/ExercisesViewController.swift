@@ -46,8 +46,10 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = 60
         exercisesViewModel.fetchFromCoreData()
     }
     
@@ -59,15 +61,15 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exercisesPrototypeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCell
 
         
         let exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
         let exerciseName = exercise.name
         let exerciseType = exercise.type
         
-        cell.textLabel?.text = exerciseName
-        cell.detailTextLabel?.text = exerciseType
+        cell.nameLabel.text = exerciseName
+        cell.typeLabel.text = exerciseType
         
         return cell
     }
