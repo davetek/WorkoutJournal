@@ -43,6 +43,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYK-Sa-3ec">
                                                     <rect key="frame" x="251" y="15" width="109" height="30"/>
                                                     <state key="normal" title="View in Browser"/>
+                                                    <connections>
+                                                        <action selector="viewInBrowserTapped:" destination="5Xv-J4-I4j" eventType="touchUpInside" id="qHB-VC-H82"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

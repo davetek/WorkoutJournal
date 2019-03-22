@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SafariServices
 
 class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -31,6 +32,14 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             self.tableView.isEditing = true
         }
         
+    }
+    
+    func openBrowserWithURL(_ url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        
+        let safariViewController = SFSafariViewController(url: url, configuration: config)
+        present(safariViewController, animated: true)
     }
     
     //assemble a list of exercise names from the exercises in the model; set each to lower case
@@ -62,7 +71,10 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCell
+        
+        cell.cellRow = indexPath.row
 
+        cell.cellDelegate = self
         
         let exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
         let exerciseName = exercise.name
@@ -118,8 +130,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     //method called when a change is made to the table in edit mode
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-            
+    
         //if table view is asking to commit a delete command
         if editingStyle == .delete {
 
@@ -142,7 +153,19 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
     }
     
-  
+}
+
+extension ExercisesViewController: ExerciseCellDelegate {
     
-    
+    func didTapViewInBrowser(cellRow: Int) {
+        let exerciseForButtonTapped: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[cellRow]
+        
+        if let exerciseUrl = exerciseForButtonTapped.url {
+            if let url = URL(string: exerciseUrl) {
+                openBrowserWithURL(url)
+            }
+        } else {
+            print("no URL for this exercise")
+        }
+    }
 }

@@ -107,6 +107,7 @@
 				2166686121681A4100AC6318 /* AppDelegate.swift */,
 				2166686B21681A4400AC6318 /* Assets.xcassets */,
 				21263E182185FD5F0018E604 /* Constants.swift */,
+				21D4FC5B223E7F26000C5A56 /* Cells */,
 				21AD2F8E21A3ADF20097DF08 /* CoreData */,
 				2166687021681A4400AC6318 /* Info.plist */,
 				21AD2F9021A3AEA20097DF08 /* Storyboards */,
@@ -137,7 +138,6 @@
 		21AD2F8D21A3AD780097DF08 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */,
 				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				2166688621681D5900AC6318 /* ExercisesViewController.swift */,
 			);
@@ -161,6 +161,14 @@
 				2166686521681A4100AC6318 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		21D4FC5B223E7F26000C5A56 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
