@@ -25,14 +25,20 @@ class ExercisesViewModel {
     func fetchFromCoreData()  {
         let context = workoutJournalDataStore.persistentContainer.viewContext
         
-        //Liam 2019-02-10 could set as <Exercise> result
+        //Set up a request that when fetched, will return Exercise objects sorted alphabetically
+        // regardless of case
         let request = NSFetchRequest<Exercise>(entityName: "Exercise")
         request.returnsObjectsAsFaults = false
         
+        let sort = NSSortDescriptor(key: "name",
+                                    ascending: true,
+                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        request.sortDescriptors = [sort]
         
         //clear all items from the array that will hold the fetched records
         exercisesInWorkoutJournalDataStore.removeAll()
         
+        //fetch records from Core Data
         do {
             let result = try context.fetch(request)
             
