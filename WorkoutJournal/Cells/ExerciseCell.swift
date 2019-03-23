@@ -16,6 +16,8 @@ class ExerciseCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
+    @IBOutlet var browserButton: UIButton!
+    
     
     //this is set when cell is created from view controller, in tableView(tableView:cellForRowAtIndexPath)
     var cellRow: Int?

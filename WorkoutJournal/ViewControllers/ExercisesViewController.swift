@@ -80,8 +80,19 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         let exerciseName = exercise.name
         let exerciseType = exercise.type
         
+        
         cell.nameLabel.text = exerciseName
         cell.typeLabel.text = exerciseType
+        
+        if let exerciseUrl = exercise.url {
+            if exerciseUrl.isEmpty == false {
+                cell.browserButton.isEnabled = true
+            } else {
+                cell.browserButton.isEnabled = false
+            }
+        } else {
+            cell.browserButton.isEnabled = false
+        }
         
         return cell
     }

@@ -35,8 +35,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="typeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT6-24-BWJ">
-                                                    <rect key="frame" x="15" y="42" width="75.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="15" y="42" width="68" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -58,6 +58,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="browserButton" destination="UYK-Sa-3ec" id="AYO-Kz-rBf"/>
                                             <outlet property="nameLabel" destination="Z12-i2-Zqu" id="5Xm-rw-Jxh"/>
                                             <outlet property="typeLabel" destination="kT6-24-BWJ" id="0tL-tT-vnl"/>
                                             <segue destination="5cf-wM-9zu" kind="presentation" identifier="showExerciseDetails" id="bA9-73-SP0"/>
