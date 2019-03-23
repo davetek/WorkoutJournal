@@ -20,16 +20,28 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func addButton(_ sender: Any) {
     }
     
-    @IBAction func toggleEditingMode(_ sender: Any) {
+    @IBAction func toggleEditingMode(_ sender: UIBarButtonItem) {
         //if in editing mode
         if self.tableView.isEditing {
             
+            //change the button title
+            if sender.title != nil {
+                sender.title = "Edit"
+            }
+            
             //turn off editing mode
             self.tableView.isEditing = false
+            
         } else {
+            
+            //change the button title
+            if sender.title != nil {
+                sender.title = "Done"
+            }
             
             //enter editing mode
             self.tableView.isEditing = true
+            
         }
         
     }
