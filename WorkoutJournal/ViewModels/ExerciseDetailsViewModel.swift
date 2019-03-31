@@ -100,7 +100,7 @@ class ExerciseDetailsViewModel {
 
 
     
-    func addRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
+    func addExerciseRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
         
         // add a record to Core Data data store
         let context = workoutJournalDataStore.persistentContainer.viewContext
@@ -113,7 +113,6 @@ class ExerciseDetailsViewModel {
         
         // save the data to Core Data
         workoutJournalDataStore.saveContext()
-        
     }
     
     

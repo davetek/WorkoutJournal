@@ -108,7 +108,7 @@ class ExerciseDetailsViewController: UIViewController {
         //if exercise in view model is nil, user is adding a record; otherwise edit the exercise retained in the view model
         if exerciseDetailsViewModel.exercise == nil {
             //add exercise to Core Data as a new record
-            exerciseDetailsViewModel.addRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
+            exerciseDetailsViewModel.addExerciseRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
         } else {
             //save changes to existing exercise in Core Data
             exerciseDetailsViewModel.editRecordInCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)

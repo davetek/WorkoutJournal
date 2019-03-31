@@ -11,6 +11,8 @@ import CoreData
 
 class WorkoutJournalDataStore {
     
+    
+    
     //create NSPersistentContainer which will read & write data from 'disk'
     let persistentContainer: NSPersistentContainer = {
         //instantiate persistent container using name of Core Data data model
@@ -34,3 +36,5 @@ class WorkoutJournalDataStore {
         }
     }
 }
+
+

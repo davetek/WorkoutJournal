@@ -33,7 +33,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             self.tableView.isEditing = false
             
         } else {
-            
             //change the button title
             if sender.title != nil {
                 sender.title = "Done"
@@ -41,10 +40,23 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             
             //enter editing mode
             self.tableView.isEditing = true
-            
         }
         
     }
+    
+    func wasAppAlreadyLaunchedOnce() -> Bool {
+        let defaults = UserDefaults.standard
+        if let _ = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+            print("App already launched")
+            return true
+        } else {
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("App launched first time")
+            return false
+        }
+    }
+    
+
     
     func openBrowserWithURL(_ url: URL) {
         let config = SFSafariViewController.Configuration()
@@ -63,6 +75,25 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         }
         return exerciseNamesList
     }
+    
+    //assemble a list of exercise type names from the exercise types in the model
+    func getExerciseTypeNames() -> [String] {
+        
+        let exerciseTypeNamesList = exercisesViewModel.exerciseTypesInWorkoutJournalDataStore.map { (exerciseType) -> String in
+            return exerciseType.name!
+        }
+        return exerciseTypeNamesList
+    }
+    
+    //pre-populate Core Data with exercise types
+    func addBasicExerciseTypesToCoreData() {
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Aerobic")
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Calisthenics")
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Core")
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Stretching")
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Weight Training")
+        exercisesViewModel.addExerciseTypeToCoreData(exerciseTypeName: "Yoga")
+    }
 
     
     override func viewDidLoad() {
@@ -71,8 +102,15 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
-        exercisesViewModel.fetchFromCoreData()
+        exercisesViewModel.fetchExercisesFromCoreData()
+        exercisesViewModel.fetchExerciseTypesFromCoreData()
+        
+        let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()
+        if appWasLaunchedBefore == false {
+            addBasicExerciseTypesToCoreData()
+        }
     }
+    
     
     
     
@@ -117,10 +155,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let exerciseDetailsNavController = segue.destination as! UINavigationController
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
             
-            //get list of exercise names and use it with list of types to create an ExerciseDetailsViewModel instance
+            //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
             let exerciseNamesList = getExerciseNames()
+            let exerciseTypeNamesList = getExerciseTypeNames()
             let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
-                                                                    exerciseTypes: exercisesViewModel.exerciseTypes)
+                                                                    exerciseTypes: exerciseTypeNamesList)
             
             exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
@@ -133,10 +172,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
-                //get list of exercise names and use it with list of types to create an ExerciseDetailsViewModel instance
+                //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
                 let exerciseNamesList = getExerciseNames()
+                let exerciseTypeNamesList = getExerciseTypeNames()
                 let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
-                                                                        exerciseTypes: exercisesViewModel.exerciseTypes)
+                                                                        exerciseTypes: exerciseTypeNamesList)
                 
                 let exerciseSelected: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[row]
                 exerciseDetailsViewModel.exercise = exerciseSelected
@@ -162,7 +202,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             //delete the associated record from Core Data
             exercisesViewModel.deleteRecordInCoreData(exercise: exerciseSelected)
             
-            exercisesViewModel.fetchFromCoreData()
+            exercisesViewModel.fetchExercisesFromCoreData()
             tableView.reloadData()
         }
         
@@ -172,7 +212,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func unwindWithChangesToExercisesViewController(_ sender: UIStoryboardSegue) {
         //exercise was added; reload tableview
-        exercisesViewModel.fetchFromCoreData()
+        exercisesViewModel.fetchExercisesFromCoreData()
         tableView.reloadData()
     }
     
@@ -192,3 +232,4 @@ extension ExercisesViewController: ExerciseCellDelegate {
         }
     }
 }
+
