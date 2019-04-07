@@ -32,8 +32,8 @@ class ExerciseDetailsViewController: UIViewController {
                 nameField.text = exerciseName
             }
             
-            if let exerciseType = exerciseTapped.type {
-                typeField.text = exerciseType
+            if let exerciseType = exerciseTapped.exerciseTypes {
+                typeField.text = exerciseType.name
             }
             
             if let exerciseUrl = exerciseTapped.url {

@@ -27,18 +27,9 @@ class ExercisesViewModel {
     
     
     //get exercise records from Core Data data store
-    func fetchExercisesFromCoreData()  {
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+    func fetchExercises()  {
         
-        //Set up a request that when fetched, will return Exercise objects sorted alphabetically
-        // regardless of case
-        let request = NSFetchRequest<Exercise>(entityName: "Exercise")
-        request.returnsObjectsAsFaults = false
-        
-        let sort = NSSortDescriptor(key: "name",
-                                    ascending: true,
-                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        request.sortDescriptors = [sort]
+        workoutJournalDataStore.read(Exercise)
         
         //clear all items from the array that will hold the fetched records
         exercisesInWorkoutJournalDataStore.removeAll()
@@ -54,13 +45,15 @@ class ExercisesViewModel {
         }
     }
     
+    
     //get exercise type records from Core Data data store
     func fetchExerciseTypesFromCoreData()  {
         let context = workoutJournalDataStore.persistentContainer.viewContext
         
         //Set up a request that when fetched, will return ExerciseType objects sorted alphabetically
         // regardless of case
-        let request = NSFetchRequest<ExerciseType>(entityName: "ExerciseType")
+//        let request = NSFetchRequest<ExerciseType>(entityName: "ExerciseType")
+        let request: NSFetchRequest = ExerciseType.fetchRequest()
         request.returnsObjectsAsFaults = false
         
         let sort = NSSortDescriptor(key: "name",
@@ -81,6 +74,7 @@ class ExercisesViewModel {
             print("fetch from Core Data failed")
         }
     }
+    
     
     func addExerciseTypeToCoreData(exerciseTypeName: String?) {
         

@@ -66,24 +66,24 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         present(safariViewController, animated: true)
     }
     
-    //assemble a list of exercise names from the exercises in the model; set each to lower case
-    // to allow case-insensitive matching when used for comparison
-    func getExerciseNames() -> [String] {
-
-        let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
-            return exercise.name!.lowercased()
-        }
-        return exerciseNamesList
-    }
-    
-    //assemble a list of exercise type names from the exercise types in the model
-    func getExerciseTypeNames() -> [String] {
-        
-        let exerciseTypeNamesList = exercisesViewModel.exerciseTypesInWorkoutJournalDataStore.map { (exerciseType) -> String in
-            return exerciseType.name!
-        }
-        return exerciseTypeNamesList
-    }
+//    //assemble a list of exercise names from the exercises in the model; set each to lower case
+//    // to allow case-insensitive matching when used for comparison
+//    func getExerciseNames() -> [String] {
+//
+//        let exerciseNamesList = exercisesViewModel.exercisesInWorkoutJournalDataStore.map { (exercise) -> String in
+//            return exercise.name!.lowercased()
+//        }
+//        return exerciseNamesList
+//    }
+//    
+//    //assemble a list of exercise type names from the exercise types in the model
+//    func getExerciseTypeNames() -> [String] {
+//        
+//        let exerciseTypeNamesList = exercisesViewModel.exerciseTypesInWorkoutJournalDataStore.map { (exerciseType) -> String in
+//            return exerciseType.name!
+//        }
+//        return exerciseTypeNamesList
+//    }
     
     //pre-populate Core Data with exercise types
     func addBasicExerciseTypesToCoreData() {
@@ -128,11 +128,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         
         let exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
         let exerciseName = exercise.name
-        let exerciseType = exercise.type
+        let exerciseType = exercise.exerciseTypes
         
         
         cell.nameLabel.text = exerciseName
-        cell.typeLabel.text = exerciseType
+        cell.typeLabel.text = exerciseType?.name
         
         if let exerciseUrl = exercise.url {
             if exerciseUrl.isEmpty == false {
