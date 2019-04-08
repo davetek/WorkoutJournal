@@ -38,38 +38,6 @@ class WorkoutJournalDataStore {
     }
     
 
-    
-    //get records from Core Data from any object subclassed from NSManagedObject
-    // and containing a 'name' attribute; sort the records alphabetically by 'name'
-    // (could make a protocol that specifies a name property, and specify that
-    // T adopts that protocol
-    func read<T: NSManagedObject>(_ object: T) -> [T]? {
-        let context = persistentContainer.viewContext
-        
-        //get name of T type to pass to fetch by using T at runtime
-        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
-        request.returnsObjectsAsFaults = false
-        
-        let sort = NSSortDescriptor(key: "name",
-                                    ascending: true,
-                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        request.sortDescriptors = [sort]
-        
-        //temp; this hides the fact that Core Data fetch failed
-        var result: [T] = []
-        
-        do {
-            result = try context.fetch(request)
-            return result
-        } catch let error as NSError {
-            //need to handle error
-            //could use 'return' type
-            print("fetch from Core Data failed due to \(error)")
-            return nil
-        }
-    }
-    
-
 
     //delete any object subclassed from NSManagedObject
     func delete(object: NSManagedObject) {

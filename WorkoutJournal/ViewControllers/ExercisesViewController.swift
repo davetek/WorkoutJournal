@@ -116,7 +116,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return dataStore.exercises.count
-        return exercisesViewModel.exercisesInWorkoutJournalDataStore.count
+        return exercisesViewModel.exercisesInDataStore.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,7 +126,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
 
         cell.cellDelegate = self
         
-        let exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
+        let exercise = exercisesViewModel.exercisesInDataStore[indexPath.row]
         let exerciseName = exercise.name
         let exerciseType = exercise.exerciseTypes
         
@@ -172,13 +172,10 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 let exerciseDetailsNavController = segue.destination as! UINavigationController
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
-                //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
-                let exerciseNamesList = getExerciseNames()
-                let exerciseTypeNamesList = getExerciseTypeNames()
-                let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
-                                                                        exerciseTypes: exerciseTypeNamesList)
+                //create an ExerciseDetailsViewModel instance
+                let exerciseDetailsViewModel = ExerciseDetailsViewModel()
                 
-                let exerciseSelected: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[row]
+                let exerciseSelected: Exercise = exercisesViewModel.exercisesInDataStore[row]
                 exerciseDetailsViewModel.exercise = exerciseSelected
                 
                 exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
@@ -197,7 +194,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         //if table view is asking to commit a delete command
         if editingStyle == .delete {
 
-            let exerciseSelected: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[indexPath.row]
+            let exerciseSelected: Exercise = exercisesViewModel.exercisesInDataStore[indexPath.row]
             
             //delete the associated record from Core Data
             exercisesViewModel.deleteRecordInCoreData(exercise: exerciseSelected)
@@ -221,7 +218,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
 extension ExercisesViewController: ExerciseCellDelegate {
     
     func didTapViewInBrowser(cellRow: Int) {
-        let exerciseForButtonTapped: Exercise = exercisesViewModel.exercisesInWorkoutJournalDataStore[cellRow]
+        let exerciseForButtonTapped: Exercise = exercisesViewModel.exercisesInDataStore[cellRow]
         
         if let exerciseUrl = exerciseForButtonTapped.url {
             if let url = URL(string: exerciseUrl) {

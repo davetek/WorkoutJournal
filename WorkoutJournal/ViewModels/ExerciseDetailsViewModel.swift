@@ -10,26 +10,26 @@ import CoreData
 
 class ExerciseDetailsViewModel {
     
-    //value of variable will be set at initialization
-    var currentExerciseNames: [String]
-    
-    //data for typeField UIPickerView
-    // data will be set on object in initialization parameter
-    var exerciseTypes: [String]
-    
     // Core Data data store will be injected into the variable from the parent view controller
     var workoutJournalDataStore: WorkoutJournalDataStore!
     
     //data will be injected in this variable at segue
     var exercise: Exercise?
     
-    init(currentExerciseNames: [String], exerciseTypes: [String]) {
-        self.currentExerciseNames = currentExerciseNames
-        self.exerciseTypes = exerciseTypes
+    // Set up an array of Exercise objects to injected in the initializer
+    //  to contain Exercises records fetched from Core Data data store
+    var exercisesInDataStore: [Exercise] = []
+    
+    // Set up an array of Exercise types to be injected in the initializer
+    //  to contain ExerciseType objects fetched from Core Data data store
+    var exerciseTypesInDataStore: [ExerciseType] = []
+    
+    init(exercises: [Exercise], exerciseTypes: [ExerciseType]) {
+        self.exercisesInDataStore = exercises
+        self.exerciseTypesInDataStore = exerciseTypes
     }
     
     
-    // takes two parameters to validate the exercise name entered by the user
     func validate(exerciseName: String?) -> Bool {
         
         //test if new exercise name exists
@@ -42,24 +42,23 @@ class ExerciseDetailsViewModel {
             return false
         }
         
-        //validate the new exercise name against the current names list
-        if currentExerciseNames.contains(exerciseName.lowercased()) {
+        if exercisesInDataStore.contains(where: {$0.name == exerciseName.lowercased()}) {
             return false
         } else {
             return true
         }
+        
     }
 
     
     
-    // (future: could use enum cases to represent validation failures)
     func validateExerciseType(_ exerciseType: String?) -> Bool {
         if let exerciseType = exerciseType {
             
             if exerciseType.isEmpty {
                 return false
             }
-            else if exerciseTypes.contains(exerciseType) {
+            else if exerciseTypesInDataStore.contains(where: {$0.name == exerciseType}) {
                 return true
             } else {
                 return false

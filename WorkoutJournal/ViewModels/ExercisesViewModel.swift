@@ -19,27 +19,37 @@ class ExercisesViewModel {
     
     // Set up an array of Exercise objects
     //  to contain Exercises records fetched from Core Data data store
-    var exercisesInWorkoutJournalDataStore: [Exercise] = []
+    var exercisesInDataStore: [Exercise] = []
     
     // Set up an array of Exercise types
     //  to contain ExerciseType objects fetched from Core Data data store
-    var exerciseTypesInWorkoutJournalDataStore: [ExerciseType] = []
+    var exerciseTypesInDataStore: [ExerciseType] = []
     
     
     //get exercise records from Core Data data store
-    func fetchExercises()  {
+    func fetchExercisesFromCoreData()  {
+        let context = workoutJournalDataStore.persistentContainer.viewContext
         
-        workoutJournalDataStore.read(Exercise)
+        //Set up a request for all NSManagedObject objects of type Exercise
+        let request: NSFetchRequest = Exercise.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        
+        //create a sort descriptor to sort ascending alphabetically
+        let sort = NSSortDescriptor(key: "name",
+                                    ascending: true,
+                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        //assign the new sort descriptor to the request
+        request.sortDescriptors = [sort]
         
         //clear all items from the array that will hold the fetched records
-        exercisesInWorkoutJournalDataStore.removeAll()
+        exercisesInDataStore.removeAll()
         
-        //fetch records from Core Data
+        //fetch records from Core Data & assign to variable if successful
         do {
             let result = try context.fetch(request)
+            exercisesInDataStore = result
             
-            exercisesInWorkoutJournalDataStore = result
-        
         } catch {
             print("fetch from Core Data failed")
         }
@@ -50,25 +60,25 @@ class ExercisesViewModel {
     func fetchExerciseTypesFromCoreData()  {
         let context = workoutJournalDataStore.persistentContainer.viewContext
         
-        //Set up a request that when fetched, will return ExerciseType objects sorted alphabetically
-        // regardless of case
-//        let request = NSFetchRequest<ExerciseType>(entityName: "ExerciseType")
+        //Set up a request for all NSManagedObject objects of type ExerciseType
         let request: NSFetchRequest = ExerciseType.fetchRequest()
         request.returnsObjectsAsFaults = false
         
+        //create a sort descriptor to sort ascending alphabetically
         let sort = NSSortDescriptor(key: "name",
                                     ascending: true,
                                     selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        //assign the new sort descriptor to the request
         request.sortDescriptors = [sort]
         
         //clear all items from the array that will hold the fetched records
-        exerciseTypesInWorkoutJournalDataStore.removeAll()
+        exerciseTypesInDataStore.removeAll()
         
-        //fetch records from Core Data
+        //fetch records from Core Data & assign to variable if successful
         do {
             let result = try context.fetch(request)
-            
-            exerciseTypesInWorkoutJournalDataStore = result
+            exerciseTypesInDataStore = result
             
         } catch {
             print("fetch from Core Data failed")

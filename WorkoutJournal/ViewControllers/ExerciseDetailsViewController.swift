@@ -53,23 +53,27 @@ class ExerciseDetailsViewController: UIViewController {
             return true
         }
         
-        //if an exercise is being edited, get its name
+        //if an exercise is being edited, get its name and compare this lowercased
+        // to the nameField text lowercased
+        // if the same, return true, skipping the exercise name validation
+        // else perform exercise name validation
         if let currentNameForExercise = exerciseDetailsViewModel.exercise?.name {
             
-            //get the index of the exercise's name from the array of current exercise names, and then remove the name from the array
-            if let indexOfExistingExerciseName = exerciseDetailsViewModel.currentExerciseNames.firstIndex(of: currentNameForExercise.lowercased()) {
-                exerciseDetailsViewModel.currentExerciseNames.remove(at: indexOfExistingExerciseName)
+            if nameField.text?.lowercased() == currentNameForExercise.lowercased() {
+                return true
+            } else {
+                guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
+                    let alertMessage = "There was a problem with the exercise name; please try again"
+                    
+                    let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    return false
+                }
             }
         }
                 
-        guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
-            let alertMessage = "There was a problem with the exercise name; please try again"
-            
-            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-            return false
-        }
+        
         
         //run validation on exercise type
         guard exerciseDetailsViewModel.validateExerciseType(typeField.text) else {
