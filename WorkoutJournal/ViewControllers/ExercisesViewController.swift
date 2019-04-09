@@ -156,10 +156,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
             
             //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
-            let exerciseNamesList = getExerciseNames()
-            let exerciseTypeNamesList = getExerciseTypeNames()
-            let exerciseDetailsViewModel = ExerciseDetailsViewModel(currentExerciseNames: exerciseNamesList,
-                                                                    exerciseTypes: exerciseTypeNamesList)
+            let exerciseDetailsViewModel = ExerciseDetailsViewModel(exercises: exercisesViewModel.exercisesInDataStore,
+                                                                    exerciseTypes: exercisesViewModel.exerciseTypesInDataStore)
             
             exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
@@ -173,7 +171,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
                 //create an ExerciseDetailsViewModel instance
-                let exerciseDetailsViewModel = ExerciseDetailsViewModel()
+                let exerciseDetailsViewModel = ExerciseDetailsViewModel(exercises: exercisesViewModel.exercisesInDataStore,
+                                                                        exerciseTypes: exercisesViewModel.exerciseTypesInDataStore)
                 
                 let exerciseSelected: Exercise = exercisesViewModel.exercisesInDataStore[row]
                 exerciseDetailsViewModel.exercise = exerciseSelected

@@ -18,9 +18,6 @@ class ExerciseDetailsViewController: UIViewController {
     @IBOutlet var urlField: UITextField!
     
     
-    //selected type
-    var selectedType: String?
-    
     @IBOutlet var saveButton: UIBarButtonItem!
     
     
@@ -73,7 +70,14 @@ class ExerciseDetailsViewController: UIViewController {
             }
         }
                 
-        
+        guard exerciseDetailsViewModel.selectedExerciseType != nil else {
+            let alertMessage = "Please select an exercise type"
+            
+            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return false
+        }
         
         //run validation on exercise type
         guard exerciseDetailsViewModel.validateExerciseType(typeField.text) else {
@@ -112,10 +116,14 @@ class ExerciseDetailsViewController: UIViewController {
         //if exercise in view model is nil, user is adding a record; otherwise edit the exercise retained in the view model
         if exerciseDetailsViewModel.exercise == nil {
             //add exercise to Core Data as a new record
-            exerciseDetailsViewModel.addExerciseRecordToCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
+            exerciseDetailsViewModel.addExerciseRecordToCoreData(exerciseName: nameField.text,
+                                                                 exerciseType: exerciseDetailsViewModel?.selectedExerciseType,
+                                                                 exerciseUrl: urlField.text)
         } else {
             //save changes to existing exercise in Core Data
-            exerciseDetailsViewModel.editRecordInCoreData(exerciseName: nameField.text, exerciseType: typeField.text, exerciseUrl: urlField.text)
+            exerciseDetailsViewModel.editRecordInCoreData(exerciseName: nameField.text,
+                                                          exerciseType: exerciseDetailsViewModel?.selectedExerciseType,
+                                                          exerciseUrl: urlField.text)
         }
     }
     
@@ -139,16 +147,19 @@ extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return exerciseDetailsViewModel.exerciseTypes.count
+        return exerciseDetailsViewModel.exerciseTypesInDataStore.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return exerciseDetailsViewModel.exerciseTypes[row]
+        return exerciseDetailsViewModel.exerciseTypesInDataStore[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedType = exerciseDetailsViewModel.exerciseTypes[row]
-        typeField.text = selectedType
+        exerciseDetailsViewModel.selectedExerciseType = exerciseDetailsViewModel.exerciseTypesInDataStore[row]
+        if let selectedType = exerciseDetailsViewModel.selectedExerciseType?.name {
+            typeField.text = selectedType
+        }
+        
     }
     
     

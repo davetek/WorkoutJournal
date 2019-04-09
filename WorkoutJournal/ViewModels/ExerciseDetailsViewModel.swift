@@ -24,6 +24,9 @@ class ExerciseDetailsViewModel {
     //  to contain ExerciseType objects fetched from Core Data data store
     var exerciseTypesInDataStore: [ExerciseType] = []
     
+    //set from view controller when user selects type in type picker
+    var selectedExerciseType: ExerciseType?
+    
     init(exercises: [Exercise], exerciseTypes: [ExerciseType]) {
         self.exercisesInDataStore = exercises
         self.exerciseTypesInDataStore = exerciseTypes
@@ -99,7 +102,7 @@ class ExerciseDetailsViewModel {
 
 
     
-    func addExerciseRecordToCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
+    func addExerciseRecordToCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
         
         // add a record to Core Data data store
         let context = workoutJournalDataStore.persistentContainer.viewContext
@@ -107,7 +110,7 @@ class ExerciseDetailsViewModel {
         let newExercise = NSManagedObject(entity: entity!, insertInto: context)
         
         newExercise.setValue(exerciseName, forKey: "name")
-        newExercise.setValue(exerciseType, forKey: "type")
+        newExercise.setValue(exerciseType, forKey: "exerciseTypes")
         newExercise.setValue(exerciseUrl, forKey: "url")
         
         // save the data to Core Data
@@ -115,14 +118,14 @@ class ExerciseDetailsViewModel {
     }
     
     
-    func editRecordInCoreData(exerciseName: String?, exerciseType: String?, exerciseUrl: String?) {
+    func editRecordInCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
         
         guard let exercise = exercise else {
             preconditionFailure("could not access exercise in Core Data")
         }
         
         exercise.setValue(exerciseName, forKey: "name")
-        exercise.setValue(exerciseType, forKey: "type")
+        exercise.setValue(exerciseType, forKey: "exerciseTypes")
         exercise.setValue(exerciseUrl, forKey: "url")
         
         // save the data to Core Data
