@@ -43,21 +43,18 @@ class ExerciseDetailsViewController: UIViewController {
     }
     
     //run checks on user data to determine if the prepare method for the 'unwind with changes'
-    // if result is true, prepare method is run
+    // is true, prepare method is run
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         guard identifier == Constants.idForUnwindWithChangesSegueToExercises else {
             return true
         }
         
-        //if an exercise is being edited, get its name and compare this lowercased
-        // to the nameField text lowercased
-        // if the same, return true, skipping the exercise name validation
-        // else perform exercise name validation
+        //if an exercise is being edited,
         if let currentNameForExercise = exerciseDetailsViewModel.exercise?.name {
             
+            //get its name and compare this lowercased
             if nameField.text?.lowercased() == currentNameForExercise.lowercased() {
-                return true
             } else {
                 guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
                     let alertMessage = "There was a problem with the exercise name; please try again"
@@ -68,8 +65,18 @@ class ExerciseDetailsViewController: UIViewController {
                     return false
                 }
             }
-        }
+        } else {
+            print("adding exercise so performing name validation")
+            guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
+                let alertMessage = "There was a problem with the exercise name; please try again"
                 
+                let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                return false
+            }
+        }
+        
         guard exerciseDetailsViewModel.selectedExerciseType != nil else {
             let alertMessage = "Please select an exercise type"
             

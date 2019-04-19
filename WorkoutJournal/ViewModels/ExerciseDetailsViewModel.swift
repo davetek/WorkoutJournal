@@ -34,7 +34,6 @@ class ExerciseDetailsViewModel {
     
     
     func validate(exerciseName: String?) -> Bool {
-        
         //test if new exercise name exists
         guard let exerciseName = exerciseName else {
             return false
@@ -45,7 +44,7 @@ class ExerciseDetailsViewModel {
             return false
         }
         
-        if exercisesInDataStore.contains(where: {$0.name == exerciseName.lowercased()}) {
+        if exercisesInDataStore.contains(where:{$0.name?.lowercased() == exerciseName.lowercased()}) {
             return false
         } else {
             return true
