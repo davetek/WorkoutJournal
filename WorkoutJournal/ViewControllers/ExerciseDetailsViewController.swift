@@ -24,7 +24,7 @@ class ExerciseDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super .viewDidLoad()
         
-        if let exerciseTapped = exerciseDetailsViewModel.exercise {
+        if let exerciseTapped = exerciseDetailsViewModel.exerciseBeingEdited {
             if let exerciseName = exerciseTapped.name {
                 nameField.text = exerciseName
             }
@@ -39,7 +39,6 @@ class ExerciseDetailsViewController: UIViewController {
         }
         
         createTypePicker()
-        
     }
     
     //run checks on user data to determine if the prepare method for the 'unwind with changes'
@@ -51,9 +50,9 @@ class ExerciseDetailsViewController: UIViewController {
         }
         
         //if an exercise is being edited,
-        if let currentNameForExercise = exerciseDetailsViewModel.exercise?.name {
+        if let currentNameForExercise = exerciseDetailsViewModel.exerciseBeingEdited?.name {
             
-            //get its name and compare this lowercased
+            //get its name and compare its lowercased name to the text in the name field, lowercased
             if nameField.text?.lowercased() == currentNameForExercise.lowercased() {
             } else {
                 guard exerciseDetailsViewModel.validate(exerciseName: nameField.text) else {
@@ -77,7 +76,11 @@ class ExerciseDetailsViewController: UIViewController {
             }
         }
         
-        guard exerciseDetailsViewModel.selectedExerciseType != nil else {
+        
+        //because exercise type is an object reference, only one check is necessary:
+        // ensure that an exercise type has been specified
+        
+        guard exerciseDetailsViewModel.specifiedExerciseType != nil else {
             let alertMessage = "Please select an exercise type"
             
             let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
@@ -86,15 +89,6 @@ class ExerciseDetailsViewController: UIViewController {
             return false
         }
         
-        //run validation on exercise type
-        guard exerciseDetailsViewModel.validateExerciseType(typeField.text) else {
-            let alertMessage = "There was a problem with the exercise type; please try again"
-            
-            let alert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-            return false
-        }
         
         if let urlFieldText = urlField.text {
             if !urlFieldText.isEmpty {
@@ -121,21 +115,26 @@ class ExerciseDetailsViewController: UIViewController {
         }
         
         //if exercise in view model is nil, user is adding a record; otherwise edit the exercise retained in the view model
-        if exerciseDetailsViewModel.exercise == nil {
+        if exerciseDetailsViewModel.exerciseBeingEdited == nil {
             //add exercise to Core Data as a new record
             exerciseDetailsViewModel.addExerciseRecordToCoreData(exerciseName: nameField.text,
-                                                                 exerciseType: exerciseDetailsViewModel?.selectedExerciseType,
+                                                                 exerciseType: exerciseDetailsViewModel?.specifiedExerciseType,
                                                                  exerciseUrl: urlField.text)
         } else {
             //save changes to existing exercise in Core Data
             exerciseDetailsViewModel.editRecordInCoreData(exerciseName: nameField.text,
-                                                          exerciseType: exerciseDetailsViewModel?.selectedExerciseType,
+                                                          exerciseType: exerciseDetailsViewModel?.specifiedExerciseType,
                                                           exerciseUrl: urlField.text)
         }
     }
     
-    
+}
 
+
+
+//extension for picker view
+extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func createTypePicker() {
         let typePicker = UIPickerView()
         typePicker.delegate = self
@@ -143,11 +142,6 @@ class ExerciseDetailsViewController: UIViewController {
         typeField.inputView = typePicker
         typePicker.backgroundColor = .white
     }
-}
-
-
-//extension for picker view
-extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -162,12 +156,8 @@ extension ExerciseDetailsViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        exerciseDetailsViewModel.selectedExerciseType = exerciseDetailsViewModel.exerciseTypesInDataStore[row]
-        if let selectedType = exerciseDetailsViewModel.selectedExerciseType?.name {
-            typeField.text = selectedType
-        }
-        
+        exerciseDetailsViewModel.specifiedExerciseType = exerciseDetailsViewModel.exerciseTypesInDataStore[row]
+        typeField.text = exerciseDetailsViewModel.specifiedExerciseType?.name
     }
-    
-    
 }
+

@@ -10,26 +10,46 @@ import CoreData
 
 class ExerciseDetailsViewModel {
     
-    // Core Data data store will be injected into the variable from the parent view controller
+    // Core Data data store will be injected at initialization
     var workoutJournalDataStore: WorkoutJournalDataStore!
     
-    //data will be injected in this variable at segue
-    var exercise: Exercise?
+    //data will be injected at initialization
+    var exerciseBeingEdited: Exercise?
     
-    // Set up an array of Exercise objects to injected in the initializer
+    // Set up an array of Exercise objects to injected at initialization
     //  to contain Exercises records fetched from Core Data data store
     var exercisesInDataStore: [Exercise] = []
     
-    // Set up an array of Exercise types to be injected in the initializer
+    // Set up an array of Exercise types to be injected at initialization
     //  to contain ExerciseType objects fetched from Core Data data store
     var exerciseTypesInDataStore: [ExerciseType] = []
+    
+    // Set up variable to retain the exercise type specified,
+    //  from parent view controller or from type picker
+    var specifiedExerciseType: ExerciseType?
+    
     
     //set from view controller when user selects type in type picker
     var selectedExerciseType: ExerciseType?
     
-    init(exercises: [Exercise], exerciseTypes: [ExerciseType]) {
+    //class initializer
+    init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?, exerciseSelected: Exercise?) {
         self.exercisesInDataStore = exercises
         self.exerciseTypesInDataStore = exerciseTypes
+        self.workoutJournalDataStore = dataStore
+        self.exerciseBeingEdited = exerciseSelected
+        
+        if exerciseSelected != nil {
+            specifiedExerciseType = exerciseSelected?.exerciseTypes
+        }
+    }
+    
+    //convenience initializer for initializing a vm without a saved exercise, if an exercise is being added
+    convenience init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?) {
+        self.init(exercises: exercises,
+                  exerciseTypes: exerciseTypes,
+                  dataStore: dataStore,
+                  exerciseSelected: nil)
     }
     
     
@@ -55,6 +75,7 @@ class ExerciseDetailsViewModel {
     
     
     func validateExerciseType(_ exerciseType: String?) -> Bool {
+        
         if let exerciseType = exerciseType {
             
             if exerciseType.isEmpty {
@@ -119,7 +140,7 @@ class ExerciseDetailsViewModel {
     
     func editRecordInCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
         
-        guard let exercise = exercise else {
+        guard let exercise = exerciseBeingEdited else {
             preconditionFailure("could not access exercise in Core Data")
         }
         
@@ -133,4 +154,7 @@ class ExerciseDetailsViewModel {
     }
     
 }
+
+
+
 

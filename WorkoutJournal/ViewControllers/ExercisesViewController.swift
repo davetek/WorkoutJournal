@@ -139,9 +139,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             
             //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
             let exerciseDetailsViewModel = ExerciseDetailsViewModel(exercises: exercisesViewModel.exercisesInDataStore,
-                                                                    exerciseTypes: exercisesViewModel.exerciseTypesInDataStore)
+                                                                    exerciseTypes: exercisesViewModel.exerciseTypesInDataStore,
+                                                                    dataStore: exercisesViewModel.workoutJournalDataStore)
             
-            exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
         
             
@@ -154,15 +154,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 //create an ExerciseDetailsViewModel instance
                 let exerciseDetailsViewModel = ExerciseDetailsViewModel(exercises: exercisesViewModel.exercisesInDataStore,
-                                                                        exerciseTypes: exercisesViewModel.exerciseTypesInDataStore)
+                                                                        exerciseTypes: exercisesViewModel.exerciseTypesInDataStore,
+                                                                        dataStore: exercisesViewModel.workoutJournalDataStore,
+                                                                        exerciseSelected: exercisesViewModel.exercisesInDataStore[row])
                 
-                let exerciseSelected: Exercise = exercisesViewModel.exercisesInDataStore[row]
-                exerciseDetailsViewModel.exercise = exerciseSelected
-                
-                exerciseDetailsViewModel.workoutJournalDataStore = exercisesViewModel.workoutJournalDataStore
-
                 exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
-                print("at end of prepare(for:sender:)")
             }
         default:
             preconditionFailure("segue identifier not found")
