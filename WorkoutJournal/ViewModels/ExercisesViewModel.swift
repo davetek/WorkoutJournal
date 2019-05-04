@@ -99,11 +99,16 @@ class ExercisesViewModel {
         workoutJournalDataStore.saveContext()
     }
     
-    func deleteRecordInCoreData(exercise: NSManagedObject) {
+    
+    func delete(dataObject: NSManagedObject) {
         
         let context = workoutJournalDataStore.context
-        context.delete(exercise)
-        workoutJournalDataStore.saveContext()
+        context.delete(dataObject)
+        do {
+            try context.save()
+        } catch _ {
+            print("Core Data failed to delete the data object")
+        }
     }
     
 }

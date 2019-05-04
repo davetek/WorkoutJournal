@@ -178,7 +178,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let exerciseSelected: Exercise = exercisesViewModel.exercisesInDataStore[indexPath.row]
             
             //delete the associated record from Core Data
-            exercisesViewModel.deleteRecordInCoreData(exercise: exerciseSelected)
+            exercisesViewModel.delete(dataObject: exerciseSelected)
             
             exercisesViewModel.fetchExercisesFromCoreData()
             tableView.reloadData()
