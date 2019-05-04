@@ -28,7 +28,7 @@ class ExercisesViewModel {
     
     //get exercise records from Core Data data store
     func fetchExercisesFromCoreData()  {
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let context = workoutJournalDataStore.context
         
         //Set up a request for all NSManagedObject objects of type Exercise
         let request: NSFetchRequest = Exercise.fetchRequest()
@@ -58,7 +58,7 @@ class ExercisesViewModel {
     
     //get exercise type records from Core Data data store
     func fetchExerciseTypesFromCoreData()  {
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let context = workoutJournalDataStore.context
         
         //Set up a request for all NSManagedObject objects of type ExerciseType
         let request: NSFetchRequest = ExerciseType.fetchRequest()
@@ -89,7 +89,7 @@ class ExercisesViewModel {
     func addExerciseTypeToCoreData(exerciseTypeName: String?) {
         
         // add a record to Core Data data store
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let context = workoutJournalDataStore.context
         let entity = NSEntityDescription.entity(forEntityName: "ExerciseType", in: context)
         let newExerciseType = NSManagedObject(entity: entity!, insertInto: context)
         
@@ -101,7 +101,7 @@ class ExercisesViewModel {
     
     func deleteRecordInCoreData(exercise: NSManagedObject) {
         
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let context = workoutJournalDataStore.context
         context.delete(exercise)
         workoutJournalDataStore.saveContext()
     }

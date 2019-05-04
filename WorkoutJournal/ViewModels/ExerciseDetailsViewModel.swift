@@ -41,6 +41,8 @@ class ExerciseDetailsViewModel {
         
         if exerciseSelected != nil {
             specifiedExerciseType = exerciseSelected?.exerciseTypes
+            
+            
         }
     }
     
@@ -125,7 +127,7 @@ class ExerciseDetailsViewModel {
     func addExerciseRecordToCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
         
         // add a record to Core Data data store
-        let context = workoutJournalDataStore.persistentContainer.viewContext
+        let context = workoutJournalDataStore.context
         let entity = NSEntityDescription.entity(forEntityName: "Exercise", in: context)
         let newExercise = NSManagedObject(entity: entity!, insertInto: context)
         
@@ -133,9 +135,12 @@ class ExerciseDetailsViewModel {
         newExercise.setValue(exerciseType, forKey: "exerciseTypes")
         newExercise.setValue(exerciseUrl, forKey: "url")
         
+        
         // save the data to Core Data
         workoutJournalDataStore.saveContext()
     }
+    
+    
     
     
     func editRecordInCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {

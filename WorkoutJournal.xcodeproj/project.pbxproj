@@ -21,6 +21,7 @@
 		2166686F21681A4400AC6318 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2166686D21681A4400AC6318 /* LaunchScreen.storyboard */; };
 		2166688721681D5900AC6318 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688621681D5900AC6318 /* ExercisesViewController.swift */; };
 		2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */; };
+		21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722AB6227DA2BF00486C5D /* DataSource.swift */; };
 		21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */; };
 		21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */; };
 		21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */; };
@@ -55,6 +56,7 @@
 		2166687B21681A4400AC6318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2166688621681D5900AC6318 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewController.swift; sourceTree = "<group>"; };
+		21722AB6227DA2BF00486C5D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalDataStore.swift; sourceTree = "<group>"; };
 		21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				21D4FC5B223E7F26000C5A56 /* Cells */,
 				21AD2F8E21A3ADF20097DF08 /* CoreData */,
 				2166687021681A4400AC6318 /* Info.plist */,
+				21722AB5227DA18F00486C5D /* PersistenceLayer */,
 				21AD2F9021A3AEA20097DF08 /* Storyboards */,
 				21AD2F8D21A3AD780097DF08 /* ViewControllers */,
 				21439C1B221B418700BFE041 /* ViewModels */,
@@ -128,6 +131,14 @@
 				2166687B21681A4400AC6318 /* Info.plist */,
 			);
 			path = WorkoutJournalTests;
+			sourceTree = "<group>";
+		};
+		21722AB5227DA18F00486C5D /* PersistenceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				21722AB6227DA2BF00486C5D /* DataSource.swift */,
+			);
+			path = PersistenceLayer;
 			sourceTree = "<group>";
 		};
 		21AD2F8C21A3ACDA0097DF08 /* NSManagedObject */ = {
@@ -278,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */,
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
 				21025E47221CDB7300FD9516 /* ExercisesViewModel.swift in Sources */,
 				2166686A21681A4100AC6318 /* WorkoutJournal.xcdatamodeld in Sources */,

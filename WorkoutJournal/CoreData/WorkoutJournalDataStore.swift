@@ -11,25 +11,35 @@ import CoreData
 
 class WorkoutJournalDataStore {
     
-    
-    
-    //create NSPersistentContainer which will read & write data from 'disk'
-    let persistentContainer: NSPersistentContainer = {
-        //instantiate persistent container using name of Core Data data model
+    let context: NSManagedObjectContext = {
         let container = NSPersistentContainer(name: "WorkoutJournal")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 print("Error setting up Core Data: \(error)")
             }
         }
-        return container
+        return container.viewContext
     }()
+    
+//    //create NSPersistentContainer which will read & write data from 'disk'
+//    let persistentContainer: NSPersistentContainer = {
+//        //instantiate persistent container using name of Core Data data model
+//        let container = NSPersistentContainer(name: "WorkoutJournal")
+//        container.loadPersistentStores { (description, error) in
+//            if let error = error {
+//                print("Error setting up Core Data: \(error)")
+//            }
+//        }
+//        return container
+//    }()
+    
+
     
     //save the Core Data context
     func saveContext() {
-        if persistentContainer.viewContext.hasChanges {
+        if context.hasChanges {
             do {
-                try persistentContainer.viewContext.save()
+                try context.save()
                 print("ran saveContext method")
             } catch {
                 print("An error occurred while saving: \(error)")
@@ -42,7 +52,6 @@ class WorkoutJournalDataStore {
     //delete any object subclassed from NSManagedObject
     func delete(object: NSManagedObject) {
         
-        let context = persistentContainer.viewContext
         context.delete(object)
         saveContext()
     }

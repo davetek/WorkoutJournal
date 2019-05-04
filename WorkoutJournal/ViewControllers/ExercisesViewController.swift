@@ -91,6 +91,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         if appWasLaunchedBefore == false {
             addBasicExerciseTypesToCoreData()
         }
+                
+        //test of ability to get attribute information from a Core Data entity
+        print(Exercise.entity().attributesByName)
     }
     
     
