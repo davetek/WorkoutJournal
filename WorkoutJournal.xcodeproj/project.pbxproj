@@ -21,7 +21,10 @@
 		2166686F21681A4400AC6318 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2166686D21681A4400AC6318 /* LaunchScreen.storyboard */; };
 		2166688721681D5900AC6318 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688621681D5900AC6318 /* ExercisesViewController.swift */; };
 		2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */; };
-		21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722AB6227DA2BF00486C5D /* DataSource.swift */; };
+		21722AB9227E65D300486C5D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722AB8227E65D300486C5D /* Entity.swift */; };
+		21722ABB227E672100486C5D /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722ABA227E672100486C5D /* Query.swift */; };
+		21722ABD227E680300486C5D /* ReadableDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722ABC227E680300486C5D /* ReadableDataStore.swift */; };
+		21722ABF227E689500486C5D /* WritableDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722ABE227E689500486C5D /* WritableDataStore.swift */; };
 		21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */; };
 		21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */; };
 		21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */; };
@@ -56,7 +59,10 @@
 		2166687B21681A4400AC6318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2166688621681D5900AC6318 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewController.swift; sourceTree = "<group>"; };
-		21722AB6227DA2BF00486C5D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		21722AB8227E65D300486C5D /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		21722ABA227E672100486C5D /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		21722ABC227E680300486C5D /* ReadableDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableDataStore.swift; sourceTree = "<group>"; };
+		21722ABE227E689500486C5D /* WritableDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritableDataStore.swift; sourceTree = "<group>"; };
 		21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalDataStore.swift; sourceTree = "<group>"; };
 		21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
@@ -136,7 +142,10 @@
 		21722AB5227DA18F00486C5D /* PersistenceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				21722AB6227DA2BF00486C5D /* DataSource.swift */,
+				21722ABC227E680300486C5D /* ReadableDataStore.swift */,
+				21722ABE227E689500486C5D /* WritableDataStore.swift */,
+				21722ABA227E672100486C5D /* Query.swift */,
+				21722AB8227E65D300486C5D /* Entity.swift */,
 			);
 			path = PersistenceLayer;
 			sourceTree = "<group>";
@@ -289,7 +298,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */,
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
 				21025E47221CDB7300FD9516 /* ExercisesViewModel.swift in Sources */,
 				2166686A21681A4100AC6318 /* WorkoutJournal.xcdatamodeld in Sources */,
@@ -300,8 +308,12 @@
 				21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */,
 				21439C1D221B41E500BFE041 /* ExerciseDetailsViewModel.swift in Sources */,
 				215A4E8D22502705000C4EFC /* ExerciseType+CoreDataClass.swift in Sources */,
+				21722AB9227E65D300486C5D /* Entity.swift in Sources */,
+				21722ABB227E672100486C5D /* Query.swift in Sources */,
 				215A4E8F22502705000C4EFC /* Exercise+CoreDataProperties.swift in Sources */,
 				215A4E8E22502705000C4EFC /* ExerciseType+CoreDataProperties.swift in Sources */,
+				21722ABF227E689500486C5D /* WritableDataStore.swift in Sources */,
+				21722ABD227E680300486C5D /* ReadableDataStore.swift in Sources */,
 				21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

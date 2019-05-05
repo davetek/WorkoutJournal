@@ -1,5 +1,5 @@
 //
-//  DataSource.swift
+//  Query.swift
 //  WorkoutJournal
 //
 //  Created by David Lawrence on 5/4/19.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-
-protocol DataSource {
-    //define methods that data source objects must have
+protocol Query {
+    //if using Core Data, this corresponds to NSFetchRequest
 }
