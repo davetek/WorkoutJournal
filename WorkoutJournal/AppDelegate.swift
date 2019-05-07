@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         exercisesViewModel.workoutJournalDataStore = workoutJournalDataStore
         
         //get reference to the exercises view controller
-        let exercisesViewController = window!.rootViewController?.children[0] as! ExercisesViewController
+        let exercisesViewController = window!.rootViewController?.children[0].children[0] as! ExercisesViewController
         
         //inject exercises view model into exercises view controller
         exercisesViewController.exercisesViewModel = exercisesViewModel
