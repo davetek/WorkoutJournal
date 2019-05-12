@@ -30,7 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let exercisesViewController = window!.rootViewController?.children[0].children[0] as! ExercisesViewController
         
         //inject exercises view model into exercises view controller
-        exercisesViewController.exercisesViewModel = exercisesViewModel
+        exercisesViewController.viewModel = exercisesViewModel
+        
+        //get reference to root UITabBarController
+        let rootTabBarController = window!.rootViewController as! RootTabBarController
+        
+        //inject data model into the root UITabBarController
+        rootTabBarController.workoutJournalDataStore = workoutJournalDataStore
 
         return true
     }

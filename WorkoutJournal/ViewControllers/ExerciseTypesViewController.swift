@@ -8,15 +8,26 @@
 
 import UIKit
 
-class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+    
+    let data = ["type1", "type2", "type3", "type4"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseTypeCell", for: indexPath)
+        
+        let exerciseTypeName = data[indexPath.row]
+        
+        cell.textLabel?.text = exerciseTypeName
+        
+        return cell
     }
+    
+    
+
     
     
 

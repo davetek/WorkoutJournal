@@ -12,7 +12,7 @@
         <!--Exercises-->
         <scene sceneID="D2p-zn-MBh">
             <objects>
-                <viewController id="Mws-Hw-49u" customClass="ExercisesViewController" customModule="WorkoutJournal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExercisesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mws-Hw-49u" customClass="ExercisesViewController" customModule="WorkoutJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mdf-OG-GEa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
