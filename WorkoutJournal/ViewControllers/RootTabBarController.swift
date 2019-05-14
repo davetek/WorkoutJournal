@@ -23,6 +23,8 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
     }
     
+    //do something when a tab is selected. The 'viewController' parameter will be a
+    // UINavigationController, with the target view controller in its children array
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         let selectedViewController = viewController
