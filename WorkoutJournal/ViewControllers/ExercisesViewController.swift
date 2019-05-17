@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 import SafariServices
 
-class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DataDependencyInjection {
+   
     
     //view model
     var viewModel: ExercisesViewModel!
@@ -19,6 +20,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func addButton(_ sender: Any) {
     }
+    
+    func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore) {
+        viewModel = ExercisesViewModel(dataStore: dataStore)
+    }
+    
     
     @IBAction func toggleEditingMode(_ sender: UIBarButtonItem) {
         //if in editing mode
@@ -84,7 +90,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
-        viewModel.fetchExercisesFromCoreData()
+        viewModel.fetchExercises()
         viewModel.fetchExerciseTypesFromCoreData()
         
         let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()

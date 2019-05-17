@@ -33,6 +33,31 @@ class WorkoutJournalDataStore {
 //        return container
 //    }()
     
+    //define a generic fetch function that will take any NSManagedObject type
+    func fetchRecordsFrom<T: NSManagedObject>(ofType _: T.Type) -> [T] {
+        
+        //Set up a request for all NSManagedObject objects
+        let request: NSFetchRequest = T.self.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        
+        //create a sort descriptor to sort ascending alphabetically
+        let sort = NSSortDescriptor(key: "name",
+                                    ascending: true,
+                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        
+        //assign the new sort descriptor to the request
+        request.sortDescriptors = [sort]
+        
+        //fetch records from Core Data & assign to variable if successful
+        do {
+            let result = try context.fetch(request)
+            return result as! [T]
+            
+        } catch {
+            print("fetch from Core Data failed")
+            return []
+        }
+    }
 
     
     //save the Core Data context

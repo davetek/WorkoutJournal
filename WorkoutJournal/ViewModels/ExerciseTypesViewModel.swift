@@ -10,12 +10,16 @@ import CoreData
 
 class ExerciseTypesViewModel {
     
-    // Core Data data store will be injected into the variable from the app delegate
-    // through the ExercisesViewController
-    var workoutJournalDataStore: WorkoutJournalDataStore!
+    // Core Data data store will be injected into the variable from the tab bar controller
+    // through the ExerciseTypesViewController
+    var dataStore: WorkoutJournalDataStore!
     
     init(dataStore: WorkoutJournalDataStore) {
-        self.workoutJournalDataStore = dataStore
+        self.dataStore = dataStore
     }
+    
+
+    
+    
     
 }

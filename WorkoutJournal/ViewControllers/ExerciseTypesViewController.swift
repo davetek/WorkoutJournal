@@ -8,9 +8,17 @@
 
 import UIKit
 
-class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataDependencyInjection  {
+    
+    
     
     let data = ["type1", "type2", "type3", "type4"]
+    
+    var viewModel: ExerciseTypesViewModel?
+    
+    func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore) {
+        viewModel = ExerciseTypesViewModel(dataStore: dataStore)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

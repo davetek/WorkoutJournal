@@ -25,31 +25,12 @@ class ExercisesViewModel {
     //  to contain ExerciseType objects fetched from Core Data data store
     var exerciseTypesInDataStore: [ExerciseType] = []
     
-    //define a generic fetch function that will take any NSMAnagedObject type
-    func fetchRecordsFrom<T: NSManagedObject>(dataObject: T) -> [T] {
-        let context = workoutJournalDataStore.context
-        
-        //Set up a request for all NSManagedObject objects
-        let request: NSFetchRequest = T.fetchRequest()
-        request.returnsObjectsAsFaults = false
-        
-        //create a sort descriptor to sort ascending alphabetically
-        let sort = NSSortDescriptor(key: "name",
-                                    ascending: true,
-                                    selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
-        
-        //assign the new sort descriptor to the request
-        request.sortDescriptors = [sort]
-        
-        //fetch records from Core Data & assign to variable if successful
-        do {
-            let result = try context.fetch(request)
-            return result as! [T]
-            
-        } catch {
-            print("fetch from Core Data failed")
-            return []
-        }
+    init(dataStore: WorkoutJournalDataStore) {
+        self.workoutJournalDataStore = dataStore
+    }
+    
+    func fetchExercises() {
+        exercisesInDataStore = workoutJournalDataStore.fetchRecordsFrom(ofType: Exercise.self)
     }
     
     //get exercise records from Core Data data store
