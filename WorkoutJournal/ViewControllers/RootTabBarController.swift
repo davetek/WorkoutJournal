@@ -21,6 +21,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         print("tab bar controller created")
         
+        
         let childViewControllers: [UIViewController] = self.children
         //check if item [0] in array is a UINavigationController
         //if it is, get the root view controller of item [0]

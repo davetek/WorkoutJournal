@@ -17,7 +17,6 @@ class ExerciseDetailsViewController: UIViewController {
     @IBOutlet var typeField: UITextField!
     @IBOutlet var urlField: UITextField!
     
-    
     @IBOutlet var saveButton: UIBarButtonItem!
     
     

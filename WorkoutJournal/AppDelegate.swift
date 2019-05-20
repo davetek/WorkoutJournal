@@ -20,18 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //create an instance of the data store that uses Core Data
         let workoutJournalDataStore = WorkoutJournalDataStore()
         
-        //create an instance of the exercises view model
-        //let exercisesViewModel = ExercisesViewModel()
-        
-        //inject core data data store into exercises view model
-        //exercisesViewModel.workoutJournalDataStore = workoutJournalDataStore
-        
-        //get reference to the exercises view controller
-        //let exercisesViewController = window!.rootViewController?.children[0].children[0] as! ExercisesViewController
-        
-        //inject exercises view model into exercises view controller
-        //exercisesViewController.viewModel = exercisesViewModel
-        
         //get reference to root UITabBarController
         let rootTabBarController = window!.rootViewController as! RootTabBarController
         

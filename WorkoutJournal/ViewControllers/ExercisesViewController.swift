@@ -71,17 +71,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         let safariViewController = SFSafariViewController(url: url, configuration: config)
         present(safariViewController, animated: true)
     }
-    
-    
-    //pre-populate Core Data with exercise types
-    func addBasicExerciseTypesToCoreData() {
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Aerobic")
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Calisthenics")
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Core")
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Stretching")
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Weight Training")
-        viewModel.addExerciseTypeToCoreData(exerciseTypeName: "Yoga")
-    }
 
     
     override func viewDidLoad() {
@@ -91,15 +80,14 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.rowHeight = 60
         viewModel.fetchExercises()
-        viewModel.fetchExerciseTypesFromCoreData()
         
         let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()
         if appWasLaunchedBefore == false {
-            addBasicExerciseTypesToCoreData()
+            viewModel.workoutJournalDataStore.addBasicExerciseTypesToCoreData()
         }
+        
+        viewModel.exerciseTypesInDataStore = viewModel.workoutJournalDataStore.fetchRecordsFrom(ofType: ExerciseType.self)
                 
-        //test of ability to get attribute information from a Core Data entity
-        print(Exercise.entity().attributesByName)
     }
     
     
@@ -186,7 +174,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             //delete the associated record from Core Data
             viewModel.delete(dataObject: exerciseSelected)
             
-            viewModel.fetchExercisesFromCoreData()
+            viewModel.fetchExercises()
             tableView.reloadData()
         }
         
@@ -196,7 +184,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func unwindWithChangesToExercisesViewController(_ sender: UIStoryboardSegue) {
         //exercise was added; reload tableview
-        viewModel.fetchExercisesFromCoreData()
+        viewModel.fetchExercises()
         tableView.reloadData()
     }
     

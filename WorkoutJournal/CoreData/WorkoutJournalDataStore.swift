@@ -21,17 +21,6 @@ class WorkoutJournalDataStore {
         return container.viewContext
     }()
     
-//    //create NSPersistentContainer which will read & write data from 'disk'
-//    let persistentContainer: NSPersistentContainer = {
-//        //instantiate persistent container using name of Core Data data model
-//        let container = NSPersistentContainer(name: "WorkoutJournal")
-//        container.loadPersistentStores { (description, error) in
-//            if let error = error {
-//                print("Error setting up Core Data: \(error)")
-//            }
-//        }
-//        return container
-//    }()
     
     //define a generic fetch function that will take any NSManagedObject type
     func fetchRecordsFrom<T: NSManagedObject>(ofType _: T.Type) -> [T] {
@@ -58,6 +47,18 @@ class WorkoutJournalDataStore {
             return []
         }
     }
+    
+    func addExerciseTypeToCoreData(exerciseTypeName: String?) {
+        
+        // add a record to Core Data data store
+        let entity = NSEntityDescription.entity(forEntityName: "ExerciseType", in: context)
+        let newExerciseType = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newExerciseType.setValue(exerciseTypeName, forKey: "name")
+        
+        // save the data to Core Data
+        saveContext()
+    }
 
     
     //save the Core Data context
@@ -79,6 +80,18 @@ class WorkoutJournalDataStore {
         
         context.delete(object)
         saveContext()
+    }
+    
+    
+    
+    //pre-populate Core Data with exercise types
+    func addBasicExerciseTypesToCoreData() {
+        addExerciseTypeToCoreData(exerciseTypeName: "Aerobic")
+        addExerciseTypeToCoreData(exerciseTypeName: "Calisthenics")
+        addExerciseTypeToCoreData(exerciseTypeName: "Core")
+        addExerciseTypeToCoreData(exerciseTypeName: "Stretching")
+        addExerciseTypeToCoreData(exerciseTypeName: "Weight Training")
+        addExerciseTypeToCoreData(exerciseTypeName: "Yoga")
     }
     
 }

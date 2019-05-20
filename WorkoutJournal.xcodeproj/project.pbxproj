@@ -28,6 +28,8 @@
 		21B1F88C2281175200286E83 /* ExerciseTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1F88B2281175200286E83 /* ExerciseTypesViewController.swift */; };
 		21B1F88E2287A2DB00286E83 /* ExerciseTypesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */; };
 		21B1F8902287AE2A00286E83 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1F88F2287AE2A00286E83 /* RootTabBarController.swift */; };
+		21BC4DB3228F7C0A0065E357 /* ExerciseTypeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BC4DB2228F7C0A0065E357 /* ExerciseTypeDetailsViewController.swift */; };
+		21BC4DB52290AAC70065E357 /* ExerciseTypeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BC4DB42290AAC60065E357 /* ExerciseTypeDetailsViewModel.swift */; };
 		21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		21B1F88B2281175200286E83 /* ExerciseTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypesViewController.swift; sourceTree = "<group>"; };
 		21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypesViewModel.swift; sourceTree = "<group>"; };
 		21B1F88F2287AE2A00286E83 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		21BC4DB2228F7C0A0065E357 /* ExerciseTypeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypeDetailsViewController.swift; sourceTree = "<group>"; };
+		21BC4DB42290AAC60065E357 /* ExerciseTypeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypeDetailsViewModel.swift; sourceTree = "<group>"; };
 		21D4FC58223D2F77000C5A56 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,9 +95,10 @@
 		21439C1B221B418700BFE041 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */,
-				21439C1C221B41E500BFE041 /* ExerciseDetailsViewModel.swift */,
 				21025E46221CDB7300FD9516 /* ExercisesViewModel.swift */,
+				21439C1C221B41E500BFE041 /* ExerciseDetailsViewModel.swift */,
+				21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */,
+				21BC4DB42290AAC60065E357 /* ExerciseTypeDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,9 +171,10 @@
 			isa = PBXGroup;
 			children = (
 				21B1F88F2287AE2A00286E83 /* RootTabBarController.swift */,
-				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				2166688621681D5900AC6318 /* ExercisesViewController.swift */,
+				2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */,
 				21B1F88B2281175200286E83 /* ExerciseTypesViewController.swift */,
+				21BC4DB2228F7C0A0065E357 /* ExerciseTypeDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B1F88E2287A2DB00286E83 /* ExerciseTypesViewModel.swift in Sources */,
+				21BC4DB52290AAC70065E357 /* ExerciseTypeDetailsViewModel.swift in Sources */,
 				21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */,
 				213660B3228C1D03004E6BAE /* DataDependencyInjection.swift in Sources */,
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
@@ -312,6 +319,7 @@
 				21263E192185FD5F0018E604 /* Constants.swift in Sources */,
 				21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */,
 				2166688721681D5900AC6318 /* ExercisesViewController.swift in Sources */,
+				21BC4DB3228F7C0A0065E357 /* ExerciseTypeDetailsViewController.swift in Sources */,
 				21B1F88C2281175200286E83 /* ExerciseTypesViewController.swift in Sources */,
 				21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */,
 				21439C1D221B41E500BFE041 /* ExerciseDetailsViewModel.swift in Sources */,
