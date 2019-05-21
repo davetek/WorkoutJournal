@@ -47,7 +47,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             //enter editing mode
             self.tableView.isEditing = true
         }
-        
     }
     
     func wasAppAlreadyLaunchedOnce() -> Bool {

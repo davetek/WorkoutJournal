@@ -32,6 +32,18 @@ class ExerciseTypesViewModel {
         exerciseTypesInDataStore = workoutJournalDataStore.fetchRecordsFrom(ofType: ExerciseType.self)
     }
     
+    
+    func delete(dataObject: NSManagedObject) {
+        
+        let context = workoutJournalDataStore.context
+        context.delete(dataObject)
+        do {
+            try context.save()
+        } catch _ {
+            print("Core Data failed to delete the data object")
+        }
+    }
+    
 
     
     

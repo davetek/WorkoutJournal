@@ -310,7 +310,7 @@
                     <navigationItem key="navigationItem" title="Exercise Types" id="qkB-ak-qMA">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="TjQ-Fs-RB6">
                             <connections>
-                                <segue destination="pC8-ix-5Id" kind="presentation" identifier="showExerciseTypeDetails" id="muJ-Mt-vWY"/>
+                                <action selector="toggleEditingMode:" destination="i2k-V0-JVF" id="IGG-Cc-KYl"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mFL-dd-7cq">
@@ -396,12 +396,12 @@
                     <navigationItem key="navigationItem" title="Exercise Type Details" id="bh9-kz-RE2">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YgX-rf-dAj">
                             <connections>
-                                <segue destination="dOE-eY-Vjk" kind="unwind" identifier="unwindToExercisesViewController" animates="NO" unwindAction="unwindToExercisesViewController:" id="zFr-lP-C01"/>
+                                <segue destination="dOE-eY-Vjk" kind="unwind" identifier="unwindToExercisesViewController" animates="NO" unwindAction="unwindToExerciseTypesViewController:" id="zFr-lP-C01"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="Vhs-cc-SlZ">
                             <connections>
-                                <segue destination="dOE-eY-Vjk" kind="unwind" identifier="unwindWithChangesToExercisesViewController" unwindAction="unwindWithChangesToExercisesViewController:" id="xCY-f3-Gga"/>
+                                <segue destination="dOE-eY-Vjk" kind="unwind" identifier="unwindWithChangesToExercisesViewController" unwindAction="unwindWithChangesToExercisesTypesViewController:" id="xCY-f3-Gga"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -435,7 +435,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U99-8f-RIl"/>
         <segue reference="bUO-uQ-ei3"/>
     </inferredMetricsTieBreakers>
 </document>

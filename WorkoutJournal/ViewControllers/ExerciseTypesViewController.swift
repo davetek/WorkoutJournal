@@ -20,12 +20,34 @@ class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore) {
         viewModel = ExerciseTypesViewModel(dataStore: dataStore)
-        
+    }
+    
+    
+    @IBAction func toggleEditingMode(_ sender: UIBarButtonItem) {
+        //if in editing mode
+        if self.tableView.isEditing {
+            
+            //change the button title
+            if sender.title != nil {
+                sender.title = "Edit"
+            }
+            
+            //turn off editing mode
+            self.tableView.isEditing = false
+            
+        } else {
+            //change the button title
+            if sender.title != nil {
+                sender.title = "Done"
+            }
+            
+            //enter editing mode
+            self.tableView.isEditing = true
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.exerciseTypesInDataStore.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,9 +90,32 @@ class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITabl
             preconditionFailure("segue identifier not found")
         }
     }
+    
+    //method called when a change is made to the table in edit mode
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //if table view is asking to commit a delete command
+        if editingStyle == .delete {
+            
+            let exerciseTypeSelected: ExerciseType = viewModel.exerciseTypesInDataStore[indexPath.row]
+            
+            //delete the associated record from Core Data
+            viewModel.delete(dataObject: exerciseTypeSelected)
+            
+            viewModel.fetchExerciseTypes()
+            tableView.reloadData()
+        }
+        
+    }
 
     
+    @IBAction func unwindToExerciseTypesViewController(_ sender: UIStoryboardSegue) {}
     
+    @IBAction func unwindWithChangesToExercisesTypesViewController(_ sender: UIStoryboardSegue) {
+        //exercise was added; reload tableview
+        viewModel.fetchExerciseTypes()
+        tableView.reloadData()
+    }
 
     
     
