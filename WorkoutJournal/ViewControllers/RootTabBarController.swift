@@ -33,17 +33,20 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     
-    
-    
-    //do something when a tab is selected. The 'viewController' parameter will be a
+    //Instantiate the appropriate view model with the data store. The 'viewController' parameter will be a
     // UINavigationController, with the target view controller in its children array
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
-        if viewController is UINavigationController {
-            let targetViewController = viewController.children[0] as? DataDependencyInjection
-            targetViewController?.instantiateViewModelWithDataStore(workoutJournalDataStore)
+        //check if the selected view controller is the initial view controller for the tab bar; if not,
+        //instantiate the view model
+        if viewController === self.children[0] {
+            print("selected vc is root vc of tab bar")
+        } else {
+            if viewController is UINavigationController {
+                let targetViewController = viewController.children[0] as? DataDependencyInjection
+                targetViewController?.instantiateViewModelWithDataStore(workoutJournalDataStore)
+            }
         }
-        
     }
     
 

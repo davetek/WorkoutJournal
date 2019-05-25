@@ -91,7 +91,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return dataStore.exercises.count
         return viewModel.exercisesInDataStore.count

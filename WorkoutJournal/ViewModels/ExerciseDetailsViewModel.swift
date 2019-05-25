@@ -29,9 +29,6 @@ class ExerciseDetailsViewModel {
     var specifiedExerciseType: ExerciseType?
     
     
-    //set from view controller when user selects type in type picker
-    var selectedExerciseType: ExerciseType?
-    
     //class initializer
     init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?, exerciseSelected: Exercise?) {
         self.exercisesInDataStore = exercises
