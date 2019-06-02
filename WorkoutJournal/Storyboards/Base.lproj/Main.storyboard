@@ -287,6 +287,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pC8-ix-5Id" kind="presentation" identifier="showExerciseTypeDetails" id="0aS-la-olA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -435,6 +438,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bUO-uQ-ei3"/>
+        <segue reference="0aS-la-olA"/>
+        <segue reference="bA9-73-SP0"/>
     </inferredMetricsTieBreakers>
 </document>
