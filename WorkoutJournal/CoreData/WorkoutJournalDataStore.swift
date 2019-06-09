@@ -48,6 +48,40 @@ class WorkoutJournalDataStore {
         }
     }
     
+//    as with the generic method that I created previously for fetch, the add method would take
+//    the NSManagedObject class name as a parameter. It would also take a dictionary
+//    of key-value pairs as the second parameter. These would represent the attributes for the NSManagedObject.
+
+    #warning("withFields param value is dictionary with string keys, but values could be any type")
+    #warning("dictionary passed in is arbitrary; it should be type-checked to only have the fields and value types for the given type")
+    #warning("save context may fail; should return result of error or success")
+    func addRecord<T: NSManagedObject>(ofType _: T.Type, withFields attributes: [String: String]) {
+        
+        //get the entity name from the fully qualified name which is in the format "Module.EntityName"
+        let fullyQualifiedEntityName = String(reflecting: T.self)
+        let entityName = getSliceOf(string: fullyQualifiedEntityName, afterSubstring: ".")
+        
+        //make a new NSManagedObject
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+        let newObject = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //for each item in the attributes dictionary passed in the request, set an attribute
+        // on the NSManagedObject
+        for (attributeKey, attributeValue) in attributes {
+            newObject.setValue(attributeValue, forKey: attributeKey)
+        }
+        
+        //save the data to Core Data
+        saveContext()
+    }
+    
+    func getSliceOf(string: String, afterSubstring: Character) -> String {
+        let indexAtEndOfSubstring = string.index(after: string.firstIndex(of: afterSubstring)!)
+        let stringSlice = string[indexAtEndOfSubstring...]
+        return String(stringSlice)
+    }
+    
+    
     func addExerciseTypeToCoreData(exerciseTypeName: String?) {
         
         // add a record to Core Data data store
