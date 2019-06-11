@@ -55,15 +55,26 @@ class WorkoutJournalDataStore {
     #warning("withFields param value is dictionary with string keys, but values could be any type")
     #warning("dictionary passed in is arbitrary; it should be type-checked to only have the fields and value types for the given type")
     #warning("save context may fail; should return result of error or success")
-    func addRecord<T: NSManagedObject>(ofType _: T.Type, withFields attributes: [String: String]) {
+    func addRecord<T: NSManagedObject>(ofType _: T.Type, withFields attributes: [String: Any]) {
         
         //get the entity name from the fully qualified name which is in the format "Module.EntityName"
         let fullyQualifiedEntityName = String(reflecting: T.self)
         let entityName = getSliceOf(string: fullyQualifiedEntityName, afterSubstring: ".")
         
         //make a new NSManagedObject
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
-        let newObject = NSManagedObject(entity: entity!, insertInto: context)
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
+            fatalError("could not create data entity")
+        }
+        let newObject = NSManagedObject(entity: entity, insertInto: context)
+        
+        let entityAttributes = entity.attributesByName
+
+        for (attributeName, attributeDescription) in entityAttributes {
+            
+            print("attribute name: \(attributeName)")
+            print("attribute type: \(String(describing: attributeDescription.attributeValueClassName))")
+            print("attribute is optional: \(attributeDescription.isOptional)")
+        }
         
         //for each item in the attributes dictionary passed in the request, set an attribute
         // on the NSManagedObject

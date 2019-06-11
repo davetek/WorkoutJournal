@@ -70,7 +70,6 @@ class ExerciseTypeDetailsViewModel {
         } else {
             print("no exercise type was provided")
         }
-        
     }
     
     

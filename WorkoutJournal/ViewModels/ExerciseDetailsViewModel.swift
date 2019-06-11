@@ -120,6 +120,18 @@ class ExerciseDetailsViewModel {
 
 
 
+    func addExerciseWith(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
+        guard let name = exerciseName else {
+            fatalError("exercise name was not provided")
+        }
+        
+        guard let type = exerciseType else {
+            fatalError("exercise type was not provided")
+        }
+        
+        workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name])
+    }
+    
     
     func addExerciseRecordToCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
         
