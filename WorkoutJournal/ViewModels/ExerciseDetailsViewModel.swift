@@ -121,6 +121,7 @@ class ExerciseDetailsViewModel {
 
 
     func addExerciseWith(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
+        
         guard let name = exerciseName else {
             fatalError("exercise name was not provided")
         }
@@ -129,7 +130,14 @@ class ExerciseDetailsViewModel {
             fatalError("exercise type was not provided")
         }
         
-        workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name])
+        if let url = exerciseUrl {
+            workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name,
+                                                                                  "exerciseTypes": type,
+                                                                                  "url": url])
+        } else {
+            workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name, "exerciseTypes": type])
+        }
+        
     }
     
     

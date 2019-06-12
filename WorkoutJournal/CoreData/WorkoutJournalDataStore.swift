@@ -72,8 +72,17 @@ class WorkoutJournalDataStore {
         for (attributeName, attributeDescription) in entityAttributes {
             
             print("attribute name: \(attributeName)")
-            print("attribute type: \(String(describing: attributeDescription.attributeValueClassName))")
+            //print("attribute type: \(String(describing: attributeDescription.attributeValueClassName))")
+            if let attributeType = attributeDescription.attributeValueClassName {
+                print("attribute type: \(attributeType)")
+            }
             print("attribute is optional: \(attributeDescription.isOptional)")
+        }
+        
+        let entityRelationships = entity.relationshipsByName
+        for (relationshipName, relationshipDescription) in entityRelationships {
+            print("relation name: \(relationshipName)")
+            print("relationship description: \(relationshipDescription)")
         }
         
         //for each item in the attributes dictionary passed in the request, set an attribute
