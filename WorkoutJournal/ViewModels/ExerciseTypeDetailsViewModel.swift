@@ -66,7 +66,7 @@ class ExerciseTypeDetailsViewModel {
     
     func addExerciseType(withName name: String?) {
         if let typeName = name {
-            workoutJournalDataStore.addRecord(ofType: ExerciseType.self, withFields: ["name": typeName])
+            workoutJournalDataStore.addRecord(ofType: ExerciseType.self, withAttributes: ["name": typeName])
         } else {
             print("no exercise type was provided")
         }

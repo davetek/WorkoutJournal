@@ -131,11 +131,11 @@ class ExerciseDetailsViewModel {
         }
         
         if let url = exerciseUrl {
-            workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name,
+            workoutJournalDataStore.addRecord(ofType: Exercise.self, withAttributes: ["name": name,
                                                                                   "exerciseTypes": type,
                                                                                   "url": url])
         } else {
-            workoutJournalDataStore.addRecord(ofType: Exercise.self, withFields: ["name": name, "exerciseTypes": type])
+            workoutJournalDataStore.addRecord(ofType: Exercise.self, withAttributes: ["name": name, "exerciseTypes": type])
         }
         
     }
