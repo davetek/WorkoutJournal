@@ -32,24 +32,5 @@ class ExerciseTypesViewModel {
         exerciseTypesInDataStore = workoutJournalDataStore.fetchRecordsFrom(ofType: ExerciseType.self)
     }
     
-    
-    func delete(dataObject: NSManagedObject) {
         
-        let context = workoutJournalDataStore.context
-        context.delete(dataObject)
-        do {
-            try context.save()
-        } catch let error {
-            if error._code == 1600 {
-                print("Cannot delete type - it is being used by an exercise!")
-                
-                //Removes everything from the undo stack, discards all insertions and deletions,
-                //and restores updated objects to their last committed values.
-                context.rollback()
-            } else {
-                print("Error when attempting to delete record: \(error)")
-            }
-        }
-    }
-    
 }

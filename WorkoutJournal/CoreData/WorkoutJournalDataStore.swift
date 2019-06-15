@@ -48,10 +48,8 @@ class WorkoutJournalDataStore {
         }
     }
     
-//    as with the generic method that I created previously for fetch, the add method would take
-//    the NSManagedObject class name as a parameter. It would also take a dictionary
-//    of key-value pairs as the second parameter. These would represent the attributes for the NSManagedObject.
-
+//    define a generic add method that takes a Core Data entity name and a dictionary
+//    of key-value pairs, representing attributes and relationships, as parameters.
     #warning("dictionary passed in is arbitrary; it should be validated against the attributes & relationships of the given type")
     #warning("save context may fail; should return result of error or success")
     func addRecord<T: NSManagedObject>(ofType _: T.Type, withAttributes attributes: [String: Any]) {
@@ -64,9 +62,11 @@ class WorkoutJournalDataStore {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
             fatalError("could not create data entity")
         }
-        let newObject = NSManagedObject(entity: entity, insertInto: context)
-        
         let entityAttributes = entity.attributesByName
+        let entityRelationships = entity.relationshipsByName
+
+        let newObject = NSManagedObject(entity: entity, insertInto: context)
+
 
         for (attributeName, attributeDescription) in entityAttributes {
             print("attribute name: \(attributeName)")
@@ -78,7 +78,6 @@ class WorkoutJournalDataStore {
         }
         print("")
         
-        let entityRelationships = entity.relationshipsByName
         for (relationshipName, relationshipDescription) in entityRelationships {
             print("relation name: \(relationshipName)")
             print("relationship is optional: \(relationshipDescription.isOptional)")
@@ -90,8 +89,6 @@ class WorkoutJournalDataStore {
                 }
             }
             print("")
-
-
         }
         
         //for each item in the attributes dictionary passed in the request, set an attribute
@@ -111,16 +108,22 @@ class WorkoutJournalDataStore {
     }
     
     
-    func addExerciseTypeToCoreData(exerciseTypeName: String?) {
+    func delete(dataObject: NSManagedObject) {
         
-        // add a record to Core Data data store
-        let entity = NSEntityDescription.entity(forEntityName: "ExerciseType", in: context)
-        let newExerciseType = NSManagedObject(entity: entity!, insertInto: context)
-        
-        newExerciseType.setValue(exerciseTypeName, forKey: "name")
-        
-        // save the data to Core Data
-        saveContext()
+        context.delete(dataObject)
+        do {
+            try context.save()
+        } catch let error {
+            if error._code == 1600 {
+                print("Cannot delete type - it is being used by an exercise!")
+                
+                //Removes everything from the undo stack, discards all insertions and deletions,
+                //and restores updated objects to their last committed values.
+                context.rollback()
+            } else {
+                print("Error when attempting to delete record: \(error)")
+            }
+        }
     }
 
     
@@ -138,23 +141,18 @@ class WorkoutJournalDataStore {
     
 
 
-    //delete any object subclassed from NSManagedObject
-    func delete(object: NSManagedObject) {
-        
-        context.delete(object)
-        saveContext()
-    }
+
     
     
     
     //pre-populate Core Data with exercise types
     func addBasicExerciseTypesToCoreData() {
-        addExerciseTypeToCoreData(exerciseTypeName: "Aerobic")
-        addExerciseTypeToCoreData(exerciseTypeName: "Calisthenics")
-        addExerciseTypeToCoreData(exerciseTypeName: "Core")
-        addExerciseTypeToCoreData(exerciseTypeName: "Stretching")
-        addExerciseTypeToCoreData(exerciseTypeName: "Weight Training")
-        addExerciseTypeToCoreData(exerciseTypeName: "Yoga")
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Aerobic"])
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Calisthenics"])
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Core"])
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Stretching"])
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Weight Training"])
+        addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Yoga"])
     }
     
 }

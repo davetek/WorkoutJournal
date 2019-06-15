@@ -72,20 +72,7 @@ class ExerciseTypeDetailsViewModel {
         }
     }
     
-    
-    func addExerciseTypeToCoreData(exerciseTypeName: String?) {
         
-        // add a record to Core Data data store
-        let context = workoutJournalDataStore.context
-        let entity = NSEntityDescription.entity(forEntityName: "ExerciseType", in: context)
-        let newExerciseType = NSManagedObject(entity: entity!, insertInto: context)
-        
-        newExerciseType.setValue(exerciseTypeName, forKey: "name")
-        
-        // save the data to Core Data
-        workoutJournalDataStore.saveContext()
-    }
-    
     func editRecordInCoreData(exerciseTypeName: String?) {
         
         guard let exerciseType = exerciseTypeBeingEdited else {
@@ -98,16 +85,5 @@ class ExerciseTypeDetailsViewModel {
         workoutJournalDataStore.saveContext()
     }
     
-    
-    func delete(dataObject: NSManagedObject) {
-        
-        let context = workoutJournalDataStore.context
-        context.delete(dataObject)
-        do {
-            try context.save()
-        } catch _ {
-            print("Core Data failed to delete the data object")
-        }
-    }
 
 }

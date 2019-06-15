@@ -100,7 +100,7 @@ class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITabl
             let exerciseTypeSelected: ExerciseType = viewModel.exerciseTypesInDataStore[indexPath.row]
             
             //delete the associated record from Core Data
-            viewModel.delete(dataObject: exerciseTypeSelected)
+            viewModel.workoutJournalDataStore.delete(dataObject: exerciseTypeSelected)
             
             viewModel.fetchExerciseTypes()
             tableView.reloadData()
