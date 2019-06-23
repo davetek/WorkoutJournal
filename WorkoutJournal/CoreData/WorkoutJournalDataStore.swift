@@ -48,6 +48,29 @@ class WorkoutJournalDataStore {
         }
     }
     
+    //Liam: from POV of function
+    //solution could be to call this function 
+    
+    func update<T: NSManagedObject, U>(object: inout T, withFields fields: [WritableKeyPath<T, U>: U]) {
+        
+        for (fieldKey, fieldValue) in fields {
+            object[keyPath: fieldKey] = fieldValue
+        }
+    }
+    
+    func updateForAnyPropertyTypes<T: NSManagedObject>(object: T, withFields fields: [String: Any]) {
+        
+        //for each item in the attributes dictionary passed in the request, set an attribute
+        // on the NSManagedObject
+        for (fieldKey, fieldValue) in fields {
+            object.setValue(fieldValue, forKey: fieldKey)
+            
+        }
+        
+        // save the data to Core Data
+        saveContext()
+    }
+    
 //    define a generic add method that takes a Core Data entity name and a dictionary
 //    of key-value pairs, representing attributes and relationships, as parameters.
     #warning("dictionary passed in is arbitrary; it should be validated against the attributes & relationships of the given type")
@@ -106,6 +129,8 @@ class WorkoutJournalDataStore {
         let stringSlice = string[indexAtEndOfSubstring...]
         return String(stringSlice)
     }
+    
+
     
     
     func delete(dataObject: NSManagedObject) {

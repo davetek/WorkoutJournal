@@ -72,17 +72,8 @@ class ExerciseTypeDetailsViewModel {
         }
     }
     
-        
-    func editRecordInCoreData(exerciseTypeName: String?) {
-        
-        guard let exerciseType = exerciseTypeBeingEdited else {
-            preconditionFailure("could not access exercise type in Core Data")
-        }
-        
-        exerciseType.setValue(exerciseTypeName, forKey: "name")
-        
-        // save the data to Core Data
-        workoutJournalDataStore.saveContext()
+    func updateExerciseType(_ exerciseType: ExerciseType, withFields fields: [String: Any]) {
+        workoutJournalDataStore.updateForAnyPropertyTypes(object: exerciseType, withFields: fields)
     }
     
 

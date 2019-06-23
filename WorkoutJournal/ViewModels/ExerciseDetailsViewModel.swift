@@ -137,24 +137,61 @@ class ExerciseDetailsViewModel {
         } else {
             workoutJournalDataStore.addRecord(ofType: Exercise.self, withAttributes: ["name": name, "exerciseTypes": type])
         }
-        
     }
     
     
-    func editRecordInCoreData(exerciseName: String?, exerciseType: ExerciseType?, exerciseUrl: String?) {
+    func updateExercise(_ exercise: inout Exercise, exerciseName: String?, exerciseType: ExerciseType?, exerciseURL: String?) {
         
-        guard let exercise = exerciseBeingEdited else {
-            preconditionFailure("could not access exercise in Core Data")
+        var fieldsToUpdate = [WritableKeyPath<Exercise, String?>: String?]()
+        
+        if let name = exerciseName {
+            fieldsToUpdate[\Exercise.name] = name
         }
         
-        exercise.setValue(exerciseName, forKey: "name")
-        exercise.setValue(exerciseType, forKey: "exerciseTypes")
-        exercise.setValue(exerciseUrl, forKey: "url")
+//        if let type: ExerciseType = exerciseType {
+//            fieldsToUpdate["exerciseTypes"] = type
+//        }
         
-        // save the data to Core Data
-        workoutJournalDataStore.saveContext()
+        if let url = exerciseURL {
+            fieldsToUpdate[\Exercise.url] = url
+        }
+        
+        guard fieldsToUpdate.count > 0 else {
+            fatalError("no fields were provided to update")
+        }
+        
+        workoutJournalDataStore.update(object: &exercise, withFields: fieldsToUpdate)
         
     }
+    
+    
+    func updateExerciseWithAnyPropertyTypes(_ exercise: Exercise, exerciseName: String?, exerciseType: ExerciseType?, exerciseURL: String?) {
+        
+        var fieldsToUpdate = [String: Any]()
+        
+        if let name = exerciseName {
+            fieldsToUpdate["name"] = name
+        }
+        
+        if let type: ExerciseType = exerciseType {
+            fieldsToUpdate["exerciseTypes"] = type
+        }
+        
+        if let url = exerciseURL {
+            fieldsToUpdate["url"] = url
+        }
+        
+        guard fieldsToUpdate.count > 0 else {
+            fatalError("no fields were provided to update")
+        }
+        
+        workoutJournalDataStore.updateForAnyPropertyTypes(object: exercise, withFields: fieldsToUpdate)
+        
+    }
+    
+    
+    
+    
     
 }
 
