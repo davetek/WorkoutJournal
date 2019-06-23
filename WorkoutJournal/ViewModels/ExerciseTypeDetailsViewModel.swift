@@ -42,7 +42,7 @@ class ExerciseTypeDetailsViewModel {
     }
     
     func fetchExerciseTypes() {
-        exerciseTypesInDataStore = workoutJournalDataStore.fetchRecordsFrom(ofType: ExerciseType.self)
+        exerciseTypesInDataStore = workoutJournalDataStore.fetchAllModelsOfType(ExerciseType.self)
     }
     
     func validate(exerciseTypeName: String?) -> Bool {

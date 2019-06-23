@@ -85,16 +85,15 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             viewModel.workoutJournalDataStore.addBasicExerciseTypesToCoreData()
         }
         
-        viewModel.exerciseTypesInDataStore = viewModel.workoutJournalDataStore.fetchRecordsFrom(ofType: ExerciseType.self)
-                
+        viewModel.exerciseTypesInDataStore = viewModel.workoutJournalDataStore.fetchAllModelsOfType(ExerciseType.self)
     }
-    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return dataStore.exercises.count
         return viewModel.exercisesInDataStore.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCell
@@ -148,9 +147,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
                 
                 //create an ExerciseDetailsViewModel instance
-                let exerciseDetailsViewModel = ExerciseDetailsViewModel(exercises: viewModel.exercisesInDataStore,
-                                                                        exerciseTypes: viewModel.exerciseTypesInDataStore,
-                                                                        dataStore: viewModel.workoutJournalDataStore,
+                
+                let exerciseDetailsViewModel = ExerciseDetailsViewModel(dataStore: viewModel.workoutJournalDataStore,
                                                                         exerciseSelected: viewModel.exercisesInDataStore[row])
                 
                 exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel

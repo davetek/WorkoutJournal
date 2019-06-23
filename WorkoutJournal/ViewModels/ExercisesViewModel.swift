@@ -30,7 +30,7 @@ class ExercisesViewModel {
     }
     
     func fetchExercises() {
-        exercisesInDataStore = workoutJournalDataStore.fetchRecordsFrom(ofType: Exercise.self)
+        exercisesInDataStore = workoutJournalDataStore.fetchAllModelsOfType(Exercise.self)
     }
     
 }

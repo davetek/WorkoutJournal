@@ -23,7 +23,7 @@ class WorkoutJournalDataStore {
     
     
     //define a generic fetch function that will take any NSManagedObject type
-    func fetchRecordsFrom<T: NSManagedObject>(ofType _: T.Type) -> [T] {
+    func fetchAllModelsOfType<T: NSManagedObject>(_: T.Type) -> [T] {
         
         //Set up a request for all NSManagedObject objects
         let request: NSFetchRequest = T.self.fetchRequest()

@@ -29,26 +29,29 @@ class ExerciseDetailsViewModel {
     var specifiedExerciseType: ExerciseType?
     
     
-    //class initializer
-    init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?, exerciseSelected: Exercise?) {
-        self.exercisesInDataStore = exercises
-        self.exerciseTypesInDataStore = exerciseTypes
-        self.workoutJournalDataStore = dataStore
-        self.exerciseBeingEdited = exerciseSelected
+    
+    init(dataStore: WorkoutJournalDataStore?, exerciseSelected: Exercise?) {
         
+        guard let dataStore = dataStore else {
+            preconditionFailure("no data store passed to ExerciseDetailsViewModel initializer")
+        }
+        
+        self.exercisesInDataStore = dataStore.fetchAllModelsOfType(Exercise.self)
+        self.exerciseTypesInDataStore = dataStore.fetchAllModelsOfType(ExerciseType.self)
+        
+        self.workoutJournalDataStore = dataStore
+        
+        self.exerciseBeingEdited = exerciseSelected
         if exerciseSelected != nil {
             specifiedExerciseType = exerciseSelected?.exerciseTypes
-            
-            
         }
+        
     }
     
     //convenience initializer for initializing a vm without a saved exercise, if an exercise is being added
     convenience init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?) {
-        self.init(exercises: exercises,
-                  exerciseTypes: exerciseTypes,
-                  dataStore: dataStore,
-                  exerciseSelected: nil)
+        
+        self.init(dataStore: dataStore, exerciseSelected: nil)
     }
     
     
