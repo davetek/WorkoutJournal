@@ -28,8 +28,6 @@ class ExerciseDetailsViewModel {
     //  from parent view controller or from type picker
     var specifiedExerciseType: ExerciseType?
     
-    
-    
     init(dataStore: WorkoutJournalDataStore?, exerciseSelected: Exercise?) {
         
         guard let dataStore = dataStore else {
@@ -45,13 +43,6 @@ class ExerciseDetailsViewModel {
         if exerciseSelected != nil {
             specifiedExerciseType = exerciseSelected?.exerciseTypes
         }
-        
-    }
-    
-    //convenience initializer for initializing a vm without a saved exercise, if an exercise is being added
-    convenience init(exercises: [Exercise], exerciseTypes: [ExerciseType], dataStore: WorkoutJournalDataStore?) {
-        
-        self.init(dataStore: dataStore, exerciseSelected: nil)
     }
     
     
@@ -74,7 +65,6 @@ class ExerciseDetailsViewModel {
         
     }
 
-    
     
     func validateExerciseType(_ exerciseType: String?) -> Bool {
         
@@ -150,10 +140,6 @@ class ExerciseDetailsViewModel {
         if let name = exerciseName {
             fieldsToUpdate[\Exercise.name] = name
         }
-        
-//        if let type: ExerciseType = exerciseType {
-//            fieldsToUpdate["exerciseTypes"] = type
-//        }
         
         if let url = exerciseURL {
             fieldsToUpdate[\Exercise.url] = url

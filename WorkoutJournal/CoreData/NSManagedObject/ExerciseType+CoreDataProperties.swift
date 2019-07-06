@@ -19,7 +19,7 @@ extension ExerciseType {
 
     @NSManaged public var name: String?
     @NSManaged public var exercises: NSSet?
-
+    
 }
 
 // MARK: Generated accessors for exercises

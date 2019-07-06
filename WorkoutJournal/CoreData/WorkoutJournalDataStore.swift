@@ -58,6 +58,7 @@ class WorkoutJournalDataStore {
         }
     }
     
+    //This is the update method in use
     func updateForAnyPropertyTypes<T: NSManagedObject>(object: T, withFields fields: [String: Any]) {
         
         //for each item in the attributes dictionary passed in the request, set an attribute
