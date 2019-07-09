@@ -24,6 +24,8 @@
 		2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */; };
 		21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21722AB6227DA2BF00486C5D /* DataSource.swift */; };
 		21A82BD521FFED9D009A5AFE /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */; };
+		21ACA3DC22D14D4F005E5082 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACA3DB22D14D4F005E5082 /* Persistence.swift */; };
+		21ACA3DE22D1508C005E5082 /* PersistenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACA3DD22D1508C005E5082 /* PersistenceExtensions.swift */; };
 		21AD2F6721A398AD0097DF08 /* WorkoutJournalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */; };
 		21B1F88C2281175200286E83 /* ExerciseTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1F88B2281175200286E83 /* ExerciseTypesViewController.swift */; };
 		21B1F88E2287A2DB00286E83 /* ExerciseTypesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */; };
@@ -65,6 +67,8 @@
 		2166688C21681E8600AC6318 /* ExerciseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailsViewController.swift; sourceTree = "<group>"; };
 		21722AB6227DA2BF00486C5D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21ACA3DB22D14D4F005E5082 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		21ACA3DD22D1508C005E5082 /* PersistenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceExtensions.swift; sourceTree = "<group>"; };
 		21AD2F6621A398AC0097DF08 /* WorkoutJournalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutJournalDataStore.swift; sourceTree = "<group>"; };
 		21B1F88B2281175200286E83 /* ExerciseTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypesViewController.swift; sourceTree = "<group>"; };
 		21B1F88D2287A2DB00286E83 /* ExerciseTypesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTypesViewModel.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				21722AB6227DA2BF00486C5D /* DataSource.swift */,
+				21ACA3DD22D1508C005E5082 /* PersistenceExtensions.swift */,
+				21ACA3DB22D14D4F005E5082 /* Persistence.swift */,
 				213660B2228C1D03004E6BAE /* DataDependencyInjection.swift */,
 			);
 			path = PersistenceLayer;
@@ -310,6 +316,7 @@
 				21B1F88E2287A2DB00286E83 /* ExerciseTypesViewModel.swift in Sources */,
 				21BC4DB52290AAC70065E357 /* ExerciseTypeDetailsViewModel.swift in Sources */,
 				21722AB7227DA2BF00486C5D /* DataSource.swift in Sources */,
+				21ACA3DC22D14D4F005E5082 /* Persistence.swift in Sources */,
 				213660B3228C1D03004E6BAE /* DataDependencyInjection.swift in Sources */,
 				2166688D21681E8600AC6318 /* ExerciseDetailsViewController.swift in Sources */,
 				21025E47221CDB7300FD9516 /* ExercisesViewModel.swift in Sources */,
@@ -323,6 +330,7 @@
 				21B1F88C2281175200286E83 /* ExerciseTypesViewController.swift in Sources */,
 				21D4FC59223D2F77000C5A56 /* ExerciseCell.swift in Sources */,
 				21439C1D221B41E500BFE041 /* ExerciseDetailsViewModel.swift in Sources */,
+				21ACA3DE22D1508C005E5082 /* PersistenceExtensions.swift in Sources */,
 				215A4E8D22502705000C4EFC /* ExerciseType+CoreDataClass.swift in Sources */,
 				215A4E8F22502705000C4EFC /* Exercise+CoreDataProperties.swift in Sources */,
 				215A4E8E22502705000C4EFC /* ExerciseType+CoreDataProperties.swift in Sources */,

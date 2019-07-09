@@ -65,7 +65,6 @@ class WorkoutJournalDataStore {
         // on the NSManagedObject
         for (fieldKey, fieldValue) in fields {
             object.setValue(fieldValue, forKey: fieldKey)
-            
         }
         
         // save the data to Core Data
