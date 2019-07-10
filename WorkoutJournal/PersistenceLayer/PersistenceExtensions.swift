@@ -11,22 +11,33 @@ import CoreData
 
 
 extension NSManagedObjectContext: WritableDataStore {
-    func addModelItem<T>(ofType modelType: T.Type, withProperties properties: [String : Any]) where T : Model {
-        <#code#>
-    }
-    
-    func update<T>(modelObject: T, withProperties properties: [String : Any]) where T : Model {
-        <#code#>
-    }
     
     func delete<T>(dataObject: T) where T : Model {
-        <#code#>
+        
+        let context = self
+        context.delete(dataObject as! NSManagedObject)
+        do {
+            try context.save()
+        } catch let error {
+            if error._code == 1600 {
+                preconditionFailure("cannot delete model instance; it is referred to by another model instance")
+                context.rollback()
+            } else {
+                preconditionFailure("Error when attempting to delete model instance: \(error)")
+            }
+        }
     }
     
     func saveChanges() {
-        <#code#>
+        let context = self
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                preconditionFailure("Error occured when attempting to save data")
+            }
+        }
     }
-    
     
 }
 
@@ -82,16 +93,12 @@ extension Exercise: Model, ExerciseModel {
     
     static func addWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?, dataStore: DataStore?) {
         
-        var newModelInstance: NSManagedObject
+        let newModelInstance: NSManagedObject
         
-        guard let context = self.managedObjectContext else {
-            preconditionFailure("could not add exercise; context is not available")
+        guard let dataStore = dataStore else {
+            preconditionFailure("could not add exercise; no data store provided")
         }
-        newModelInstance = NSManagedObject(entity: self.entity, insertInto: context)
-        
-        guard let context2: NSManagedObjectContext = dataStore else {
-            
-        }
+        let context = dataStore as! NSManagedObjectContext
         
         guard let name = name else {
             preconditionFailure("could not add exercise; no name provided")
@@ -114,11 +121,35 @@ extension Exercise: Model, ExerciseModel {
                 preconditionFailure("failed to save context after adding an exercise")
             }
         }
-        
     }
     
+    //instance method; context can be obtained directly from the Exercise instance
     func updateWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?) {
         
+        guard let context = self.managedObjectContext else {
+            preconditionFailure("cannot obtain context from the exercise instance")
+        }
+        
+        if let name = name {
+            self.setValue(name, forKey: "name")
+        }
+        
+        if let exerciseType = exerciseType {
+            let exerciseTypeEntity = exerciseType as! NSManagedObject
+            self.setValue(exerciseTypeEntity, forKey: "exerciseTypes")
+        }
+        
+        if let url = url {
+            self.setValue(url, forKey: "url")
+        }
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                preconditionFailure("failed to save update to exercise")
+            }
+        }
         
     }
 }

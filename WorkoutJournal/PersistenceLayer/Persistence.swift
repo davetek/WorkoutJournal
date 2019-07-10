@@ -51,9 +51,9 @@ protocol ReadableDataStore {
 protocol WritableDataStore {
     
     //generic function that will take as parameters  dictionary passed to it
-    func addModelItem<T: Model>(ofType modelType: T.Type, withProperties properties: [String: Any])
+    //func addModelItem<T: Model>(ofType modelType: T.Type, withProperties properties: [String: Any])
     
-    func update<T: Model>(modelObject: T, withProperties properties: [String: Any])
+    //func update<T: Model>(modelObject: T, withProperties properties: [String: Any])
     
     func delete<T: Model>(dataObject: T)
     
@@ -79,7 +79,7 @@ protocol ExerciseModel {
     var url: String? {get set}
     var exerciseType: ExerciseTypeModel? {get set}
     
-    static func addWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?, dataStore: DataStore)
+    static func addWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?, dataStore: DataStore?)
     func updateWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?)
 }
 
