@@ -166,9 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				215A4E8A22502705000C4EFC /* ExerciseType+CoreDataClass.swift */,
-				215A4E8B22502705000C4EFC /* ExerciseType+CoreDataProperties.swift */,
 				21A82BD321FFED9D009A5AFE /* Exercise+CoreDataClass.swift */,
 				215A4E8C22502705000C4EFC /* Exercise+CoreDataProperties.swift */,
+				215A4E8B22502705000C4EFC /* ExerciseType+CoreDataProperties.swift */,
 			);
 			path = NSManagedObject;
 			sourceTree = "<group>";

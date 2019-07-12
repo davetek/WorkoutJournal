@@ -44,7 +44,6 @@ extension NSManagedObjectContext: WritableDataStore {
 extension NSFetchRequest: Query {
     
     @objc var fromModelName: String? {
-        
         get {
             return self.entityName
         }
@@ -93,12 +92,12 @@ extension Exercise: Model, ExerciseModel {
     
     static func addWith(name: String?, exerciseType: ExerciseTypeModel?, url: String?, dataStore: DataStore?) {
         
-        let newModelInstance: NSManagedObject
-        
         guard let dataStore = dataStore else {
             preconditionFailure("could not add exercise; no data store provided")
         }
         let context = dataStore as! NSManagedObjectContext
+        
+        let newModelInstance = NSManagedObject(entity: self.entity(), insertInto: context)
         
         guard let name = name else {
             preconditionFailure("could not add exercise; no name provided")
@@ -167,12 +166,46 @@ extension ExerciseType: Model, ExerciseTypeModel {
         return sortDescriptor
     }
     
-    func addWith(name: String?) {
-        <#code#>
+    func addWith(name: String?, dataStore: DataStore?) {
+       
+        guard let dataStore = dataStore else {
+            preconditionFailure("could not add exercise; no data store provided")
+        }
+        let context = dataStore as! NSManagedObjectContext
+        
+        let newModelInstance = NSManagedObject(entity: self.entity, insertInto: context)
+        
+        guard let name = name else {
+            preconditionFailure("could not add exercise; no name provided")
+        }
+        newModelInstance.setValue(name, forKey: "name")
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                preconditionFailure("failed to save context after adding an exercise")
+            }
+        }
     }
     
     func updateWith(name: String?) {
-        <#code#>
+        
+        guard let context = self.managedObjectContext else {
+            preconditionFailure("cannot update exercise type; context not available")
+        }
+        
+        if let name = name {
+            self.setValue(name, forKey: "name")
+        }
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                preconditionFailure("failed to save update to exercise type")
+            }
+        }
     }
     
     

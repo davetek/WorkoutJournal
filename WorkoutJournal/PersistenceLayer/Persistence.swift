@@ -70,7 +70,7 @@ protocol ExerciseTypeModel {
     var name: String? {get set}
     var exercises: NSSet? {get set} //set of ExerciseModel objects
     
-    func addWith(name: String?)
+    func addWith(name: String?, dataStore: DataStore?)
     func updateWith(name: String?)
 }
 
