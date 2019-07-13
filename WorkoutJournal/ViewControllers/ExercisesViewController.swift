@@ -21,6 +21,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBAction func addButton(_ sender: Any) {
     }
     
+    //required by DataDependencyInjection protocol
     func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore) {
         viewModel = ExercisesViewModel(dataStore: dataStore)
     }

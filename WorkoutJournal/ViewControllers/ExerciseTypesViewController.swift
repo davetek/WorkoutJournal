@@ -17,7 +17,7 @@ class ExerciseTypesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var viewModel: ExerciseTypesViewModel!
     
-    
+    //required by DataDependencyInjection protocol
     func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore) {
         viewModel = ExerciseTypesViewModel(dataStore: dataStore)
     }

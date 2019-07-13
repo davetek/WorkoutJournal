@@ -8,6 +8,9 @@
 
 import Foundation
 
+//to be used by any high-level view controller into which the data store
+// should be injected from the root tab bar controller
+
 protocol DataDependencyInjection {
         
     func instantiateViewModelWithDataStore(_ dataStore: WorkoutJournalDataStore)
