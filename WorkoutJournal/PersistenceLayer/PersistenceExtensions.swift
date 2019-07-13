@@ -49,6 +49,8 @@ extension NSFetchRequest: Query {
         }
     }
     
+    typealias SortDescriptor = NSSortDescriptor
+    
    @objc var orderBy: [NSSortDescriptor]? {
         get {
             return self.sortDescriptors
@@ -58,7 +60,8 @@ extension NSFetchRequest: Query {
         }
     }
     
-    @objc var filterBy: NSPredicate? {
+    typealias Predicate = NSPredicate
+        @objc var filterBy: NSPredicate? {
         get {
             return self.predicate
         }
@@ -71,8 +74,8 @@ extension NSFetchRequest: Query {
 
 extension Exercise: Model, ExerciseModel {
     
-    static func generateQuery() -> Query {
-        let request: NSFetchRequest = self.fetchRequest()
+    static func generateQuery() -> NSFetchRequest<Exercise> {
+        let request: NSFetchRequest<Exercise> = self.fetchRequest()
         return request
     }
     

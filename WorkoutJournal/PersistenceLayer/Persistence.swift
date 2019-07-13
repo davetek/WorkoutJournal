@@ -16,24 +16,26 @@ import Foundation
 //"collects the criteria needed to select and optionally to
 // sort a group of managed objects held in a persistent store"
 protocol Query {
+    associatedtype SortDescriptor
+    associatedtype Predicate
     
     //corresponds to SQL SELECT statement FROM clause
     // and var entityName in NSFetchRequest
     var fromModelName: String? {get}
     
     //corresponds to SQL SELECT statement ORDER BY clause
-    var orderBy: [NSSortDescriptor]? {get set}
+    var orderBy: [SortDescriptor]? {get set}
     
     //corresponds to SQL SELECT statemement WHERE clause
-    var filterBy: NSPredicate? {get set}
+    var filterBy: Predicate? {get set}
 }
 
 
 //corresponds to NSEntityDescription
 protocol Model {
-    
+        
     //if Core Data, conforming type will create an NSFetchRequest for this Entity
-    static func generateQuery() -> Query
+    static func generateQuery<Q: Query>() -> Q
     
     static func generateSortDescriptor(forKey key: String, ascending: Bool) -> NSSortDescriptor
 }
