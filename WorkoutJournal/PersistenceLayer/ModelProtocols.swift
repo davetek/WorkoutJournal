@@ -20,3 +20,28 @@ protocol ExerciseModel {
     var url: String? {get set}
     var exerciseType: ExerciseTypeModel? {get set}
 }
+
+protocol ExercisePlanModel {
+    var repsPerSet: Int16 {get set}
+    var restBtwnSets: Int16 {get set}
+    var sets: Int16 {get set}
+    var setsPyramidDblPeakTo: Int16 {get set}
+    var setsPyramidStepSize: Int16 {get set}
+    var setsPyramidTo: Int16 {get set}
+    var setTimeDuration: Int16 {get set}
+    var setsTotalTime: Int16 {get set}
+    var setDistance: Int16 {get set}
+    var setsTotalDistance: Int16 {get set}
+    
+    var exercise: Exercise? {get set}
+}
+    
+protocol Routine {
+    /*
+     pattern  // circuit-by-reps, circuit-by-times, HIT, intervals
+     <sequence of
+ 
+ 
+ */
+ 
+}

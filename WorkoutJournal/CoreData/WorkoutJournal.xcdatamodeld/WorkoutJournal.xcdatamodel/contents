@@ -3,14 +3,29 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exercisePlan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exercise" inverseEntity="ExercisePlan" syncable="YES"/>
         <relationship name="exerciseTypes" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseType" inverseName="exercises" inverseEntity="ExerciseType" syncable="YES"/>
+    </entity>
+    <entity name="ExercisePlan" representedClassName="ExercisePlan" syncable="YES">
+        <attribute name="repsPerSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="restBtwnSets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setDistance" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setsPyramidDblPeakTo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setsPyramidStepSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setsPyramidTo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setsTotalDistance" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setsTotalTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setTimeDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="exercisePlan" inverseEntity="Exercise" syncable="YES"/>
     </entity>
     <entity name="ExerciseType" representedClassName="ExerciseType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Exercise" inverseName="exerciseTypes" inverseEntity="Exercise" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Exercise" positionX="-313.05859375" positionY="141.99609375" width="128" height="90"/>
+        <element name="Exercise" positionX="-313.05859375" positionY="141.99609375" width="128" height="105"/>
         <element name="ExerciseType" positionX="-536.46875" positionY="140.72265625" width="128" height="75"/>
+        <element name="ExercisePlan" positionX="-423" positionY="171" width="128" height="210"/>
     </elements>
 </model>

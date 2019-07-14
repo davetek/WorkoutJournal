@@ -2,7 +2,7 @@
 //  ExerciseType+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 3/30/19.
+//  Created by David Lawrence on 7/14/19.
 //  Copyright © 2019 clarity for action. All rights reserved.
 //
 //
@@ -19,7 +19,7 @@ extension ExerciseType {
 
     @NSManaged public var name: String?
     @NSManaged public var exercises: NSSet?
-    
+
 }
 
 // MARK: Generated accessors for exercises
