@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 7/14/19.
+//  Created by David Lawrence on 7/16/19.
 //  Copyright © 2019 clarity for action. All rights reserved.
 //
 //
@@ -19,26 +19,7 @@ extension Exercise {
 
     @NSManaged public var name: String?
     @NSManaged public var url: String?
-    @NSManaged public var attribute: NSObject?
-    @NSManaged public var attribute1: NSObject?
+    @NSManaged public var exerciseInWorkout: ExerciseInWorkout?
     @NSManaged public var exerciseTypes: ExerciseType?
-    @NSManaged public var exercisePlan: NSSet?
-
-}
-
-// MARK: Generated accessors for exercisePlan
-extension Exercise {
-
-    @objc(addExercisePlanObject:)
-    @NSManaged public func addToExercisePlan(_ value: ExercisePlan)
-
-    @objc(removeExercisePlanObject:)
-    @NSManaged public func removeFromExercisePlan(_ value: ExercisePlan)
-
-    @objc(addExercisePlan:)
-    @NSManaged public func addToExercisePlan(_ values: NSSet)
-
-    @objc(removeExercisePlan:)
-    @NSManaged public func removeFromExercisePlan(_ values: NSSet)
 
 }

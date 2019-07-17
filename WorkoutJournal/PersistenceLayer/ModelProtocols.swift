@@ -36,12 +36,17 @@ protocol ExercisePlanModel {
     var exercise: Exercise? {get set}
 }
     
-protocol Routine {
+protocol RoutineModel {
     /*
      pattern  // circuit-by-reps, circuit-by-times, HIT, intervals
      <sequence of
- 
- 
- */
- 
+    */
+    //var exercisePlanInRoutine: ExercisePlanInRoutine? {get set}
+}
+
+protocol ExercisePlanInRoutineModel {
+    
+    //var routine: Routine? {get set}
+    var exercise: Exercise? {get set}
+    var sequence: Int16 {get set}
 }

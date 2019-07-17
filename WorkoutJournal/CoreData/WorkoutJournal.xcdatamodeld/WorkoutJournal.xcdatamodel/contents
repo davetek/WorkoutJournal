@@ -3,8 +3,18 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="exercisePlan" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exercise" inverseEntity="ExercisePlan" syncable="YES"/>
+        <relationship name="exerciseInWorkout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseInWorkout" inverseName="exercise" inverseEntity="ExerciseInWorkout" syncable="YES"/>
         <relationship name="exerciseTypes" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseType" inverseName="exercises" inverseEntity="ExerciseType" syncable="YES"/>
+    </entity>
+    <entity name="ExerciseGoal" representedClassName="ExerciseGoal" syncable="YES" codeGenerationType="class">
+        <relationship name="exerciseInWorkout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseInWorkout" inverseName="exerciseGoal" inverseEntity="ExerciseInWorkout" syncable="YES"/>
+        <relationship name="exercisePlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExercisePlan" inverseName="exerciseGoal" inverseEntity="ExercisePlan" syncable="YES"/>
+    </entity>
+    <entity name="ExerciseInWorkout" representedClassName="ExerciseInWorkout" syncable="YES" codeGenerationType="class">
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="exerciseInWorkout" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="exerciseGoal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseGoal" inverseName="exerciseInWorkout" inverseEntity="ExerciseGoal" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="exerciseInWorkout" inverseEntity="Workout" syncable="YES"/>
     </entity>
     <entity name="ExercisePlan" representedClassName="ExercisePlan" syncable="YES">
         <attribute name="repsPerSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -17,15 +27,22 @@
         <attribute name="setsTotalDistance" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="setsTotalTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="setTimeDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="exercisePlan" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="exerciseGoal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseGoal" inverseName="exercisePlan" inverseEntity="ExerciseGoal" syncable="YES"/>
     </entity>
     <entity name="ExerciseType" representedClassName="ExerciseType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Exercise" inverseName="exerciseTypes" inverseEntity="Exercise" syncable="YES"/>
     </entity>
+    <entity name="Workout" representedClassName="Workout" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exerciseInWorkout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseInWorkout" inverseName="workout" inverseEntity="ExerciseInWorkout" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Exercise" positionX="-313.05859375" positionY="141.99609375" width="128" height="105"/>
-        <element name="ExerciseType" positionX="-536.46875" positionY="140.72265625" width="128" height="75"/>
-        <element name="ExercisePlan" positionX="-423" positionY="171" width="128" height="210"/>
+        <element name="Exercise" positionX="-306.84375" positionY="144.66796875" width="128" height="105"/>
+        <element name="ExercisePlan" positionX="-86.5234375" positionY="358.78125" width="128" height="210"/>
+        <element name="ExerciseType" positionX="-478.1171875" positionY="145.95703125" width="128" height="75"/>
+        <element name="Workout" positionX="-307.71875" positionY="286.36328125" width="128" height="75"/>
+        <element name="ExerciseInWorkout" positionX="-91.5703125" positionY="212.9453125" width="128" height="105"/>
+        <element name="ExerciseGoal" positionX="87.73828125" positionY="273.6328125" width="128" height="75"/>
     </elements>
 </model>

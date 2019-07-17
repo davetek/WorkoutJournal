@@ -1,5 +1,5 @@
 //
-//  ExerciseType+CoreDataClass.swift
+//  ExerciseGoal+CoreDataClass.swift
 //  WorkoutJournal
 //
 //  Created by David Lawrence on 7/16/19.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(ExerciseType)
-public class ExerciseType: NSManagedObject {
+@objc(ExerciseGoal)
+public class ExerciseGoal: NSManagedObject {
 
 }
