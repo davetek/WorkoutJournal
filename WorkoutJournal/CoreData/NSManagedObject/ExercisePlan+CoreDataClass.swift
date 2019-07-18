@@ -2,7 +2,7 @@
 //  ExercisePlan+CoreDataClass.swift
 //  WorkoutJournal
 //
-//  Created by David Lawrence on 7/16/19.
+//  Created by David Lawrence on 7/17/19.
 //  Copyright © 2019 clarity for action. All rights reserved.
 //
 //
