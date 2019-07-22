@@ -122,7 +122,12 @@ class WorkoutJournalDataStore {
         }
         
         //save the data to Core Data
-        saveContext()
+        do {
+            try context.save()
+            print("trying to save after adding record")
+        } catch let error {
+            print("Error when attempting to save record: \(error)")
+        }
     }
     
     func getSliceOf(string: String, afterSubstring: Character) -> String {
@@ -165,12 +170,13 @@ class WorkoutJournalDataStore {
         }
     }
     
-
-
-
+    //pre-populate Core Data records
+    func addDefaultData() {
+        addBasicExerciseTypesToCoreData()
+        addExampleWorkoutsToCoreData()
+    }
     
-    
-    
+
     //pre-populate Core Data with exercise types
     func addBasicExerciseTypesToCoreData() {
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Aerobic"])
@@ -179,6 +185,15 @@ class WorkoutJournalDataStore {
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Stretching"])
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Weight Training"])
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Yoga"])
+    }
+    
+    //pre-populate Core Data with workouts
+    func addExampleWorkoutsToCoreData() {
+        addRecord(ofType: Workout.self, withAttributes: ["name": "Push Calisthenics"])
+        addRecord(ofType: Workout.self, withAttributes: ["name": "Pull and Legs Calisthenics"])
+        addRecord(ofType: Workout.self, withAttributes: ["name": "Core Calisthenics"])
+        addRecord(ofType: Workout.self, withAttributes: ["name": "Sprints HIT"])
+        addRecord(ofType: Workout.self, withAttributes: ["name": "Distance Run"])
     }
     
 }

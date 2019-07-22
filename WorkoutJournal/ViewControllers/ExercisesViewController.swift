@@ -16,6 +16,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     //view model
     var viewModel: ExercisesViewModel!
     
+    
+    
     @IBOutlet var tableView: UITableView!
     
     @IBAction func addButton(_ sender: Any) {
@@ -79,13 +81,13 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
-        viewModel.fetchExercises()
         
         let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()
         if appWasLaunchedBefore == false {
-            viewModel.workoutJournalDataStore.addBasicExerciseTypesToCoreData()
+            viewModel.workoutJournalDataStore.addDefaultData()
         }
-        
+        viewModel.fetchExercises()
+
         viewModel.exerciseTypesInDataStore = viewModel.workoutJournalDataStore.fetchAllModelsOfType(ExerciseType.self)
     }
     

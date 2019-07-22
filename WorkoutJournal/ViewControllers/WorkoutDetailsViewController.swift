@@ -10,4 +10,8 @@ import UIKit
 
 class WorkoutDetailsViewController: UIViewController {
     
+    var viewModel: WorkoutsViewModel!
+    
+    
+    
 }

@@ -45,6 +45,7 @@ class RootTabBarController: UITabBarController, UITabBarControllerDelegate {
             if viewController is UINavigationController {
                 let targetViewController = viewController.children[0] as? DataDependencyInjection
                 targetViewController?.instantiateViewModelWithDataStore(workoutJournalDataStore)
+                //print("instantiated view model from tab bar controller")
             }
         }
     }
