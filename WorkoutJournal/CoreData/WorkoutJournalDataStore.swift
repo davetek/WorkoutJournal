@@ -23,6 +23,30 @@ class WorkoutJournalDataStore {
     
     
     //define a generic fetch function that will take any NSManagedObject type
+    func fetchModel<T: NSManagedObject>(ofType: T.Type, withName name: String) -> T? {
+        
+        //Set up a request for all NSManagedObject objects
+        let request: NSFetchRequest = T.self.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        
+        //create predicate for name
+        let predicate = NSPredicate(format: "name == \"\(name)\"", argumentArray: nil)
+        request.predicate = predicate
+        
+        //fetch records from Core Data & assign to variable if successful
+        do {
+            let result = try context.fetch(request)
+            let item = result.first as! T
+            return item
+            
+        } catch {
+            print("fetch from Core Data failed")
+            return nil
+        }
+    }
+    
+    
+    //define a generic fetch function that will take any NSManagedObject type
     func fetchAllModelsOfType<T: NSManagedObject>(_: T.Type) -> [T] {
         
         //Set up a request for all NSManagedObject objects
@@ -179,6 +203,48 @@ class WorkoutJournalDataStore {
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Stretching"])
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Weight Training"])
         addRecord(ofType: ExerciseType.self, withAttributes: ["name": "Yoga"])
+    }
+    
+    
+    //pre-populate Core Data with exercises
+    func addBasicExercisesToCoreData() {
+        
+        let aerobic = fetchModel(ofType: ExerciseType.self, withName: "Aerobic")
+        let calisthenics = fetchModel(ofType: ExerciseType.self, withName: "Calisthenics")
+        let core = fetchModel(ofType: ExerciseType.self, withName: "Core")
+        let stretching = fetchModel(ofType: ExerciseType.self, withName: "Stretching")
+        let weightTraining = fetchModel(ofType: ExerciseType.self, withName: "Weight Training")
+        let yoga = fetchModel(ofType: ExerciseType.self, withName: "Yoga")
+
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Pushups - Regular",
+                                                          "exerciseTypes": calisthenics!])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Pullups",
+                                                          "exerciseTypes": calisthenics!,
+                                                          "url": "https://stronglifts.com/pullups/#gref"])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Crunches",
+                                                          "exerciseTypes": core!])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Planks",
+                                                          "exerciseTypes": core!,
+                                                          "url": "https://www.menshealth.com/fitness/a25628831/plank-exercise/"])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Trail Run",
+                                                          "exerciseTypes": aerobic!,
+                                                          "url": "https://trailrunner.com"])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Sprints",
+                                                          "exerciseTypes": aerobic!,
+                                                          "url": "https://www.runnersworld.com/training/a20865004/sprint-workouts-to-increase-speed/"])
+        
+        addRecord(ofType: Exercise.self, withAttributes: ["name": "Toe Touch",
+                                                          "exerciseTypes": stretching!])
+        
+        
+        
+
+        
     }
     
 }

@@ -75,15 +75,16 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super .viewDidLoad()
         
+        let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()
+        if appWasLaunchedBefore == false {
+            viewModel.workoutJournalDataStore.addBasicExerciseTypesToCoreData()
+            viewModel.workoutJournalDataStore.addBasicExercisesToCoreData()
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
         viewModel.fetchExercises()
-        
-        let appWasLaunchedBefore: Bool = wasAppAlreadyLaunchedOnce()
-        if appWasLaunchedBefore == false {
-            viewModel.workoutJournalDataStore.addBasicExerciseTypesToCoreData()
-        }
         
         viewModel.exerciseTypesInDataStore = viewModel.workoutJournalDataStore.fetchAllModelsOfType(ExerciseType.self)
     }
