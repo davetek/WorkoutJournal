@@ -38,7 +38,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="atc-yp-6dZ" kind="presentation" id="6fI-ea-P0q"/>
+                                            <segue destination="atc-yp-6dZ" kind="presentation" identifier="showWorkoutDetails" id="6fI-ea-P0q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -62,7 +62,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cNE-bd-hJg">
                             <connections>
                                 <action selector="addWorkout:" destination="8zN-qb-7nG" id="ham-Y4-U4P"/>
-                                <segue destination="atc-yp-6dZ" kind="presentation" id="X24-jf-VZ8"/>
+                                <segue destination="atc-yp-6dZ" kind="presentation" identifier="addWorkoutDetails" id="X24-jf-VZ8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

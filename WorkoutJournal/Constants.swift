@@ -12,7 +12,6 @@ struct Constants {
     static let idForExercisesPrototypeCell = "exercisesPrototypeCell"
     static let idForWorkoutsPrototypeCell = "workoutsPrototypeCell"
     static let idForWorkoutExercisesPrototypeCell = "workoutExercisesProtoCell"
-    static let idForSegueToWorkoutDetail = "showWorkoutDetails"
     static let idForSegueToExercisePlan = "showExercisePlan"
     static let idForSegueToExerciseDetails = "showExerciseDetails"
     static let idForSegueToAddExerciseDetails = "addExerciseDetails"
@@ -20,4 +19,6 @@ struct Constants {
     static let idForSequeToAddExerciseTypeDetails = "addExerciseTypeDetails"
     static let idForUnwindWithChangesSegueToExercises = "unwindWithChangesToExercisesViewController"
     static let idForUnwindSegueToExercises = "unwindToExercisesViewController"
+    static let idForSegueToWorkoutDetails = "showWorkoutDetails"
+    static let idForSegueToAddWorkoutDetails = "addWorkoutDetails"
 }

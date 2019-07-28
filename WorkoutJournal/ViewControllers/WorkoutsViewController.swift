@@ -89,8 +89,21 @@ class WorkoutsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.textLabel?.text = workoutName
         
         return cell
-        
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            //if add button was tapped
+        case Constants.idForSegueToAddWorkoutDetails:
+            let workoutDetailsNavController = segue.destination as! UINavigationController
+            let workoutDetailsViewController = workoutDetailsNavController.topViewController as! WorkoutDetailsViewController
+            
+            //create a WorkoutDetailsViewModel instance, injecting the data store
+            let workoutDetailsViewModel = WorkoutDetailsViewModel(dataStore: viewModel.workoutJournalDataStore)
+            
+            workoutDetailsViewController.workoutDetailsViewModel = workoutDetailsViewModel
+            
+        }
     }
     
     

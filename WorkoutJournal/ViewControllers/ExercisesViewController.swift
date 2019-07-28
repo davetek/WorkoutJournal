@@ -134,7 +134,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let exerciseDetailsNavController = segue.destination as! UINavigationController
             let exerciseDetailsViewController = exerciseDetailsNavController.topViewController as! ExerciseDetailsViewController
             
-            //get list of exercise names and exercise type names and use them to create an ExerciseDetailsViewModel instance
+            //create an ExerciseDetailsViewModel instance, injecting the data store
             let exerciseDetailsViewModel = ExerciseDetailsViewModel(dataStore: viewModel.workoutJournalDataStore, exerciseSelected: nil)
             
             exerciseDetailsViewController.exerciseDetailsViewModel = exerciseDetailsViewModel
